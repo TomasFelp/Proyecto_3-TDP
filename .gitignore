@@ -1,0 +1,5 @@
+/bin/
+
+# Emacs
+*.project
+*.classpath
