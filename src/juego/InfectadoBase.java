@@ -12,8 +12,11 @@ public class InfectadoBase extends Personaje{
 		velocidad=5;
 		grafico=new EntidadGrafica("/ImagenesPlayer/player.png");
 		this.setIcon(grafico.getGrafico());
-		posY=0;
-		posX=new Random().nextInt(25)*20;//<---------------------Ajustar valores para que no se salga de la pantalla (20 porque es el tamaño de lavel provisorio que defini en el mapeo)
+		
+		Random rnd=new Random();
+		
+		posY=rnd.nextInt(15)*-20;//<--------------------Para que no esten todos en la misma fila
+		posX=rnd.nextInt(25)*20;//<---------------------Ajustar valores para que no se salga de la pantalla (20 porque es el tamaño de lavel provisorio que defini en el mapeo)
 	}
 //Methods
 	public int getPosX() {
