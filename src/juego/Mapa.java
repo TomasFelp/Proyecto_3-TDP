@@ -4,69 +4,68 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.LayoutStyle;
 
 public class Mapa extends JPanel {
 	
 	private Player player;
-	private JPanel panelPlayer;
 	private Nivel nivel;
-	private InfectadoBase ib;//<------------------Atributo para testear el comportamiento de los infectados
+
 	/**
 	 * Create the panel.
 	 */
-	public Mapa() {
+	public Mapa(Nivel n) {
 		super();
-		//nivel=new Nivel(5);
-		//insertarInfectados();
+		
 		player=new Player();
 		
+		//configuro el panel general
 		this.setOpaque(true);
 		this.setBackground(Color.RED);
-		this.setLayout(new BorderLayout());
+		this.setLayout(null);
 		
 		
-		panelPlayer=new JPanel();
-		this.add(panelPlayer,BorderLayout.SOUTH);
-		panelPlayer.setLayout(new FlowLayout());
-		panelPlayer.setBackground(Color.GREEN);
-		panelPlayer.setOpaque(false);
-		panelPlayer.add(player);
-		
+		/*
 
-		ib=new InfectadoBase();
-		this.add(ib);
-
+		 * Inserto los infectados y el player con las cordenadas absolutas.
+		 * Lo hice asi porque si ponia los infectados en el panel peincipal los superponia todos por el layout y 
+		 * si los ponia en su porpio panel desaparecian cuando llegaban al panel del player.
+		 * 
+		 * Yo creo que lo mas conveniente seria hacer que el jframe sea de un tamaño fijo y respecto de ese tamaño acamodar todas las cordenadas absolutas.
+		 * 
+		 * 
+		 */
+		//Coloco el player
+		this.add(player);
+		player.setSize(20,20);		 // Cordenadas y tamaño genericos solo para prueba.
+		player.setLocation(250,530);//
+		
+		//Armo el nivel
+		nivel=n;
+		insertarInfectados();
+	
 	}
 	
 	public Player getPlayer() {
 		return player;
 	}
 	
-	/*
-	 * --------------------------------------------------------------------
-	 */
-	//Metodo pra testear el comportamiento de los infectados
-	public InfectadoBase getInf() {
-		return ib;
-	}
-	/*
-	 * --------------------------------------------------------------------
-	 */
-	/*
-	 */
-	/* 
+	
 	private void insertarInfectados() {
 		InfectadoBase[] infectados=nivel.getPrimerOleada();
+		InfectadoBase infectadoActual;
 		
 		for(int i=0;i<infectados.length;i++) {
-			//this.add(infectados[i],BorderLayout.SOUTH);
-			System.out.println("insertando infectado");
+			infectadoActual=infectados[i];
+			infectadoActual.setSize(20,20);
+			this.add(infectadoActual);
+			infectados[i].setLocation(infectadoActual.getPosX(), infectadoActual.getPosY());
+		}
 		
-		panelPlayer.add(ib);
-		ib=new InfectadoBase();
-		this.add(ib);
+
 	}
-     */
+     
 	
 }
