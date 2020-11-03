@@ -4,7 +4,6 @@ import java.awt.Point;
 import colisiones.*;
 import entidades.*;
 import juego.*;
-import entidades.*;
 public class MenteInfectados extends Thread{
 //Attributes
 	private JFrameJuego jfJuego;
@@ -20,7 +19,6 @@ public class MenteInfectados extends Thread{
 		infectado=in;
 		jfJuego=j;
 		player=p;
-		evaluadorColision=new Evaluador_de_colisiones();
 	}
 	
 //Methods
@@ -31,9 +29,8 @@ public class MenteInfectados extends Thread{
 			Point pos=infectado[i].getLocation();
 			
 				try {
-					this.sleep(1);
+					Thread.sleep(1);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				//Si llego a la zona en la cual se desplaza el player.
@@ -43,7 +40,7 @@ public class MenteInfectados extends Thread{
 					zonaPlayer=player.getZonaColision();
 					zonaInfectado=infectado[i].getZonaColision();
 					
-					if(evaluadorColision.estanEnContacto(zonaPlayer,zonaInfectado)==true) {
+					if(Evaluador_de_colisiones.estanEnContacto(zonaPlayer,zonaInfectado)) {
 						System.out.println("player muerto");
 					}
 				}
