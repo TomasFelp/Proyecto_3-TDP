@@ -52,7 +52,7 @@ public class JFrameJuego extends JFrame {
 		ComandoPlayer controlesPlayer=new ComandoPlayer(mapa.getPlayer(),this);		
 		this.addKeyListener(controlesPlayer);
 		
-		MenteInfectados menteInfectado=new MenteInfectados(nivel1,this);
+		MenteInfectados menteInfectado=new MenteInfectados(mapa.getPlayer(),nivel1,this);
 		menteInfectado.start();
 
 	}

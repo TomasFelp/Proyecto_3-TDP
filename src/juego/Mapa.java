@@ -40,7 +40,7 @@ public class Mapa extends JPanel {
 		//Coloco el player
 		this.add(player);
 		player.setSize(20,20);		 // Cordenadas y tamaño genericos solo para prueba.
-		player.setLocation(250,530);//
+		player.setLocation(230,530);//
 		
 		//Armo el nivel
 		nivel=n;
