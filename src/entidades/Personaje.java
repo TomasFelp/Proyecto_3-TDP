@@ -8,7 +8,6 @@ public abstract class Personaje extends Entidad_colisionable{
 //Attributes
 	protected int saludActual;
 	protected int velocidad;
-	protected EntidadGrafica grafico;
 	
 //Methods
 	public int getVelocidad() {
