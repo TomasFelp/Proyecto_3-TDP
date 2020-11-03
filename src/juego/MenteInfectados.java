@@ -4,17 +4,20 @@ import java.awt.Point;
 
 public class MenteInfectados extends Thread{
 //Attributes
-	JFrameJuego jfJuego;
+	private JFrameJuego jfJuego;
 	private InfectadoBase[] infectado;
-	
+	private Player player;
+	private Evaluador_de_colisiones evaluadorColision;
 //Builder
 	/*
 	 * Recibe un solo infectado para testear el comportamiento, 
 	 * despues deberia recibir el nivel o la coleccion de infectados
 	 */
-	public MenteInfectados(Nivel nivel,JFrameJuego j) {
+	public MenteInfectados(Player p,Nivel nivel,JFrameJuego j) {
 		infectado=nivel.getPrimerOleada();
 		jfJuego=j;
+		player=p;
+		evaluadorColision=new Evaluador_de_colisiones();
 	}
 	
 //Methods
@@ -30,7 +33,18 @@ public class MenteInfectados extends Thread{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if(pos.y>jfJuego.getAlto()-40) {
+				//Si llego a la zona en la cual se desplaza el player.
+				if(pos.y>jfJuego.getAlto()-80) {
+					//obtengo sus zonas de colision y las comparo
+					ZonaColision zonaPlayer,zonaInfectado;
+					zonaPlayer=player.getZonaColision();
+					zonaInfectado=infectado[i].getZonaColision();
+					
+					if(evaluadorColision.estanEnContacto(zonaPlayer,zonaInfectado)==true) {
+						System.out.println("player muerto");
+					}
+				}
+				if(pos.y>jfJuego.getAlto()-60) {
 					pos.setLocation(pos.x,0);
 				}else {
 					pos.setLocation(pos.x,pos.y+infectado[i].getVelocidad());
