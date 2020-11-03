@@ -15,9 +15,10 @@ public abstract class Personaje extends JLabel{
 	}
 	
 	public ZonaColision getZonaColision() {
-		int centro=(int) (this.getLocation().x-(this.getSize().getWidth())/2);
+		int centroX=(int) (this.getLocation().x-(this.getSize().getWidth())/2);
+		int centroY=(int) (this.getLocation().y-(this.getSize().getHeight())/2);
 		int radio=(int)(this.getSize().getHeight()/2);
-		return new ZonaColision(centro,radio);
+		return new ZonaColision(centroX,centroY,radio);
 	}
 	
 

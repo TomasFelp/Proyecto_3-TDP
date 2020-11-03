@@ -22,17 +22,44 @@ public class Evaluador_de_colisiones {
 		 * si la suma de sus radios es mayor a la distancia entre sus centros.
 		 */
 		boolean resp=false;
-		int zaCentro,zaRadio,zbCentro,zbRadio,distancia;
-		zaCentro=za.getCentro();
-		zbCentro=zb.getCentro();
+		int zaRadio,zbRadio;
+		float distancia;
+		
 		zaRadio=za.getRadio();
 		zbRadio=zb.getRadio();
 		
-		distancia=Math.abs(zaCentro-zbCentro);
+		distancia=distanciaCentros(za,zb);
 		
 		if((zaRadio+zbRadio)>distancia)
 			resp=true;
 		
 		return resp;
 	}
+	
+	private float distanciaCentros(ZonaColision za,ZonaColision zb) {
+		float resp=0;
+		int zaCentroX,zbCentroX,zaCentroY,zbCentroY;
+		zaCentroX=za.getCentroX();
+		zbCentroX=zb.getCentroX();
+		zaCentroY=za.getCentroY();
+		zbCentroY=zb.getCentroY();
+		
+		resp=(float) Math.sqrt(Math.pow((zaCentroX-zbCentroX),2)+Math.pow((zaCentroY-zbCentroY),2));
+		
+		return resp;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
