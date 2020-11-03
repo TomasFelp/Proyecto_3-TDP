@@ -1,4 +1,4 @@
-package juego;
+package colisiones;
 
 /**
  * Modela un circulo

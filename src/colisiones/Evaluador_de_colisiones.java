@@ -1,4 +1,4 @@
-package juego;
+package colisiones;
 
 /**
  * Clase con todos los metodos relacionados a revisar las colisioes.

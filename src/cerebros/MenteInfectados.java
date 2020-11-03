@@ -1,7 +1,10 @@
-package juego;
+package cerebros;
 
 import java.awt.Point;
-
+import colisiones.*;
+import entidades.*;
+import juego.*;
+import entidades.*;
 public class MenteInfectados extends Thread{
 //Attributes
 	private JFrameJuego jfJuego;

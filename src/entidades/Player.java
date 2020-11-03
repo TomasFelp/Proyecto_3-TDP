@@ -1,4 +1,4 @@
-package juego;
+package entidades;
 
 import javax.swing.JLabel;
 

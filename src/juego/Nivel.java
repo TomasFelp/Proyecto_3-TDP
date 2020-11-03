@@ -1,4 +1,5 @@
 package juego;
+import entidades.*;
 
 public class Nivel {
 //Attributes

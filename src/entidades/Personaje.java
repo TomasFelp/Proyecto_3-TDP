@@ -1,6 +1,7 @@
-package juego;
+package entidades;
 
 import javax.swing.JLabel;
+import colisiones.*;
 
 public abstract class Personaje extends JLabel{
 	

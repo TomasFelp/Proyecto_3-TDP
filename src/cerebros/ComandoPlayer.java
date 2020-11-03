@@ -1,9 +1,10 @@
-package juego;
+package cerebros;
 
 import java.awt.Point;
+import entidades.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import juego.*;
 public class ComandoPlayer extends Thread implements KeyListener{
 //Attributes
 	protected Player player;
