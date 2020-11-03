@@ -9,7 +9,7 @@ public class InfectadoBase extends Personaje{
 //Builder
 	public InfectadoBase(){
 		saludActual=100;
-		velocidad=5;
+		velocidad=2;
 		grafico=new EntidadGrafica("/ImagenesPlayer/player.png");
 		this.setIcon(grafico.getGrafico());
 		

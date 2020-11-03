@@ -25,7 +25,7 @@ public class MenteInfectados extends Thread{
 			Point pos=infectado[i].getLocation();
 			
 				try {
-					this.sleep(10);
+					this.sleep(1);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

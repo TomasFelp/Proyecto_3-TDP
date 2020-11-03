@@ -45,7 +45,7 @@ public class JFrameJuego extends JFrame {
 	}
 	
 	private void armarJuego(){
-		Nivel nivel1=new Nivel(10);
+		Nivel nivel1=new Nivel(50);
 		mapa=new Mapa(nivel1);
 		contentPane.add(mapa);
 		
