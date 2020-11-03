@@ -13,8 +13,8 @@ public class MenteInfectados extends Thread{
 	 * Recibe un solo infectado para testear el comportamiento, 
 	 * despues deberia recibir el nivel o la coleccion de infectados
 	 */
-	public MenteInfectados(Player p,Nivel nivel,JFrameJuego j) {
-		infectado=nivel.getPrimerOleada();
+	public MenteInfectados(Player p,InfectadoBase[] in,JFrameJuego j) {
+		infectado=in;
 		jfJuego=j;
 		player=p;
 		evaluadorColision=new Evaluador_de_colisiones();
