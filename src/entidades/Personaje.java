@@ -3,7 +3,7 @@ package entidades;
 import javax.swing.JLabel;
 import colisiones.*;
 
-public abstract class Personaje extends JLabel{
+public abstract class Personaje extends Entidad_colisionable{
 	
 //Attributes
 	protected int saludActual;
