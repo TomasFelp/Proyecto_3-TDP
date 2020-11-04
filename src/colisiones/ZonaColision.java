@@ -1,41 +1,47 @@
 package colisiones;
 
+import java.awt.Point;
+
 /**
  * Modela un circulo
+ * 
  * @author Tomás
  */
 public class ZonaColision {
-//Attributes	
-	private int centroX;
-	private int centroY;
-	private int radio;
+    private Point centro;
+    private double radio;
 
-//Builder
-	public ZonaColision(int cx,int cy,int r) {
-		centroX = cx;
-		centroY = cy;
-		radio = r;
-	}
-	
-//Methods
-	public void setCentro(int cx,int cy) {
-		centroX = cx;
-		centroY = cy;
-	}
-	
-	public void setRadio(int r) {
-		radio=r;
-	}
-	
-	public int getCentroX() {
-		return centroX;
-	}
-	
-	public int getCentroY() {
-		return centroY;
-	}
-	
-	public int getRadio(){
-		return radio;
-	}
+    public ZonaColision(Point centro, int r) {
+        this.centro = centro;
+        radio = r;
+    }
+
+    public ZonaColision(int cx, int cy, int r) {
+        centro = new Point(cx, cy);
+        radio = r;
+    }
+
+    public void setCentro(int cx, int cy) {
+        centro = new Point(cx, cy);
+    }
+
+    public void setRadio(int r) {
+        radio = r;
+    }
+
+    public Point getCentro() {
+        return centro;
+    }
+
+    public double getCentroX() {
+        return centro.getX();
+    }
+
+    public double getCentroY() {
+        return centro.getY();
+    }
+
+    public double getRadio() {
+        return radio;
+    }
 }
