@@ -24,12 +24,12 @@ public class ImageProvider {
     }
 
     private void loadSpriteEnemigoAlfa() {
-        URL path = getClass().getResource("/ImagenesPlayer/player.png");
+        URL path = getClass().getResource("/SpritesInfectados/InfectadoAlfa.png");
         spriteEnemigoAlfa = new ImageIcon(path);
     }
 
     private void loadSpriteEnemigoBeta() {
-        URL path = getClass().getResource("/ImagenesPlayer/player.png");
+        URL path = getClass().getResource("/SpritesInfectados/InfectadoAlfa.png");
         spriteEnemigoBeta = new ImageIcon(path);
     }
 
