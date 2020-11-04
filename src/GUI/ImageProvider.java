@@ -4,6 +4,10 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Modela un singleton que se encarga de cargar las imagenes necesarias para el
+ * juego, y provee metodos para acceder a ellas.
+ */
 public class ImageProvider {
     private ImageIcon spriteEnemigoAlfa;
     private ImageIcon spriteEnemigoBeta;
@@ -16,8 +20,11 @@ public class ImageProvider {
         loadSpriteEnemigoBeta();
     }
 
-    public static ImageProvider getInstancia(){
-        if(instancia == null)
+    /**
+     * Devuelve la instancia del ImageProvider.
+     */
+    public static ImageProvider getInstancia() {
+        if (instancia == null)
             instancia = new ImageProvider();
 
         return instancia;
@@ -37,16 +44,20 @@ public class ImageProvider {
         URL path = getClass().getResource("/ImagenesPlayer/player.png");
         spritePlayer = new ImageIcon(path);
     }
-
+    /**
+     * Devuelve la sprite asignada al player
+     */
     public ImageIcon getSpritePlayer() {
         return spritePlayer;
     }
-
-    public ImageIcon getSpriteEnemigoAlfa() {
+    /**
+     * Devuelve la sprite asignada al enemigo alfa.
+     */
+    public ImageIcon getSpriteInfectadoAlfa() {
         return spriteEnemigoAlfa;
     }
 
-    public ImageIcon getSpriteEnemigoBeta() {
+    public ImageIcon getSpriteInfectadoBeta() {
         return spriteEnemigoBeta;
     }
 }
