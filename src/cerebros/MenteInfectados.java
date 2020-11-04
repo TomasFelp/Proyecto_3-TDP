@@ -9,7 +9,6 @@ public class MenteInfectados extends Thread{
 	private JFrameJuego jfJuego;
 	private InfectadoBase[] infectado;
 	private Player player;
-	private Evaluador_de_colisiones evaluadorColision;
 //Builder
 	/*
 	 * Recibe un solo infectado para testear el comportamiento, 

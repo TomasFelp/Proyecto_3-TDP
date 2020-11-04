@@ -1,13 +1,11 @@
 package proyectil;
 
-import java.awt.Point;
+import GUI.Vector2;
 
-import entidades.Entidad_colisionable;
+public class Proyectil_sanitario extends Proyectil {
+    private static final int defaultDaño = 100;
 
-public abstract class Proyectil_sanitario extends Entidad_colisionable{
-	protected int damage;
-	protected Point origen;
-
-	public abstract int getDamage();
-
+    public Proyectil_sanitario(Vector2 posicion, Vector2 velocidad) {
+        super(posicion, velocidad, defaultDaño);
+    }
 }

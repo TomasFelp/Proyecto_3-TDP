@@ -4,9 +4,13 @@ import javax.swing.JLabel;
 
 import GUI.ImageProvider;
 import GUI.Vector2;
+import colisiones.ZonaColision;
 
-public abstract class Proyectil extends JLabel{
+public abstract class Proyectil extends JLabel {
+    private static final int radioColision = 1;
+
     protected int daño;
+    protected ZonaColision zonaColision;
     protected Vector2 posicion;
     protected Vector2 velocidad;
 
@@ -15,6 +19,7 @@ public abstract class Proyectil extends JLabel{
         this.posicion = posicion;
         this.velocidad = velocidad;
         this.setIcon(ImageProvider.getInstancia().getSpriteProyectil());
+        zonaColision = new ZonaColision(posicion, radioColision);
     }
 
     public void update() {
@@ -26,7 +31,10 @@ public abstract class Proyectil extends JLabel{
         return daño;
     }
 
-    public Vector2 getPosicion(){
+    public Vector2 getPosicion() {
         return posicion;
+    }
+
+    public void destruir() {
     }
 }
