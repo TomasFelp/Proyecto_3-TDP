@@ -7,20 +7,21 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
+
+import GUI.ImageProvider;
 import entidades.*;
 
 public class Mapa extends JPanel {
 	
 	private Player player;
 	private Nivel nivel;
-
 	/**
 	 * Create the panel.
 	 */
 	public Mapa(Nivel n) {
 		super();
 		
-		player=new Player();
+		player=new Player(ImageProvider.getInstancia().getSpritePlayer());
 		
 		//configuro el panel general
 		this.setOpaque(true);
@@ -64,9 +65,5 @@ public class Mapa extends JPanel {
 			this.add(infectadoActual);
 			infectados[i].setLocation(infectadoActual.getPosX(), infectadoActual.getPosY());
 		}
-		
-
 	}
-     
-	
 }

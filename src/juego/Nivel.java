@@ -1,4 +1,5 @@
 package juego;
+import GUI.ImageProvider;
 import entidades.*;
 
 public class Nivel {
@@ -12,7 +13,7 @@ public class Nivel {
 			primerOleada=new InfectadoBase[tam_primer_oleada];
 			
 			for(int i=0;i<tam_primer_oleada;i++) {
-				primerOleada[i]=new InfectadoBase();
+				primerOleada[i]=new InfectadoBase(ImageProvider.getInstancia().getSpriteEnemigoAlfa());
 				primerOleada[i].setVisible(true);
 			}
 	}

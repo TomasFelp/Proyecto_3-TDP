@@ -1,21 +1,15 @@
 package entidades;
 
-import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 public class Player extends Personaje{
-
-//Attributes
 	private final int saludMax = 100;
 	private final int saludMin = 0;
-	
-//Builder
-	public Player(){
+
+	public Player(ImageIcon sprite){
 		saludActual=100;
 		velocidad=10;
-		grafico=new EntidadGrafica("/ImagenesPlayer/player.png");
+		grafico=new EntidadGrafica(sprite);
 		this.setIcon(grafico.getGrafico());
 	}
-	
-//Methods
-	
 }

@@ -4,18 +4,23 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
-/**
- * Se encarga de cargar y proveer los sprites que usan las entidades graficas.
- */
 public class ImageProvider {
     private ImageIcon spriteEnemigoAlfa;
     private ImageIcon spriteEnemigoBeta;
     private ImageIcon spritePlayer;
+    private static ImageProvider instancia;
 
-    public ImageProvider() {
+    private ImageProvider() {
         loadSpritePlayer();
         loadSpriteEnemigoAlfa();
         loadSpriteEnemigoBeta();
+    }
+
+    public static ImageProvider getInstancia(){
+        if(instancia == null)
+            instancia = new ImageProvider();
+
+        return instancia;
     }
 
     private void loadSpriteEnemigoAlfa() {

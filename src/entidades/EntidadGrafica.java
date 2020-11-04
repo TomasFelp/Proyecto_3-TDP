@@ -3,19 +3,13 @@ package entidades;
 import javax.swing.ImageIcon;
 
 public class EntidadGrafica {
-//Attributes
 	private ImageIcon figura;
 	private String imagen;
-	
-//Builder
-	public EntidadGrafica(String im) {
-		figura = new ImageIcon();
-		imagen = im;
-		ImageIcon imageIcon=new ImageIcon(this.getClass().getResource(imagen));
-		this.figura.setImage(imageIcon.getImage());
+
+	public EntidadGrafica(ImageIcon sprite) {
+		this.figura = sprite;
 	}
-	
-//Methods
+
 	/**
 	 * actualiza la imagen con la direccion que recibe como parametro. 
 	 * @param im direccion de imagen.
