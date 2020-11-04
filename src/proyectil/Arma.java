@@ -1,7 +1,7 @@
 package proyectil;
 
-import GUI.Vector2;
+import java.awt.Point;
 
 public interface Arma {
-    public void disparar(Vector2 velocidad, Vector2 posicion);
+    public void disparar(Point posicion);
 }
