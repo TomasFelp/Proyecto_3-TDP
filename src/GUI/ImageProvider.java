@@ -19,7 +19,7 @@ public class ImageProvider {
         loadSpritePlayer();
         loadSpriteEnemigoAlfa();
         loadSpriteEnemigoBeta();
-        loadSpriteProyectilSanitarioBasico();
+        loadSpriteProyectil();
     }
 
     /**
@@ -47,7 +47,7 @@ public class ImageProvider {
         spritePlayer = new ImageIcon(path);
     }
     
-    private void loadSpriteProyectilSanitarioBasico() {
+    private void loadSpriteProyectil() {
         URL path = getClass().getResource("/SpritesInfectados/InfectadoAlfa.png");
         spriteEnemigoAlfa = new ImageIcon(path);
     }
@@ -69,7 +69,7 @@ public class ImageProvider {
         return spriteEnemigoBeta;
     }
 
-    public ImageIcon getSpriteProyectilSantiarioBasico(){
+    public ImageIcon getSpriteProyectil(){
         return spriteProyectilSanitarioBasico;
     }
 }
