@@ -55,8 +55,9 @@ public class JFrameJuego extends JFrame {
 		ComandoPlayer controlesPlayer=new ComandoPlayer(mapa.getPlayer(),this);		
 		this.addKeyListener(controlesPlayer);
 		
-		MenteInfectados menteInfectado=new MenteInfectados(mapa.getPlayer(),nivel1.getPrimerOleada(),this);
-		menteInfectado.start();
+		gameController npcController=new gameController(mapa);
+		npcController.insertarColeccionNPC(nivel1.primerOleada);
+		npcController.start();
 
 	}
 	

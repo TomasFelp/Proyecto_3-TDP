@@ -67,3 +67,16 @@ public class Mapa extends JPanel {
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
