@@ -57,7 +57,11 @@ public class gameController extends Thread{
 				
 				for (Entry<Integer, NPC> entry : entidades.entrySet()) {
 					this.sleep(sleepTime);
-				    entry.getValue().update(mapa);
+					NPC npcActual= entry.getValue();
+				    npcActual.update(mapa);
+				    if(npcActual.itsAlive()==false)
+				    	entidades.remove(npcActual.getID());
+				    	
 				}
 			}
 			
