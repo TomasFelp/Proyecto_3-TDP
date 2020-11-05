@@ -1,11 +1,11 @@
-package proyectil;
+package arma;
 
-import GUI.Vector2;
+import GUI.Vector;
 
 public class Proyectil_sanitario extends Proyectil {
     private static final int defaultDaño = 100;
 
-    public Proyectil_sanitario(Vector2 posicion, Vector2 velocidad) {
+    public Proyectil_sanitario(Vector posicion, Vector velocidad) {
         super(posicion, velocidad, defaultDaño);
     }
 }

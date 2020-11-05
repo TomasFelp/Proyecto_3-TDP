@@ -1,9 +1,9 @@
-package proyectil;
+package arma;
 
 import javax.swing.JLabel;
 
 import GUI.ImageProvider;
-import GUI.Vector2;
+import GUI.Vector;
 import colisiones.ZonaColision;
 
 public abstract class Proyectil extends JLabel {
@@ -11,10 +11,10 @@ public abstract class Proyectil extends JLabel {
 
     protected int daño;
     protected ZonaColision zonaColision;
-    protected Vector2 posicion;
-    protected Vector2 velocidad;
+    protected Vector posicion;
+    protected Vector velocidad;
 
-    public Proyectil(Vector2 posicion, Vector2 velocidad, int daño) {
+    public Proyectil(Vector posicion, Vector velocidad, int daño) {
         this.daño = daño;
         this.posicion = posicion;
         this.velocidad = velocidad;
@@ -31,7 +31,7 @@ public abstract class Proyectil extends JLabel {
         return daño;
     }
 
-    public Vector2 getPosicion() {
+    public Vector getPosicion() {
         return posicion;
     }
 

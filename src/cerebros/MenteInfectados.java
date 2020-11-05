@@ -9,24 +9,23 @@ public class MenteInfectados extends Thread{
 	private JFrameJuego jfJuego;
 	private InfectadoBase[] infectado;
 	private Player player;
-//Builder
-	/*
+
+    /*
 	 * Recibe un solo infectado para testear el comportamiento, 
 	 * despues deberia recibir el nivel o la coleccion de infectados
 	 */
-	public MenteInfectados(Player p,InfectadoBase[] in,JFrameJuego j) {
+	public MenteInfectados(Player p, InfectadoBase[] in, JFrameJuego j) {
 		infectado=in;
 		jfJuego=j;
 		player=p;
 	}
-	
-//Methods
+
 	public void run() {
 		boolean condicionCorte=false;
 		while(condicionCorte==false) {
 		for(int i=0;i<infectado.length;i++) {
 			Point pos=infectado[i].getLocation();
-			
+
 				try {
 					Thread.sleep(1);
 				} catch (InterruptedException e) {
@@ -38,7 +37,7 @@ public class MenteInfectados extends Thread{
 					ZonaColision zonaPlayer,zonaInfectado;
 					zonaPlayer=player.getZonaColision();
 					zonaInfectado=infectado[i].getZonaColision();
-					
+
 					if(Evaluador_de_colisiones.estanEnContacto(zonaPlayer,zonaInfectado)) {
 						System.out.println("player muerto");
 					}

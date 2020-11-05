@@ -1,4 +1,4 @@
-package proyectil;
+package arma;
 
 import java.awt.Point;
 

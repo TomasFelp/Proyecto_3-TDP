@@ -2,8 +2,8 @@ package entidades;
 
 import javax.swing.ImageIcon;
 
-import proyectil.Arma;
-import proyectil.ArmaFactory;
+import arma.Arma;
+import arma.ArmaFactory;
 
 public class Player extends Personaje {
     private Arma arma;
