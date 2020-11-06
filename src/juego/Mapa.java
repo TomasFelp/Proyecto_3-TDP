@@ -8,8 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
 
-import GUI.ImageProvider;
+import cerebros.GameController;
 import entidades.*;
+import infectado.Infectado;
 
 public class Mapa extends JPanel {
 	
@@ -18,10 +19,12 @@ public class Mapa extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Mapa(Nivel n) {
+	public Mapa() {
 		super();
 		
-		player=new Player(ImageProvider.getInstancia().getSpritePlayer());
+		GameController.getInstancia().setMapa(this);
+		
+		player= new Player();
 		
 		//configuro el panel general
 		this.setOpaque(true);
@@ -43,27 +46,28 @@ public class Mapa extends JPanel {
 		this.add(player);
 		player.setSize(20,20);		 // Cordenadas y tamaño genericos solo para prueba.
 		player.setLocation(230,530);//
-		
-		//Armo el nivel
-		nivel=n;
-		insertarInfectados();
-	
 	}
 	
 	public Player getPlayer() {
 		return player;
 	}
 	
+	public void ArmarNivel(Nivel n) {
+		//Dividi insertarInfectados, porque sino los infectados
+		// se creaban antes que el gameController y el mapa
+		nivel = n;
+		insertarInfectados();
+	}
 	
 	private void insertarInfectados() {
-		InfectadoBase[] infectados=nivel.getPrimerOleada();
-		InfectadoBase infectadoActual;
+		Infectado[] infectados=nivel.getPrimerOleada();
+		Infectado infectadoActual;
 		
 		for(int i=0;i<infectados.length;i++) {
 			infectadoActual=infectados[i];
 			infectadoActual.setSize(20,20);
 			this.add(infectadoActual);
-			infectados[i].setLocation(infectadoActual.getPosX(), infectadoActual.getPosY());
+			infectados[i].setLocation(infectadoActual.getX(), infectadoActual.getY());
 		}
 	}
 }

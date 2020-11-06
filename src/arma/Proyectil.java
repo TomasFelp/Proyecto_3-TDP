@@ -2,9 +2,9 @@ package arma;
 
 import javax.swing.JLabel;
 
-import GUI.ImageProvider;
-import GUI.Vector;
 import colisiones.ZonaColision;
+import juego.ImageProvider;
+import juego.Vector;
 
 public abstract class Proyectil extends JLabel {
     private static final int radioColision = 1;

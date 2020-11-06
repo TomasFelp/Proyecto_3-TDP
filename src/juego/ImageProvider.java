@@ -1,4 +1,4 @@
-package GUI;
+package juego;
 
 import java.net.URL;
 
