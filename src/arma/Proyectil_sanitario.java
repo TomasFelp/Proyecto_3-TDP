@@ -1,6 +1,6 @@
 package arma;
 
-import GUI.Vector;
+import juego.Vector;
 
 public class Proyectil_sanitario extends Proyectil {
     private static final int defaultDaño = 100;

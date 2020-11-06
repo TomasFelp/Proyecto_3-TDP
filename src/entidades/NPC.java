@@ -1,17 +1,33 @@
 package entidades;
 
-import juego.Mapa;
+import javax.swing.JLabel;
+import colisiones.*;
+import juego.Vector;
 
-public interface NPC {
-	
-	public int getID();
-	
-	public void update(Mapa mapa);
-	
-	/**
-	 * Determina si el objeto esta en su ciclo de vida para ver si vale la pena o no
-	 * almacenarlo.
-	 * @return true si esta en su ciclo de vida, false de lo contrario. 
-	 */
-	public boolean itsAlive();
+public abstract class NPC extends Entidad {
+	protected int saludActual;
+	protected Vector velocidad;
+
+	public NPC(Vector posicion) {
+		super(posicion);
+	}
+
+	public Vector getVelocidad() {
+		return new Vector(velocidad.x, velocidad.y);
+	}
+
+	@Override
+	public void update() {
+		int x = this.getLocation().x;
+		int y = this.getLocation().y;
+
+		this.setLocation(x + velocidad.x, y + velocidad.y);
+	}
+
+	public ZonaColision getZonaColision() {
+		int centroX = (int) (this.getLocation().x - (this.getSize().getWidth()) / 2);
+		int centroY = (int) (this.getLocation().y - (this.getSize().getHeight()) / 2);
+		int radio = (int) (this.getSize().getHeight() / 2);
+		return new ZonaColision(centroX, centroY, radio);
+	}
 }

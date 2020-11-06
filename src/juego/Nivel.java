@@ -1,25 +1,31 @@
 package juego;
-import GUI.ImageProvider;
+
+import java.util.Random;
+
 import entidades.*;
+import infectado.Infectado;
+import infectado.InfectadoAlfa;
 
 public class Nivel {
-//Attributes
-	int tam_primer_oleada;
-	protected InfectadoBase[] primerOleada;
-	
-//Builder
-	public Nivel(int t1) {
-			tam_primer_oleada=t1;
-			primerOleada=new InfectadoBase[tam_primer_oleada];
-			
-			for(int i=0;i<tam_primer_oleada;i++) {
-				primerOleada[i]=new InfectadoBase(ImageProvider.getInstancia().getSpriteInfectadoAlfa());
-				primerOleada[i].setVisible(true);
-			}
+	int sizeOleada;
+	protected Infectado[] primerOleada;
+
+	public Nivel(int sOleada, int width) {
+		this.sizeOleada = sOleada;
+		primerOleada = new Infectado[sizeOleada];
+		Random r = new Random();
+		for (int i = 0; i < sizeOleada; i++) {
+			//Para que no esten todos en la misma fila
+			int y = r.nextInt(15) * -20;
+			//Ajustar valores para que no se salga de la pantalla (20
+			int x = r.nextInt(25) * 20;
+										// porque es el tamaño de lavel provisorio que defini en el mapeo)
+			primerOleada[i] = new InfectadoAlfa(new Vector(x, y));
+			primerOleada[i].setVisible(true);
+		}
 	}
-	
-//Methods
-	public InfectadoBase[] getPrimerOleada() {
+
+	public Infectado[] getPrimerOleada() {
 		return primerOleada;
 	}
 }
