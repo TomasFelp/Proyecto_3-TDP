@@ -15,7 +15,7 @@ public class GameController extends Thread {
 	private Map<Integer, NPC> entidades;
 	private int sleepTime;
 
-	private GameController() {
+	public GameController() {
 		entidades = new HashMap<Integer, NPC>();
 		sleepTime = 1000;
 	}
@@ -67,7 +67,7 @@ public class GameController extends Thread {
 	 * (Mejoro pero no es constante, hay que perfeccionarlo.)
 	 */
 	private void actualizarSleepTime() {
-		sleepTime = sleepTime / entidades.size();
+		sleepTime = 1000 / entidades.size();
 	}
 
 	@Override
@@ -90,5 +90,6 @@ public class GameController extends Thread {
 			e.getValue().update();
 		}
 	}
+	
 
 }

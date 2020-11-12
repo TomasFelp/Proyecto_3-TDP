@@ -8,12 +8,12 @@ import juego.*;
 
 public class ComandoPlayer extends Thread implements KeyListener{
 	protected Player player;
-	protected JFrameJuego jfJuego;
 	protected boolean ejecucion=true;
-
-	public ComandoPlayer(Player p,JFrameJuego j) {
+	protected int recorrido;
+	
+	public ComandoPlayer(Player p,int r) {
 		player=p;
-		jfJuego=j;
+		recorrido=r;
 	}
 
 	public Player getPlayer() {
@@ -38,7 +38,7 @@ public class ComandoPlayer extends Thread implements KeyListener{
 		}
 
 		if(teclaPresionada==KeyEvent.VK_D || teclaPresionada==KeyEvent.VK_RIGHT) {
-			if(posicion.x<jfJuego.getAncho()-30)
+			if(posicion.x<recorrido)
 				posicion.setLocation(posicion.x+player.getVelocidad(),posicion.y);
 		}
 
@@ -47,7 +47,6 @@ public class ComandoPlayer extends Thread implements KeyListener{
 	  }
 
 		player.setLocation(posicion);
-		jfJuego.repaint();
 	}
 
 
@@ -60,11 +59,6 @@ public class ComandoPlayer extends Thread implements KeyListener{
 	public void setPlayer(Player p) {
 		player=p;
 	}
-
-	public void setJFrameJuego(JFrameJuego j) {
-		jfJuego=j;
-	}
-
 
 }
 

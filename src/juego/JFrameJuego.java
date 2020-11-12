@@ -50,19 +50,7 @@ public class JFrameJuego extends JFrame {
 	private void armarJuego(){
 		mapa=new Mapa();
 		
-		GameController npcController= GameController.getInstancia();
-		npcController.setMapa(mapa);
-
-		Nivel nivel1=new Nivel(50, this.getWidth());
-		mapa.ArmarNivel(nivel1);
-		contentPane.add(mapa);
 		
-		ComandoPlayer controlesPlayer=new ComandoPlayer(mapa.getPlayer(),this);		
-		this.addKeyListener(controlesPlayer);
-		
-		
-		npcController.insertarColeccionNPC(nivel1.primerOleada);
-		npcController.start();
 
 	}
 	

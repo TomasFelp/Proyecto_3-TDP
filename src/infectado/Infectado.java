@@ -10,10 +10,12 @@ public abstract class Infectado extends NPC {
 	//Si queremos cambiar la velocidad de todos los infectados, cambiamos
 	//esta variable
 	private static int rapidezGlobalInfectados = 1;
+	protected int recorrido;
 	
-	public Infectado(Vector posicion) {
+	public Infectado(Vector posicion,int r) {
 		super(posicion);
 		saludActual = 100;
+		recorrido = r;
 	}
 	
 	public void disparar() {
@@ -29,4 +31,31 @@ public abstract class Infectado extends NPC {
 	public boolean itsAlive() {
 		return saludActual > 0;
 	}
+	
+	@Override
+	public void update() {
+		if(this.getLocation().getY()>recorrido)
+			this.setLocation((int) this.getLocation().getX(),-this.getHeight());
+		 else
+		   super.update();
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

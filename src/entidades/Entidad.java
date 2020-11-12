@@ -36,7 +36,7 @@ public abstract class Entidad extends JLabel {
 	}
 	
     public ZonaColision getZonaColision() {
-    	return new ZonaColision(this.getX(), this.getY(), this.getHeight());
+    	return new ZonaColision(this.getX()-this.getWidth()/2, this.getY(), this.getHeight());
     }
 	
 	/**

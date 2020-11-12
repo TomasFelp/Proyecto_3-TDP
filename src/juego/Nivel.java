@@ -10,7 +10,7 @@ public class Nivel {
 	int sizeOleada;
 	protected Infectado[] primerOleada;
 
-	public Nivel(int sOleada, int width) {
+	public Nivel(int sOleada, int altoRecorrido) {
 		this.sizeOleada = sOleada;
 		primerOleada = new Infectado[sizeOleada];
 		Random r = new Random();
@@ -19,9 +19,10 @@ public class Nivel {
 			int y = r.nextInt(15) * -20;
 			//Ajustar valores para que no se salga de la pantalla (20
 			int x = r.nextInt(25) * 20;
-										// porque es el tamaño de lavel provisorio que defini en el mapeo)
-			primerOleada[i] = new InfectadoAlfa(new Vector(x, y));
+										// porque es el tamaño de lavel provisorio que defini en el )
+			primerOleada[i] = new InfectadoAlfa(new Vector(x, y),altoRecorrido);
 			primerOleada[i].setVisible(true);
+			primerOleada[i].setSize(20,20);;
 		}
 	}
 

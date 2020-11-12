@@ -1,14 +1,15 @@
 package juego;
 
-import javax.swing.JFrame;
-
 public class Main {
 		
 	public static void main(String[] args) {
 		
-		JFrameJuego juego=new JFrameJuego();
-		juego.setVisible(true);
-		//post sprint 1
+		GUI_juego Gjuego=new GUI_juego();
+		Gjuego.setVisible(true);
+	
+		Juego juego=new Juego(Gjuego);
+		juego.iniciar();
+	
 	}
 
 }
