@@ -8,7 +8,7 @@ public class Main {
 		
 		JFrameJuego juego=new JFrameJuego();
 		juego.setVisible(true);
-
+		//post sprint 1
 	}
 
 }
