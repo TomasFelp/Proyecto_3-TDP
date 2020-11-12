@@ -20,7 +20,7 @@ public class Mapa extends JPanel {
 	 * Create the panel.
 	 */
 	public Mapa() {
-		super();
+		super(); //branch nueva
 		
 		GameController.getInstancia().setMapa(this);
 		
