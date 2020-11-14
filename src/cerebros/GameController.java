@@ -3,6 +3,7 @@ package cerebros;
 import java.util.*;
 import java.util.Map.*;
 
+import colisiones.CollisionManager;
 import entidades.NPC;
 import juego.Mapa;
 
@@ -11,13 +12,15 @@ import juego.Mapa;
  */
 public class GameController extends Thread {
 	private static GameController instancia;
+	private CollisionManager colManager;
 	private Mapa mapa;
 	private Map<Integer, NPC> entidades;
 	private int sleepTime;
 
-	public GameController() {
+	private GameController() {
 		entidades = new HashMap<Integer, NPC>();
 		sleepTime = 1000;
+		colManager = new CollisionManager();
 	}
 	
 	public void setMapa(Mapa m) {
@@ -90,6 +93,4 @@ public class GameController extends Thread {
 			e.getValue().update();
 		}
 	}
-	
-
 }

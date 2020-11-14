@@ -2,7 +2,7 @@ package infectado;
 
 import java.awt.Point;
 
-import colisiones.Evaluador_de_colisiones;
+import colisiones.CollisionManager;
 import colisiones.ZonaColision;
 import entidades.Player;
 import juego.*;

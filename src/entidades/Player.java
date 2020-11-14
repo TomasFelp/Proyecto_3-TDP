@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.List;
+
 import arma.Arma;
 import arma.ArmaFactory;
 import colisiones.ZonaColision;
@@ -39,4 +41,9 @@ public class Player extends Entidad{
 	public int getVelocidad() {
     	return velocidad;
 	}
+
+    @Override
+    public void enColision(List<Entidad> colisiones) {
+        System.out.println("Hit player");
+    }
 }
