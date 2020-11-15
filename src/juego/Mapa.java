@@ -1,20 +1,15 @@
 package juego;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.LayoutStyle;
 
 import cerebros.GameController;
 import entidades.*;
-import infectado.Infectado;
 
 public class Mapa extends JPanel {
 	
-	private Player player;
+	private Jugador jugador;
 	private Nivel nivel;
 	/**
 	 * Create the panel.
@@ -24,7 +19,7 @@ public class Mapa extends JPanel {
 		
 		GameController.getInstancia().setMapa(this);
 		
-		player= new Player();
+		jugador = new Jugador();
 		
 		//configuro el panel general
 		this.setOpaque(true);
@@ -34,22 +29,22 @@ public class Mapa extends JPanel {
 		
 		/*
 
-		 * Inserto los infectados y el player con las cordenadas absolutas.
+		 * Inserto los infectados y el jugador con las cordenadas absolutas.
 		 * Lo hice asi porque si ponia los infectados en el panel peincipal los superponia todos por el layout y 
-		 * si los ponia en su porpio panel desaparecian cuando llegaban al panel del player.
+		 * si los ponia en su porpio panel desaparecian cuando llegaban al panel del jugador.
 		 * 
 		 * Yo creo que lo mas conveniente seria hacer que el jframe sea de un tamaño fijo y respecto de ese tamaño acamodar todas las cordenadas absolutas.
 		 * 
 		 * 
 		 */
-		//Coloco el player
-		this.add(player);
-		player.setSize(20,20);		 // Cordenadas y tamaño genericos solo para prueba.
-		player.setLocation(230,530);//
+		//Coloco el jugador
+		this.add(jugador);
+		jugador.setSize(20,20);		 // Cordenadas y tamaño genericos solo para prueba.
+		jugador.setLocation(230,530);//
 	}
 	
-	public Player getPlayer() {
-		return player;
+	public Jugador getJugador() {
+		return jugador;
 	}
 	
 	public void ArmarNivel(Nivel n) {

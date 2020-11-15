@@ -34,18 +34,14 @@ public abstract class Entidad extends JLabel {
 	public int hashCode() {
 		return ID;
 	}
-	
+
+	public void accionar(){}
+
     public ZonaColision getZonaColision() {
     	return new ZonaColision(this.getX()-this.getWidth()/2, this.getY(), this.getHeight());
     }
-	
-	/**
-	 * Determina si el objeto esta en su ciclo de vida para ver si vale la pena o no
-	 * almacenarlo.
-	 * @return true si esta en su ciclo de vida, false de lo contrario.
-	 */
-	public abstract boolean itsAlive();
-    
+
+
     public void mover(Vector velocidad) {
         int x = this.getX() + velocidad.x;
         int y = this.getY() + velocidad.y;

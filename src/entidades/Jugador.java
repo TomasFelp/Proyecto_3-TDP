@@ -2,18 +2,13 @@ package entidades;
 
 import arma.Arma;
 import arma.ArmaFactory;
-import colisiones.ZonaColision;
 
-public class Player extends Entidad{
+public class Jugador extends Personaje{
+
     private Arma arma;
-    private final int saludMax = 100;
-    private final int saludMin = 0;
-	private int velocidad;
-	private int saludActual;
 
-    public Player() {
-        saludActual = 100;
-        velocidad = 10;
+    public Jugador() {
+        super();
         this.setIcon(juego.ImageProvider.getInstancia().getSpritePlayer());
         this.arma = ArmaFactory.getDefaultArma();
     }
@@ -30,13 +25,7 @@ public class Player extends Entidad{
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public boolean itsAlive() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public int getVelocidad() {
-    	return velocidad;
-	}
+    public double getVelocidadY() {
+        return super.getVelocidad().getY();
+    }
 }

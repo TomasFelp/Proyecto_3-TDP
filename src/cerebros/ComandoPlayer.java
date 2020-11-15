@@ -4,20 +4,19 @@ import java.awt.Point;
 import entidades.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import juego.*;
 
 public class ComandoPlayer extends Thread implements KeyListener{
-	protected Player player;
+	protected Jugador jugador;
 	protected boolean ejecucion=true;
 	protected int recorrido;
 	
-	public ComandoPlayer(Player p,int r) {
-		player=p;
+	public ComandoPlayer(Jugador p, int r) {
+		jugador =p;
 		recorrido=r;
 	}
 
-	public Player getPlayer() {
-		return player;
+	public Jugador getJugador() {
+		return jugador;
 	}
 
 	@Override
@@ -30,23 +29,23 @@ public class ComandoPlayer extends Thread implements KeyListener{
 	 */
 	public void keyPressed(KeyEvent e) {
 		int teclaPresionada=e.getKeyCode();
-		Point posicion=this.player.getLocation();
+		Point posicion=this.jugador.getLocation();
 
 		if(teclaPresionada==KeyEvent.VK_A || teclaPresionada==KeyEvent.VK_LEFT) {
 			if(posicion.x>0)
-				posicion.setLocation(posicion.x-player.getVelocidad(),posicion.y);
+				posicion.setLocation(posicion.x- jugador.getVelocidadY(),posicion.y);
 		}
 
 		if(teclaPresionada==KeyEvent.VK_D || teclaPresionada==KeyEvent.VK_RIGHT) {
 			if(posicion.x<recorrido)
-				posicion.setLocation(posicion.x+player.getVelocidad(),posicion.y);
+				posicion.setLocation(posicion.x+ jugador.getVelocidadY(),posicion.y);
 		}
 
 	  if(teclaPresionada == KeyEvent.VK_W || teclaPresionada==KeyEvent.VK_UP) {
-		  this.player.disparar();
+		  this.jugador.disparar();
 	  }
 
-		player.setLocation(posicion);
+		jugador.setLocation(posicion);
 	}
 
 
@@ -56,8 +55,8 @@ public class ComandoPlayer extends Thread implements KeyListener{
 
 	}
 
-	public void setPlayer(Player p) {
-		player=p;
+	public void setJugador(Jugador p) {
+		jugador =p;
 	}
 
 }
