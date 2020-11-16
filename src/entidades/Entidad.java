@@ -18,6 +18,9 @@ public abstract class Entidad extends JLabel {
         Random rnd = new Random();
         ID = rnd.nextInt();
         mapa = GameController.getInstancia().getMapa();
+
+
+
     }
 
     public Entidad(Vector posicion) {
@@ -30,12 +33,17 @@ public abstract class Entidad extends JLabel {
      */
     public abstract void update();
 
+    /**
+     * Acciona el comportamiento que tiene al colisionar
+     */
+    public abstract void accionar();
+
 	@Override
 	public int hashCode() {
 		return ID;
 	}
 
-	public void accionar(){}
+
 
     public ZonaColision getZonaColision() {
         int x = this.getX() - this.getWidth() / 2;

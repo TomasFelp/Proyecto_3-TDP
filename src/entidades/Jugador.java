@@ -16,6 +16,10 @@ public class Jugador extends Personaje{
         this.setIcon(juego.ImageProvider.getInstancia().getSpritePlayer());
         this.arma = ArmaFactory.getDefaultArma();
     }
+
+    public void accionar() {
+
+    }
     
     public void setArma(Arma a) {
         this.arma = a;

@@ -1,11 +1,14 @@
 package cerebros;
 
+import java.awt.*;
 import java.util.*;
 import java.util.Map.*;
 
+import entidades.Entidad;
 import entidades.Infectado;
 import colisiones.CollisionManager;
-import entidades.NPC;
+import entidades.Jugador;
+import juego.Juego;
 import juego.Mapa;
 
 /**
@@ -15,6 +18,10 @@ public class GameController extends Thread {
 	private static GameController instancia;
 	private CollisionManager colManager;
 	private Mapa mapa;
+
+	private Juego juego;
+
+	private Jugador jugador;
 	private Map<Integer, Infectado> entidades;
 	private int sleepTime;
 
@@ -26,6 +33,13 @@ public class GameController extends Thread {
 	
 	public void setMapa(Mapa m) {
 		mapa = m;
+	}
+
+	public void setJuego(Juego juego){
+		this.juego = juego;
+
+		//Aprovecha para incluir una referencia al jugador
+		jugador = juego.getJugador();
 	}
 	
 	public Mapa getMapa() {
@@ -80,10 +94,25 @@ public class GameController extends Thread {
 			try {
 				Thread.sleep(sleepTime);
 				updateEntidades();
+				chequearColosiones();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private void chequearColosiones(){
+		Rectangle areaJugador = jugador.getBounds();
+
+		for(Entry<Integer, Infectado> e : entidades.entrySet()){ //Para cada infectado
+			Rectangle areaInfectado = e.getValue().getBounds();
+
+			if(areaJugador.intersects(areaInfectado)){
+				jugador.accionar();
+			}
+		}
+
+		//Mi idea es despues hacer: "para cada premio que cae"
 	}
 
 	/**

@@ -1,14 +1,11 @@
 package juego;
 
-import java.awt.BorderLayout;
+import cerebros.ComandoPlayer;
+import cerebros.GameController;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import entidades.*;
-import cerebros.*;
+import java.awt.*;
 
 public class JFrameJuego extends JFrame {
 
@@ -49,9 +46,6 @@ public class JFrameJuego extends JFrame {
 	
 	private void armarJuego(){
 		mapa=new Mapa();
-		
-		
-
 	}
 	
 	public int getAncho() {

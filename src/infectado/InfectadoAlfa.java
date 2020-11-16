@@ -10,6 +10,10 @@ public class InfectadoAlfa extends Infectado {
 		this.velocidad = new Vector(0, 1);
 		this.setIcon(juego.ImageProvider.getInstancia().getSpriteInfectadoAlfa());
 	}
+
+	public void accionar() {
+
+	}
 	
 	/*
 	private boolean colisionConPlayer() {

@@ -29,6 +29,8 @@ public class Juego {
 		interfaz.addKeyListener(controlesPlayer);
 
 		npcController = GameController.getInstancia();
+
+		npcController.setJuego(this);
 	}
 
 //Methods
@@ -41,6 +43,10 @@ public class Juego {
 			interfaz.addEntidad(primerOleada[i]);
 		}
 		npcController.start();
+	}
+
+	public Jugador getJugador(){
+		return jugador;
 	}
 
 }
