@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.Map.*;
 
 import entidades.Infectado;
+import colisiones.CollisionManager;
 import entidades.NPC;
 import juego.Mapa;
 
@@ -12,6 +13,7 @@ import juego.Mapa;
  */
 public class GameController extends Thread {
 	private static GameController instancia;
+	private CollisionManager colManager;
 	private Mapa mapa;
 	private Map<Integer, Infectado> entidades;
 	private int sleepTime;
@@ -19,6 +21,7 @@ public class GameController extends Thread {
 	public GameController() {
 		entidades = new HashMap<Integer, Infectado>();
 		sleepTime = 1000;
+		colManager = new CollisionManager();
 	}
 	
 	public void setMapa(Mapa m) {
@@ -91,6 +94,4 @@ public class GameController extends Thread {
 			e.getValue().update();
 		}
 	}
-	
-
 }

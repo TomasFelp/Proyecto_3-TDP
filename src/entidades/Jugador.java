@@ -1,5 +1,7 @@
 package entidades;
 
+import java.util.List;
+
 import arma.Arma;
 import arma.ArmaFactory;
 

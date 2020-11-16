@@ -27,22 +27,20 @@ public class Juego {
 		
 		controlesPlayer=new ComandoPlayer(jugador,interfaz.getAncho()-20);
 		interfaz.addKeyListener(controlesPlayer);
-		
-		npcController = new GameController();
-		
+
+		npcController = GameController.getInstancia();
 	}
+
 //Methods
 	public void iniciar() {
 		nivel=new Nivel(50,interfaz.getAlto());//<------------------------------------------provisorio
 		Infectado[] primerOleada=nivel.getPrimerOleada();
-		
 		//inserto infectados en gameController
 		for(int i=0;i<primerOleada.length;i++) {
 			npcController.insertarInfectado(primerOleada[i]);
 			interfaz.addEntidad(primerOleada[i]);
 		}
 		npcController.start();
-		
 	}
 
 }
