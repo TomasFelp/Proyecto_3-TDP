@@ -6,9 +6,11 @@ import arma.ArmaFactory;
 public class Jugador extends Personaje{
 
     private Arma arma;
+    private int velocidad;
 
     public Jugador() {
         super();
+        this.velocidad = 10;
         this.setIcon(juego.ImageProvider.getInstancia().getSpritePlayer());
         this.arma = ArmaFactory.getDefaultArma();
     }
@@ -26,6 +28,6 @@ public class Jugador extends Personaje{
 	}
 
     public double getVelocidadY() {
-        return super.getVelocidad().getY();
+        return velocidad;
     }
 }
