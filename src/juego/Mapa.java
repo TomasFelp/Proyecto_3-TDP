@@ -22,7 +22,7 @@ public class Mapa extends JPanel {
 	public Mapa() {
 		super(); //branch nueva
 		
-		GameController.getInstancia().setMapa(this);
+		//GameController.getInstancia().setMapa(this);
 		
 		player= new Player();
 		
