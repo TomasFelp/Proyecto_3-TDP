@@ -53,7 +53,7 @@ public class ImageProvider {
     }
 
     /**
-     * Devuelve la sprite asignada al player
+     * Devuelve la sprite asignada al jugador
      */
     public ImageIcon getSpritePlayer() {
         return spritePlayer;

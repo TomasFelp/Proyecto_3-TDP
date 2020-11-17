@@ -3,7 +3,6 @@ package juego;
 import java.util.Random;
 
 import entidades.*;
-import infectado.Infectado;
 import infectado.InfectadoAlfa;
 
 public class Nivel {

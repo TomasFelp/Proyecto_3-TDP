@@ -1,10 +1,6 @@
 package infectado;
 
-import java.awt.Point;
-
-import colisiones.CollisionManager;
-import colisiones.ZonaColision;
-import entidades.Player;
+import entidades.Infectado;
 import juego.*;
 
 public class InfectadoAlfa extends Infectado {
@@ -14,10 +10,14 @@ public class InfectadoAlfa extends Infectado {
 		this.velocidad = new Vector(0, 1);
 		this.setIcon(juego.ImageProvider.getInstancia().getSpriteInfectadoAlfa());
 	}
+
+	public void accionar() {
+
+	}
 	
 	/*
 	private boolean colisionConPlayer() {
-		ZonaColision z_player = mapa.getPlayer().getZonaColision();
+		ZonaColision z_player = mapa.getJugador().getZonaColision();
 		ZonaColision z_this = this.getZonaColision();
 
 		return Evaluador_de_colisiones.estanEnContacto(z_player, z_this);

@@ -12,10 +12,13 @@ import juego.Vector;
 
 public abstract class Entidad extends JLabel {
     private int ID;
+    private Mapa mapa;
 
     public Entidad() {
         Random rnd = new Random();
         ID = rnd.nextInt();
+
+        mapa = GameController.getInstancia().getMapa();
     }
 
     public Entidad(Vector posicion) {
@@ -28,10 +31,17 @@ public abstract class Entidad extends JLabel {
      */
     public abstract void update();
 
-    @Override
-    public int hashCode() {
-        return ID;
-    }
+    /**
+     * Acciona el comportamiento que tiene al colisionar
+     */
+    public abstract void accionar();
+
+	@Override
+	public int hashCode() {
+		return ID;
+	}
+
+
 
     public ZonaColision getZonaColision() {
         int x = this.getX() - this.getWidth() / 2;
@@ -39,14 +49,6 @@ public abstract class Entidad extends JLabel {
         int height = this.getHeight();
         return new ZonaColision(x, y, height);
     }
-
-    /**
-     * Determina si el objeto esta en su ciclo de vida para ver si vale la pena o no
-     * almacenarlo.
-     * 
-     * @return true si esta en su ciclo de vida, false de lo contrario.
-     */
-    public abstract boolean itsAlive();
 
     public void mover(Vector velocidad) {
         int x = this.getX() + velocidad.x;
