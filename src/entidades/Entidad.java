@@ -11,14 +11,12 @@ import juego.Mapa;
 import juego.Vector;
 
 public abstract class Entidad extends JLabel {
+
     private int ID;
-    private Mapa mapa;
 
     public Entidad() {
         Random rnd = new Random();
         ID = rnd.nextInt();
-
-        mapa = GameController.getInstancia().getMapa();
     }
 
     public Entidad(Vector posicion) {

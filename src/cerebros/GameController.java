@@ -34,19 +34,11 @@ public class GameController extends Thread {
 		colManager = c;
 	}
 
-	public void setMapa(Mapa m) {
-		mapa = m;
-	}
-
 	public void setJuego(Juego juego){
 		this.juego = juego;
 
 		//Aprovecha para incluir una referencia al jugador
 		jugador = juego.getJugador();
-	}
-	
-	public Mapa getMapa() {
-		return mapa;
 	}
 
 
@@ -127,7 +119,7 @@ public class GameController extends Thread {
 	 */
 	private void updateEntidades() {
 		for (Entry<Integer, Infectado> e : entidades.entrySet()) {
-			e.getValue().update();
+			e.getValue().	update();
 		}
 	}
 }
