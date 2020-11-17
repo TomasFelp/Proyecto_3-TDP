@@ -73,6 +73,10 @@ public class GUI_juego extends JFrame {
 		panelEntidades.add(entidad);
 	}
 	
+	public void removeEntidad(JLabel entidad) {
+		panelEntidades.remove(entidad);
+	}
+	
 	public int getAncho() {
 		return panelEntidades.getWidth();
 	}

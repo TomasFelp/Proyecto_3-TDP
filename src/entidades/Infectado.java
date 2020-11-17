@@ -19,10 +19,16 @@ public abstract class Infectado extends Personaje{
 
     @Override
     public void update() {
-        int x = this.getLocation().x;
-        int y = this.getLocation().y;
+    	int x,y;
+    	
 
-        this.setLocation(x + velocidad.x, y + velocidad.y);
+        x = this.getLocation().x;
+        y = this.getLocation().y;
+    	
+    	if(y>600)//<----Para que vuelva a aparecer arriba. Analizar si es más conveniente usar un valor fijo o hacer que conosca la ventana o su tamaño 
+    		this.setLocation(x + velocidad.x,0);
+    	 else
+    		this.setLocation(x + velocidad.x, y + velocidad.y);
     }
 
     //TODO: ver si funciona sin redefinirlo de Entidad

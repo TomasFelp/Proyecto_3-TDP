@@ -35,7 +35,6 @@ public class Juego {
 		colManager=new CollisionManager();
 		colManager.putEntidadVerificable(jugador);
 		npcController.setCollisionManager(colManager);
-		npcController.setJuego(this);
 	}
 
 //Methods

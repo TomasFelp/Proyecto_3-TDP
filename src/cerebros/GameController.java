@@ -9,36 +9,36 @@ import entidades.Infectado;
 import colisiones.CollisionManager;
 import entidades.Jugador;
 import juego.Juego;
-import juego.Mapa;
 
 /**
  * Modela un Singleton que controla los NPC del juego
  */
 public class GameController extends Thread {
+	
+//Attributes
 	private static GameController instancia;
 	private CollisionManager colManager;
-	private Mapa mapa;
-
-	private Juego juego;
-
-	private Jugador jugador;
 	private Map<Integer, Infectado> entidades;
 	private int sleepTime;
 
-	public GameController() {
+//Builder
+	private GameController() {
 		entidades = new HashMap<Integer, Infectado>();
 		sleepTime = 1000;
 	}
 
+//Methods
+	
+	/**
+	 * Le asigna un collisionManager.
+	 * 
+	 * 
+	 * >>>>>>>>>>>>>>>>>>>>>>>esto es con la idea de que la clase juego sea la encargada de agregar los infectados al collisionManager<<<----------------- 
+	 * >>>>>>>>>>>>>>>>>>>>>>>En todo caso se puee volver a crear en el constructor y que los agregue al collisionManager cuando agrega las entidades a la lista, pero la idea es que gameController no tiene acceso al player directamente<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	 * @param c
+	 */
 	public void setCollisionManager(CollisionManager c) {
 		colManager = c;
-	}
-
-	public void setJuego(Juego juego){
-		this.juego = juego;
-
-		//Aprovecha para incluir una referencia al jugador
-		jugador = juego.getJugador();
 	}
 
 
@@ -89,8 +89,8 @@ public class GameController extends Thread {
 		while (!Thread.currentThread().isInterrupted()) {
 			try {
 				Thread.sleep(sleepTime);
+				
 				updateEntidades();
-
 				colManager.updateColisiones();
 				//chequearColosiones();
 
@@ -99,7 +99,10 @@ public class GameController extends Thread {
 			}
 		}
 	}
-
+	
+/* Lo comente nada más para que no haya confuciones, ya que actualmente las colisiones se estan evaluando con CollisionManager
+ * 
+ * 
 	private void chequearColosiones(){
 		Rectangle areaJugador = jugador.getBounds();
 
@@ -113,13 +116,13 @@ public class GameController extends Thread {
 
 		//Mi idea es despues hacer: "para cada premio que cae"
 	}
-
+*/
 	/**
 	 * Recorre todas las entidades almacenadas y llama su funcion update()
 	 */
 	private void updateEntidades() {
 		for (Entry<Integer, Infectado> e : entidades.entrySet()) {
-			e.getValue().	update();
+			e.getValue().update();
 		}
 	}
 }

@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 
 import cerebros.GameController;
 import colisiones.ZonaColision;
-import juego.Mapa;
 import juego.Vector;
 
 public abstract class Entidad extends JLabel {
