@@ -20,16 +20,12 @@ public class GameController extends Thread {
 	private GameController() {
 		entidades = new HashMap<Integer, NPC>();
 		sleepTime = 1000;
-		colManager = new CollisionManager();
 	}
 	
-	public void setMapa(Mapa m) {
-		mapa = m;
+	public void setCollisionManager(CollisionManager c) {
+		colManager = c;
 	}
-	
-	public Mapa getMapa() {
-		return mapa;
-	}
+
 
 	/**
 	 * Devuelve la instancia de GameController.
@@ -79,6 +75,7 @@ public class GameController extends Thread {
 			try {
 				Thread.sleep(sleepTime);
 				updateEntidades();
+				colManager.updateColisiones();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

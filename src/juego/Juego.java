@@ -2,6 +2,7 @@ package juego;
 
 import cerebros.ComandoPlayer;
 import cerebros.GameController;
+import colisiones.CollisionManager;
 import entidades.NPC;
 import entidades.Player;
 
@@ -13,6 +14,7 @@ public class Juego {
 	protected Nivel nivel;
 	protected ComandoPlayer controlesPlayer;
 	protected GameController npcController;
+	protected CollisionManager colManager;
 	
 //Builder
 	public Juego(GUI_juego inter) {
@@ -29,17 +31,22 @@ public class Juego {
 		interfaz.addKeyListener(controlesPlayer);
 
 		npcController = GameController.getInstancia();
+		
+		colManager=new CollisionManager();
+		colManager.putEntidadVerificable(player);
+		npcController.setCollisionManager(colManager);
 	}
 
 //Methods
 	public void iniciar() {
 		nivel=new Nivel(50,interfaz.getAlto());//<------------------------------------------provisorio
 		NPC[] primerOleada=nivel.getPrimerOleada();
-
+		
 		//inserto infectados en gameController
 		for(int i=0;i<primerOleada.length;i++) {
 			npcController.insertarNPC(primerOleada[i]);
 			interfaz.addEntidad(primerOleada[i]);
+			colManager.putEntidad(primerOleada[i]);
 		}
 		npcController.start();
 	}

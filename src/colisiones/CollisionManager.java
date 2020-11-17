@@ -12,6 +12,11 @@ public class CollisionManager {
 	private Map<Integer, Entidad> entidades;
 	private Map<Integer, Entidad> entidadesParaVerificar;
 
+	public CollisionManager() {
+		entidades=new HashMap<Integer, Entidad>();
+		entidadesParaVerificar=new HashMap<Integer, Entidad>();
+	}
+	
 	/**
 	 * Determina se dos zonas de colision circulares estan en contacto
 	 * 
@@ -21,11 +26,11 @@ public class CollisionManager {
 	 */
 	static public boolean estanEnContacto(ZonaColision za, ZonaColision zb) {
 		double distancia = distanciaCentros(za, zb);
-
 		/*
 		 * Dos zonas de colision circulares estan en contacto si la suma de sus radios
 		 * es menor a la distancia entre sus centros.
 		 */
+
 		return (za.getRadio() + zb.getRadio()) > distancia;
 	}
 
@@ -45,6 +50,7 @@ public class CollisionManager {
 	 */
 	public void updateColisiones() {
 		List<Entidad> colisiones;
+	
 		for (Entry<Integer, Entidad> e : entidadesParaVerificar.entrySet()) {
 			colisiones = obtenerColisiones(e.getValue());
 			if (!colisiones.isEmpty())

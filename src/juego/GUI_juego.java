@@ -23,7 +23,7 @@ public class GUI_juego extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFrameJuego frame = new JFrameJuego();
+					GUI_juego frame = new GUI_juego();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
