@@ -28,11 +28,6 @@ public class Player extends Entidad{
     }
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
 	public boolean itsAlive() {
 		// TODO Auto-generated method stub
 		return false;

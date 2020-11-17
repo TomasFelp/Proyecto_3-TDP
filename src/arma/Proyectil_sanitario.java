@@ -8,4 +8,5 @@ public class Proyectil_sanitario extends Proyectil {
     public Proyectil_sanitario(Vector posicion, Vector velocidad) {
         super(posicion, velocidad, defaultDaño);
     }
+
 }

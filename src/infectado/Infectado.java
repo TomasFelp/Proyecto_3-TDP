@@ -11,6 +11,7 @@ public abstract class Infectado extends NPC {
 	//esta variable
 	private static int rapidezGlobalInfectados = 1;
 	protected int recorrido;
+	protected int saludActual;
 	
 	public Infectado(Vector posicion,int r) {
 		super(posicion);
@@ -34,11 +35,16 @@ public abstract class Infectado extends NPC {
 	
 	@Override
 	public void update() {
-		if(this.getLocation().getY()>recorrido)
+		int x,y;
+		if(this.getLocation().getY()>recorrido) 
 			this.setLocation((int) this.getLocation().getX(),-this.getHeight());
-		 else
-		   super.update();
+		
+			x = this.getLocation().x;
+			y = this.getLocation().y;
+
+		this.setLocation(x + velocidad.x, y + velocidad.y);
 	}
+	
 }
 
 

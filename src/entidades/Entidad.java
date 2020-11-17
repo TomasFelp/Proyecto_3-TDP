@@ -23,10 +23,7 @@ public abstract class Entidad extends JLabel {
         this.setLocation(posicion);
     }
 
-    /**
-     * Se llama en cada secuencia de actualizacion del GameController
-     */
-    public abstract void update();
+    
 
     @Override
     public int hashCode() {

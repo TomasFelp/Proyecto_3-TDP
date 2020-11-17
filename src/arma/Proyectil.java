@@ -3,10 +3,11 @@ package arma;
 import javax.swing.JLabel;
 
 import colisiones.ZonaColision;
+import entidades.NPC;
 import juego.ImageProvider;
 import juego.Vector;
 
-public abstract class Proyectil extends JLabel {
+public abstract class Proyectil extends NPC {
     private static final int radioColision = 1;
 
     protected int daño;
@@ -15,6 +16,7 @@ public abstract class Proyectil extends JLabel {
     protected Vector velocidad;
 
     public Proyectil(Vector posicion, Vector velocidad, int daño) {
+    	super(posicion);
         this.daño = daño;
         this.posicion = posicion;
         this.velocidad = velocidad;
@@ -37,4 +39,10 @@ public abstract class Proyectil extends JLabel {
 
     public void destruir() {
     }
+    
+	@Override
+	public boolean itsAlive() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

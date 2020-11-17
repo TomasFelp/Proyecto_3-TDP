@@ -5,7 +5,6 @@ import colisiones.*;
 import juego.Vector;
 
 public abstract class NPC extends Entidad {
-	protected int saludActual;
 	protected Vector velocidad;
 
 	public NPC(Vector posicion) {
@@ -16,13 +15,12 @@ public abstract class NPC extends Entidad {
 		return new Vector(velocidad.x, velocidad.y);
 	}
 
-	@Override
-	public void update() {
-		int x = this.getLocation().x;
-		int y = this.getLocation().y;
-
-		this.setLocation(x + velocidad.x, y + velocidad.y);
-	}
+	
+	/**
+     * Se llama en cada secuencia de actualizacion del GameController
+     */
+    public abstract void update();
+ 
 
 	public ZonaColision getZonaColision() {
 		int centroX = (int) (this.getLocation().x - (this.getSize().getWidth()) / 2);
