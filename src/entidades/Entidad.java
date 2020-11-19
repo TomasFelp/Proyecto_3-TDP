@@ -54,6 +54,6 @@ public abstract class Entidad extends JLabel {
     }
 
     public void enColision(List<Entidad> colisiones) {
-
+    	
     }
 }

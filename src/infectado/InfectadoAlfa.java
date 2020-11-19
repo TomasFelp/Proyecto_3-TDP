@@ -1,5 +1,9 @@
 package infectado;
 
+import java.awt.Color;
+import java.util.List;
+
+import entidades.Entidad;
 import entidades.Infectado;
 import juego.*;
 
@@ -13,6 +17,15 @@ public class InfectadoAlfa extends Infectado {
 
 	public void accionar() {
 
+	}
+
+	@Override
+	public void enColision(List<Entidad> colisiones) {
+		// TODO Auto-generated method stub
+		for(Entidad a: colisiones) {
+			this.setOpaque(true);
+			this.setBackground(Color.BLUE);
+		}
 	}
 	
 	/*

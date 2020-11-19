@@ -1,5 +1,6 @@
 package entidades;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.util.List;
 
@@ -46,4 +47,13 @@ public class Jugador extends Personaje{
     public double getVelocidadY() {
         return velocidad;
     }
+
+	@Override
+	public void enColision(List<Entidad> colisiones) {
+		// TODO Auto-generated method stub
+		for(Entidad a: colisiones) {
+			this.setOpaque(true);
+			this.setBackground(Color.BLUE);
+		}
+	}
 }
