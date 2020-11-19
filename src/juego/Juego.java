@@ -1,5 +1,7 @@
 package juego;
 
+import javax.swing.JLabel;
+
 import arma.Proyectil_sanitario;
 import cerebros.ComandoPlayer;
 import cerebros.GameController;
@@ -62,16 +64,7 @@ public class Juego {
 	public void addEntidad(Entidad entidad) {
 		npcController.insertarEntidad(entidad);
 		interfaz.addEntidad(entidad);
-		//---
-		//Infectado inf=new InfectadoAlfa(new Vector((int)entidad.getLocation().getX(),(int)entidad.getLocation().getY()),20);
-		//interfaz.addEntidad(inf);
-		//npcController.insertarEntidad(inf);
-		//--
-		
-		//Proyectil_sanitario p=new Proyectil_sanitario(new Vector(100,100),new Vector(0,10));
-		//interfaz.addEntidad(p);
-		
-		//colManager.putEntidadVerificable(entidad);
+		colManager.putEntidadVerificable(entidad);
 	}
 
 }

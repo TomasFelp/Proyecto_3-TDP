@@ -48,8 +48,8 @@ public class ImageProvider {
     }
     
     private void loadSpriteProyectil() {
-    	 URL path = getClass().getResource("/SpritesInfectados/InfectadoAlfa.png");
-         spriteEnemigoAlfa = new ImageIcon(path);
+        URL path = getClass().getResource("/SpritesInfectados/InfectadoAlfa.png");
+        spriteEnemigoAlfa = new ImageIcon(path);
     }
 
     /**
