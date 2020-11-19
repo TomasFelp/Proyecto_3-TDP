@@ -2,11 +2,15 @@ package entidades;
 
 import java.awt.Point;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import arma.Arma;
 import arma.ArmaFactory;
 import arma.Proyectil;
 import juego.Vector;
+
 
 public class Jugador extends Personaje{
 
@@ -46,4 +50,22 @@ public class Jugador extends Personaje{
     public double getVelocidadY() {
         return velocidad;
     }
+    
+    public void enColision(List<Entidad> colisiones) {
+    	cargaViral-=colisiones.size();
+    	System.out.println(colisiones.size());
+    	if(cargaViral<=0) {
+    		this.setOpaque(true);
+    	}
+    }
 }
+
+
+
+
+
+
+
+
+
+
