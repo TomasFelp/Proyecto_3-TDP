@@ -1,12 +1,15 @@
 package arma;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 
 import colisiones.ZonaColision;
+import entidades.Entidad;
 import juego.ImageProvider;
 import juego.Vector;
 
-public abstract class Proyectil extends JLabel {
+public abstract class Proyectil extends Entidad {
     private static final int radioColision = 1;
 
     protected int daño;
@@ -18,8 +21,16 @@ public abstract class Proyectil extends JLabel {
         this.daño = daño;
         this.posicion = posicion;
         this.velocidad = velocidad;
+        //Por alguna razon no toma la imagen por eso despues 
         this.setIcon(ImageProvider.getInstancia().getSpriteProyectil());
         zonaColision = new ZonaColision(posicion, radioColision);
+        
+    	this.setLocation((int)posicion.getX(),(int)posicion.getY());
+		this.setSize(5,5);
+		this.setVisible(true);
+		this.setOpaque(true);
+		this.setBackground(Color.black);
+		
     }
 
     public void update() {

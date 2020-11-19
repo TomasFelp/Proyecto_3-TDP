@@ -2,6 +2,8 @@ package cerebros;
 
 import java.awt.Point;
 import entidades.*;
+import juego.Juego;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -9,6 +11,8 @@ public class ComandoPlayer extends Thread implements KeyListener{
 	protected Jugador jugador;
 	protected boolean ejecucion=true;
 	protected int recorrido;
+	protected GameController npcController;
+	protected Juego juego;
 	
 	public ComandoPlayer(Jugador p, int r) {
 		jugador =p;
@@ -17,6 +21,10 @@ public class ComandoPlayer extends Thread implements KeyListener{
 
 	public Jugador getJugador() {
 		return jugador;
+	}
+	
+	public void setJuego(Juego j) {
+		juego=j;
 	}
 
 	@Override
@@ -42,7 +50,8 @@ public class ComandoPlayer extends Thread implements KeyListener{
 		}
 
 	  if(teclaPresionada == KeyEvent.VK_W || teclaPresionada==KeyEvent.VK_UP) {
-		  this.jugador.disparar();
+		  juego.addEntidad(this.jugador.disparar());
+		  
 	  }
 
 		jugador.setLocation(posicion);

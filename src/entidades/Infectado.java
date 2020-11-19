@@ -11,6 +11,7 @@ public abstract class Infectado extends Personaje{
         super(posicion);
         cargaViral = 100;
         recorrido = r;
+        this.setSize(20,20);
     }
 
     public void PropagarVirus(){

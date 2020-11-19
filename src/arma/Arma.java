@@ -2,6 +2,8 @@ package arma;
 
 import java.awt.Point;
 
+import juego.Vector;
+
 public interface Arma {
-    public void disparar(Point posicion);
+    public Proyectil disparar(Vector posicion);
 }

@@ -20,8 +20,7 @@ public class Nivel {
 			int x = r.nextInt(25) * 20;
 										// porque es el tamaño de lavel provisorio que defini en el )
 			primerOleada[i] = new InfectadoAlfa(new Vector(x, y),altoRecorrido);
-			primerOleada[i].setVisible(true);
-			primerOleada[i].setSize(20,20);;
+			
 		}
 	}
 

@@ -18,12 +18,12 @@ public class GameController extends Thread {
 //Attributes
 	private static GameController instancia;
 	private CollisionManager colManager;
-	private Map<Integer, Infectado> entidades;
+	private Map<Integer, Entidad> entidades;
 	private int sleepTime;
 
 //Builder
 	private GameController() {
-		entidades = new HashMap<Integer, Infectado>();
+		entidades = new HashMap<Integer, Entidad>();
 		sleepTime = 1000;
 	}
 
@@ -57,7 +57,7 @@ public class GameController extends Thread {
 	 * 
 	 * @param inf Infectado a agregar
 	 */
-	public void insertarInfectado(Infectado inf) {
+	public void insertarEntidad(Entidad inf) {
 		entidades.putIfAbsent(inf.hashCode(), inf);
 		actualizarSleepTime();
 	}
@@ -89,8 +89,11 @@ public class GameController extends Thread {
 		while (!Thread.currentThread().isInterrupted()) {
 			try {
 				Thread.sleep(sleepTime);
-				
+				try {
 				updateEntidades();
+				}catch(Exception e) {
+					System.out.println("Error en updateEntidades");
+				}
 				colManager.updateColisiones();
 				//chequearColosiones();
 
@@ -121,7 +124,7 @@ public class GameController extends Thread {
 	 * Recorre todas las entidades almacenadas y llama su funcion update()
 	 */
 	private void updateEntidades() {
-		for (Entry<Integer, Infectado> e : entidades.entrySet()) {
+		for (Entry<Integer, Entidad> e : entidades.entrySet()) {
 			e.getValue().update();
 		}
 	}

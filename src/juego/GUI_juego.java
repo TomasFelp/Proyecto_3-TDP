@@ -70,7 +70,9 @@ public class GUI_juego extends JFrame {
 	 * @param entidad a agregar al panel.
 	 */
 	public void addEntidad(JLabel entidad) {
+		System.out.println(panelEntidades.getComponentCount());
 		panelEntidades.add(entidad);
+		System.out.println(panelEntidades.getComponentCount());
 	}
 	
 	public void removeEntidad(JLabel entidad) {

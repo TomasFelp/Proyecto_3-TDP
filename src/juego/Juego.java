@@ -1,10 +1,13 @@
 package juego;
 
+import arma.Proyectil_sanitario;
 import cerebros.ComandoPlayer;
 import cerebros.GameController;
 import colisiones.CollisionManager;
+import entidades.Entidad;
 import entidades.Infectado;
 import entidades.Jugador;
+import infectado.InfectadoAlfa;
 
 public class Juego {
 	
@@ -28,6 +31,7 @@ public class Juego {
 		jugador.setLocation(interfaz.getAncho()/2- jugador.getWidth()/2,interfaz.getAlto()- jugador.getHeight());
 		
 		controlesPlayer=new ComandoPlayer(jugador,interfaz.getAncho()-20);
+		controlesPlayer.setJuego(this);
 		interfaz.addKeyListener(controlesPlayer);
 
 		npcController = GameController.getInstancia();
@@ -44,7 +48,7 @@ public class Juego {
 
 		//inserto infectados en gameController
 		for(int i=0;i<primerOleada.length;i++) {
-			npcController.insertarInfectado(primerOleada[i]);
+			npcController.insertarEntidad(primerOleada[i]);
 			interfaz.addEntidad(primerOleada[i]);
 			colManager.putEntidad(primerOleada[i]);
 		}
@@ -53,6 +57,21 @@ public class Juego {
 
 	public Jugador getJugador(){
 		return jugador;
+	}
+	
+	public void addEntidad(Entidad entidad) {
+		npcController.insertarEntidad(entidad);
+		interfaz.addEntidad(entidad);
+		//---
+		//Infectado inf=new InfectadoAlfa(new Vector((int)entidad.getLocation().getX(),(int)entidad.getLocation().getY()),20);
+		//interfaz.addEntidad(inf);
+		//npcController.insertarEntidad(inf);
+		//--
+		
+		//Proyectil_sanitario p=new Proyectil_sanitario(new Vector(100,100),new Vector(0,10));
+		//interfaz.addEntidad(p);
+		
+		//colManager.putEntidadVerificable(entidad);
 	}
 
 }
