@@ -7,10 +7,12 @@ import javax.swing.JLabel;
 
 import cerebros.GameController;
 import colisiones.ZonaColision;
+import juego.Mediator;
 import juego.Vector;
 
 public abstract class Entidad extends JLabel {
 
+	protected Mediator mediadorJuego;
     private int ID;
 
     public Entidad() {
@@ -21,6 +23,7 @@ public abstract class Entidad extends JLabel {
     public Entidad(Vector posicion) {
         this();
         this.setLocation(posicion);
+        
     }
 
     /**
@@ -36,6 +39,10 @@ public abstract class Entidad extends JLabel {
 	@Override
 	public int hashCode() {
 		return ID;
+	}
+	
+	public void setMediador(Mediator m) {
+		mediadorJuego=m;
 	}
 
 

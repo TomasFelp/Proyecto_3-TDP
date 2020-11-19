@@ -15,8 +15,15 @@ public class InfectadoAlfa extends Infectado {
 		this.setIcon(juego.ImageProvider.getInstancia().getSpriteInfectadoAlfa());
 	}
 
+	/**
+	 * Use el accionar para que reciba el daño cuando le impacta un proyectil
+	 */
 	public void accionar() {
-
+		cargaViral-=50;
+		
+		if(cargaViral<=0) {
+			mediadorJuego.removeEntidadSecundaria(this);
+		}
 	}
 
 	@Override

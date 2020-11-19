@@ -2,6 +2,7 @@ package colisiones;
 
 import java.util.*;
 import java.util.Map.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import entidades.Entidad;
 
@@ -13,8 +14,8 @@ public class CollisionManager {
 	private Map<Integer, Entidad> entidadesParaVerificar;
 
 	public CollisionManager() {
-		entidades=new HashMap<Integer, Entidad>();
-		entidadesParaVerificar=new HashMap<Integer, Entidad>();
+		entidades=new ConcurrentHashMap<Integer, Entidad>();
+		entidadesParaVerificar=new ConcurrentHashMap<Integer, Entidad>();
 	}
 	
 	/**

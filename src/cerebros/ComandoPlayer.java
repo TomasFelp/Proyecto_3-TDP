@@ -7,6 +7,8 @@ import juego.Juego;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import arma.Proyectil;
+
 public class ComandoPlayer extends Thread implements KeyListener{
 	protected Jugador jugador;
 	protected boolean ejecucion=true;
@@ -50,8 +52,9 @@ public class ComandoPlayer extends Thread implements KeyListener{
 		}
 
 	  if(teclaPresionada == KeyEvent.VK_W || teclaPresionada==KeyEvent.VK_UP) {
-		  juego.addEntidad(this.jugador.disparar());
-		  
+		  Proyectil proyectil=this.jugador.disparar();
+		  proyectil.setMediador(juego);
+		  juego.addEntidad(proyectil);
 	  }
 
 		jugador.setLocation(posicion);

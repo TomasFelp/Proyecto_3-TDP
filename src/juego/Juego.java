@@ -11,7 +11,7 @@ import entidades.Infectado;
 import entidades.Jugador;
 import infectado.InfectadoAlfa;
 
-public class Juego {
+public class Juego implements Mediator{
 	
 //Attributes
 	protected GUI_juego interfaz;
@@ -50,9 +50,8 @@ public class Juego {
 
 		//inserto infectados en gameController
 		for(int i=0;i<primerOleada.length;i++) {
-			npcController.insertarEntidad(primerOleada[i]);
-			interfaz.addEntidad(primerOleada[i]);
-			colManager.putEntidad(primerOleada[i]);
+			primerOleada[i].setMediador(this);
+			addEntidadSecundaria(primerOleada[i]);
 		}
 		npcController.start();
 	}
@@ -61,11 +60,41 @@ public class Juego {
 		return jugador;
 	}
 	
+	@Override
 	public void addEntidad(Entidad entidad) {
-		npcController.insertarEntidad(entidad);
-		interfaz.addEntidad(entidad);
+		addGeneral(entidad);
 		colManager.putEntidadVerificable(entidad);
 	}
+	
+	@Override
+	public void addEntidadSecundaria(Entidad entidad) {
+		addGeneral(entidad);
+		colManager.putEntidad(entidad);
+	}
+	
+	public void addGeneral(Entidad entidad) {
+		npcController.insertarEntidad(entidad);
+		interfaz.addEntidad(entidad);
+	}
+	
+	@Override
+	public void removeEntidad(Entidad entidad) {
+		removeGeneral(entidad);
+		colManager.removeEntidadVerificable(entidad);
+	}
+	
+	@Override
+	public void removeEntidadSecundaria(Entidad entidad) {
+		removeGeneral(entidad);
+		colManager.removeEntidad(entidad);
+	}
+	
+	private void removeGeneral(Entidad entidad){
+		npcController.removeEntidad(entidad);
+		interfaz.removeEntidad(entidad);
+	}
+
+	
 
 }
 

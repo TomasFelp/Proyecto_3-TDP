@@ -20,14 +20,21 @@ public class Proyectil_sanitario extends Proyectil {
 	}
 
 	@Override
-	public void enColision(List<Entidad> colisiones) {
+	public void enColision(List<Entidad> colisiones) {//<<<<--------Redefiniendo esta metodo para que haga lo mismo pero en toda la lista ya podira ser un power up extra
 		// TODO Auto-generated method stub
-		/*
-		for(Entidad a: colisiones) {
-			a.setOpaque(true);
-			a.setBackground(Color.BLUE);
-		}*/
-		colisiones.get(0).setOpaque(true);
-		colisiones.get(0).setBackground(Color.GREEN);
+		
+		Entidad entidadImpactada=colisiones.get(0);
+		
+		entidadImpactada.setOpaque(true);
+		entidadImpactada.setBackground(Color.BLUE);
+		
+		entidadImpactada.accionar();
+		
+		mediadorJuego.removeEntidad(this);
+		
 	}
 }
+
+
+
+

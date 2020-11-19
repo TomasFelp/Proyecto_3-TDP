@@ -3,6 +3,7 @@ package cerebros;
 import java.awt.*;
 import java.util.*;
 import java.util.Map.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import entidades.Entidad;
 import entidades.Infectado;
@@ -23,7 +24,7 @@ public class GameController extends Thread {
 
 //Builder
 	private GameController() {
-		entidades = new HashMap<Integer, Entidad>();
+		entidades = new ConcurrentHashMap<Integer, Entidad>();
 		sleepTime = 1000;
 	}
 
@@ -127,5 +128,9 @@ public class GameController extends Thread {
 		for (Entry<Integer, Entidad> e : entidades.entrySet()) {
 			e.getValue().update();
 		}
+	}
+	
+	public void removeEntidad(Entidad e) {
+		entidades.remove(e.hashCode());
 	}
 }
