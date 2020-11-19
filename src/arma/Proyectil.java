@@ -36,6 +36,8 @@ public abstract class Proyectil extends Entidad {
     public void update() {
         posicion.add(velocidad);
         this.setLocation(posicion);
+        if(posicion.getY()<0 || posicion.getY()>650)
+        	mediadorJuego.removeEntidad(this);
     }
 
     public int getDaño() {
