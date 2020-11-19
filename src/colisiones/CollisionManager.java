@@ -74,7 +74,6 @@ public class CollisionManager {
 			zonaColisionB = entB.getZonaColision();
 			if (entB != entA && estanEnContacto(zonaColisionA, zonaColisionB)) {
 				colisiones.add(entB);
-				System.out.println("Colision");
 			}
 		}
 
