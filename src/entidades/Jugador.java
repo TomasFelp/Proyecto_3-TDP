@@ -1,10 +1,7 @@
 package entidades;
 
 import java.awt.Point;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+import java.util.*;
 
 import arma.Arma;
 import arma.ArmaFactory;
@@ -19,7 +16,12 @@ public class Jugador extends Personaje{
 
     public Jugador() {
         super();
-        this.velocidad = 10;
+		
+		//tamaño genericos solo para prueba.
+		setSize(20,20);		
+		setVisible(true);
+        
+		this.velocidad = 10;
         this.setIcon(juego.ImageProvider.getInstancia().getSpritePlayer());
         this.arma = ArmaFactory.getDefaultArma();
     }

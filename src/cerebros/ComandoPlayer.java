@@ -12,13 +12,13 @@ import arma.Proyectil;
 public class ComandoPlayer extends Thread implements KeyListener{
 	protected Jugador jugador;
 	protected boolean ejecucion=true;
-	protected int recorrido;
+	protected int anchoPantalla;
 	protected GameController npcController;
 	protected Juego juego;
 	
-	public ComandoPlayer(Jugador p, int r) {
+	public ComandoPlayer(Jugador p, int anchoPantalla) {
 		jugador =p;
-		recorrido=r;
+		this.anchoPantalla=anchoPantalla;
 	}
 
 	public Jugador getJugador() {
@@ -47,7 +47,7 @@ public class ComandoPlayer extends Thread implements KeyListener{
 		}
 
 		if(teclaPresionada==KeyEvent.VK_D || teclaPresionada==KeyEvent.VK_RIGHT) {
-			if(posicion.x<recorrido)
+			if(posicion.x<anchoPantalla)
 				posicion.setLocation(posicion.x+ jugador.getVelocidadY(),posicion.y);
 		}
 

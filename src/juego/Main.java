@@ -8,7 +8,7 @@ public class Main {
 		Gjuego.setVisible(true);
 	
 		Juego juego=new Juego(Gjuego);
-		juego.iniciar();
+		juego.run();
 	
 	}
 
