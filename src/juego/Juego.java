@@ -1,5 +1,8 @@
 package juego;
 
+
+import java.awt.Toolkit;
+
 import cerebros.ComandoPlayer;
 import cerebros.GameController;
 import colisiones.CollisionManager;
@@ -27,6 +30,7 @@ public class Juego extends Mediator {
 		entidadController = new GameController();
 		colManager = new CollisionManager();
 
+		this.setPriority(Thread.MAX_PRIORITY);
 		configurarJugador();
 	}
 
@@ -68,17 +72,19 @@ public class Juego extends Mediator {
 		while (!Thread.currentThread().isInterrupted()) {
 			update();
 
+			Toolkit.getDefaultToolkit().sync();
+			
 			// Guardamos el tiempo cuando termino el loop del update
 			frameEnd = System.nanoTime();
 
 			// Encontramos el tiempo que pasó entre inicio y fin del update
 			elapsedTime = frameEnd - frameStart;
 
-			vSync(elapsedTime);
-
 			// Calculamos el porcentaje de U transcurrido
 			deltaTime = elapsedTime / (float) UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS;
 			frameStart = frameEnd;
+
+			vSync(elapsedTime);
 		}
 	}
 
