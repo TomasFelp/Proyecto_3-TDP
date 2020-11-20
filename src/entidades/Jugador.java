@@ -52,7 +52,7 @@ public class Jugador extends Personaje {
 	}
 
 	@Override
-	public void update() {
+	public void update(float deltaTime) {
 		if (invencible && segundosInvencible <= System.nanoTime())
 			deshacerInvencible();
 	}

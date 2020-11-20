@@ -1,6 +1,7 @@
 package arma;
 
 import java.awt.Color;
+import java.awt.Point;
 
 import javax.swing.JLabel;
 
@@ -10,41 +11,37 @@ import juego.ImageProvider;
 import juego.Vector;
 
 public abstract class Proyectil extends Entidad {
-    private static final int radioColision = 1;
+	private static final int radioColision = 1;
 
-    protected int daño;
-    protected ZonaColision zonaColision;
-    protected Vector posicion;
-    protected Vector velocidad;
+	protected int daño;
+	protected Vector velocidad;
 
-    public Proyectil(Vector posicion, Vector velocidad, int daño) {
-        this.daño = daño;
-        this.posicion = posicion;
-        this.velocidad = velocidad;
-        zonaColision = new ZonaColision(posicion, radioColision);
-		// Por alguna razon no toma la imagen por eso despues
+	public Proyectil(Point posicion, Vector velocidad, int daño) {
+		xReal = posicion.x;
+		yReal = posicion.y;
+
+		this.daño = daño;
+		this.velocidad = velocidad;
 		this.setIcon(ImageProvider.getInstancia().getSpriteProyectilSanitario());
-		
-        this.setVisible(true);
-    	this.setLocation((int)posicion.getX(),(int)posicion.getY());
-		this.setSize(15,15);
-    }
 
-    public void update() {
-        posicion.add(velocidad);
-        this.setLocation(posicion);
-        if(posicion.getY()<0 || posicion.getY()>650)
-        	mediadorJuego.removeEntidad(this);
-    }
+		this.setVisible(true);
+		this.setLocation(posicion.x, posicion.y);
+		this.setSize(15, 15);
+	}
 
-    public int getDaño() {
-        return daño;
-    }
+	public void update(float deltaTime) {
+		Point posicion = this.getLocation();
 
-    public Vector getPosicion() {
-        return posicion;
-    }
+		mover(velocidad.x * deltaTime, velocidad.y * deltaTime);
 
-    public void destruir() {
-    }
+		if (posicion.getY() < 0 || posicion.getY() > 650)
+			mediadorJuego.removeEntidad(this);
+	}
+
+	public int getDaño() {
+		return daño;
+	}
+
+	public void destruir() {
+	}
 }

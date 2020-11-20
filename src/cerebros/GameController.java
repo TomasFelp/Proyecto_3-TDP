@@ -42,9 +42,9 @@ public class GameController {
 	/**
 	 * Recorre todas las entidades almacenadas y llama su funcion update()
 	 */
-	public void updateEntidades() {
+	public void updateEntidades(float deltaTime) {
 		for (Entry<Integer, Entidad> e : entidades.entrySet()) {
-			e.getValue().update();
+			e.getValue().update(deltaTime);
 		}
 	}
 

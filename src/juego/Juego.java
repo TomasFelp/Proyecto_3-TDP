@@ -8,12 +8,15 @@ import entidades.Infectado;
 import entidades.Jugador;
 
 public class Juego extends Mediator {
+	private static final int UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS = 1000000;
+
 	protected GUI_juego interfaz;
 	protected Jugador jugador;
 	protected Nivel nivel;
 	protected ComandoPlayer controlesPlayer;
 	protected GameController entidadController;
 	protected CollisionManager colManager;
+	private float deltaTime;
 	private int sleepTime;
 
 	public Juego(GUI_juego inter) {
@@ -42,17 +45,30 @@ public class Juego extends Mediator {
 
 	@Override
 	public void run() {
+		long frameStart;
+		long frameEnd;
+		long elapsedTime;
+		int cantidadDeIteraciones = 60;
+		float ns = 1000000000 / cantidadDeIteraciones;
+
 		configurarNivel();
 		actualizarSleepTime();
 
+		frameStart = System.nanoTime();
+		deltaTime = 0;
+
 		while (!Thread.currentThread().isInterrupted()) {
-			try {
-				Thread.sleep(sleepTime);
-				entidadController.updateEntidades();
-				colManager.updateColisiones();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			entidadController.updateEntidades(deltaTime);
+			System.out.println("dt: " + deltaTime);
+			colManager.updateColisiones();
+
+			frameEnd = System.nanoTime();
+
+			elapsedTime = frameEnd - frameStart;
+			System.out.println("et: " + elapsedTime);
+
+			deltaTime = elapsedTime / (float) UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS;
+			frameStart = frameEnd;
 		}
 	}
 
@@ -114,6 +130,10 @@ public class Juego extends Mediator {
 	private void removeGeneral(Entidad entidad) {
 		entidadController.removeEntidad(entidad);
 		interfaz.removeEntidad(entidad);
+	}
+
+	public double getDeltaTime() {
+		return deltaTime;
 	}
 
 }
