@@ -35,6 +35,8 @@ public class Juego extends Mediator {
 		controlesPlayer.setJuego(this);
 		interfaz.addKeyListener(controlesPlayer);
 
+		entidadController.insertarEntidad(jugador);
+
 		colManager.putEntidadVerificable(jugador);
 	}
 
@@ -42,7 +44,7 @@ public class Juego extends Mediator {
 	public void run() {
 		configurarNivel();
 		actualizarSleepTime();
-		
+
 		while (!Thread.currentThread().isInterrupted()) {
 			try {
 				Thread.sleep(sleepTime);
@@ -55,7 +57,8 @@ public class Juego extends Mediator {
 	}
 
 	private void configurarNivel() {
-		nivel = new Nivel(50, interfaz.getAlto());// <------------------------------------------provisorio
+		// TODO: Pasamos el alto de forma provisoria
+		nivel = new Nivel(50, interfaz.getAlto());
 		Infectado[] primerOleada = nivel.getPrimerOleada();
 
 		// inserto infectados en gameController
