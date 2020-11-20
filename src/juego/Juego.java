@@ -8,7 +8,7 @@ import entidades.Infectado;
 import entidades.Jugador;
 
 public class Juego extends Mediator {
-	private static final int UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS = 1000000;
+	private static final int UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS = 10000000;
 
 	protected GUI_juego interfaz;
 	protected Jugador jugador;

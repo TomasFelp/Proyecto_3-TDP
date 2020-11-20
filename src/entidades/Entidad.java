@@ -25,7 +25,7 @@ public abstract class Entidad extends JLabel {
 	public Entidad(Vector posicion) {
 		this();
 		this.setLocation(posicion);
-
+		this.setPosicionReal(posicion.x, posicion.y);
 	}
 
 	/**
@@ -57,23 +57,22 @@ public abstract class Entidad extends JLabel {
 	}
 
 	public void mover(float vx, float vy) {
-		xReal += vx;
-		yReal += vy;
-
-		this.setLocation((int) (xReal), (int) (yReal));
-	}
-
-	@Override
-	public void setLocation(int x, int y) {
 		// Cuando movemos las entidades, necesitamos convertir la posición de estas a
 		// enteros.
 		// Esto hace que se pierda precisión, y puede hacer que elementos no se muevan.
 
 		// Para evitarlo, guardo una referencia a la posición en float, que se usa
 		// siempre como referencia.
+
+		xReal += vx;
+		yReal += vy;
+
+		this.setLocation((int) (xReal), (int) (yReal));
+	}
+
+	public void setPosicionReal(float x, float y) {
 		xReal = x;
 		yReal = y;
-		super.setLocation(x, y);
 	}
 
 	public void enColision(List<Entidad> colisiones) {
