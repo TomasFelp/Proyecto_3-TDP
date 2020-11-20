@@ -1,6 +1,5 @@
 package juego;
 
-
 import java.awt.Toolkit;
 
 import cerebros.ComandoPlayer;
@@ -72,8 +71,10 @@ public class Juego extends Mediator {
 		while (!Thread.currentThread().isInterrupted()) {
 			update();
 
+			// Este comando soluciona la baja en el rendimiento que desaparecia cuando
+			// pasabamos el mouse por arriba o moviamos el player
 			Toolkit.getDefaultToolkit().sync();
-			
+
 			// Guardamos el tiempo cuando termino el loop del update
 			frameEnd = System.nanoTime();
 
