@@ -116,6 +116,7 @@ public class Juego extends Mediator {
 		// Osea, el movimiento correspondiente a su velocidad en el tiempo transcurrido
 
 		// De esta forma las entidades no saltan
+		// y su velocidad no cambia si cambiamos el frameRate
 		entidadController.updateEntidades(deltaTime);
 		System.out.println("dt: " + deltaTime);
 		colManager.updateColisiones();
