@@ -9,6 +9,10 @@ import entidades.Jugador;
 
 public class Juego extends Mediator {
 	private static final int UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS = 10000000;
+	private static final int NANOSEGUNDOS_EN_UN_SEGUNDO = 1000000000;
+	private static final int FRAMERATE_DESEADO = 60;
+	private static final int TIEMPO_POR_FRAME = NANOSEGUNDOS_EN_UN_SEGUNDO / FRAMERATE_DESEADO;
+	private static final long NANOSEGUNDOS_EN_UN_MILISEGUNDO = 1000000;
 
 	protected GUI_juego interfaz;
 	protected Jugador jugador;
@@ -59,7 +63,7 @@ public class Juego extends Mediator {
 		// Para solucionar esto, calculamos lo que falta para alcanzar U.
 		// Guardamos el tiempo cuando empezó el loop del update
 		frameStart = System.nanoTime();
-		deltaTime = 0;
+		deltaTime = 1;
 
 		while (!Thread.currentThread().isInterrupted()) {
 			update();
@@ -70,9 +74,27 @@ public class Juego extends Mediator {
 			// Encontramos el tiempo que pasó entre inicio y fin del update
 			elapsedTime = frameEnd - frameStart;
 
+			vSync(elapsedTime);
+
 			// Calculamos el porcentaje de U transcurrido
 			deltaTime = elapsedTime / (float) UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS;
 			frameStart = frameEnd;
+		}
+	}
+
+	/**
+	 * Detiene el thread por el tiempo necesario para obtener el framerate deseado
+	 */
+	private void vSync(long elapsedTime) {
+		long sleepTime = (TIEMPO_POR_FRAME - elapsedTime) / NANOSEGUNDOS_EN_UN_MILISEGUNDO;
+		if (sleepTime < 0)
+			sleepTime = 0;
+		try {
+			System.out.println("st: " + sleepTime);
+
+			Thread.sleep(sleepTime);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 
