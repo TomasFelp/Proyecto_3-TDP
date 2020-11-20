@@ -17,7 +17,6 @@ public class Juego extends Mediator {
 	protected GameController entidadController;
 	protected CollisionManager colManager;
 	private float deltaTime;
-	private int sleepTime;
 
 	public Juego(GUI_juego inter) {
 		interfaz = inter;
@@ -48,32 +47,53 @@ public class Juego extends Mediator {
 		long frameStart;
 		long frameEnd;
 		long elapsedTime;
-		int cantidadDeIteraciones = 60;
-		float ns = 1000000000 / cantidadDeIteraciones;
 
 		configurarNivel();
-		actualizarSleepTime();
 
+		// Las entidades se tienen que mover en una unidad fija de tiempo
+		// por ej: 10 px por segundo
+		// El problema es que no podemos asegurar que cada update ocurra cada un
+		// segundo.
+		// Denotemos a esta unidad de tiempo elegida como U
+
+		// Para solucionar esto, calculamos lo que falta para alcanzar U.
+		// Guardamos el tiempo cuando empezó el loop del update
 		frameStart = System.nanoTime();
 		deltaTime = 0;
 
 		while (!Thread.currentThread().isInterrupted()) {
-			entidadController.updateEntidades(deltaTime);
-			System.out.println("dt: " + deltaTime);
-			colManager.updateColisiones();
+			update();
 
+			// Guardamos el tiempo cuando termino el loop del update
 			frameEnd = System.nanoTime();
 
+			// Encontramos el tiempo que pasó entre inicio y fin del update
 			elapsedTime = frameEnd - frameStart;
-			System.out.println("et: " + elapsedTime);
 
+			// Calculamos el porcentaje de U transcurrido
 			deltaTime = elapsedTime / (float) UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS;
 			frameStart = frameEnd;
 		}
 	}
 
+	/**
+	 * Realiza todas las actividades que son requeridas dentro del loop del juego
+	 */
+	private void update() {
+		// Actualizamos las entidades pasando como parámetro el porcentaje de U
+		// Entonces, al mover una entidad que tiene velocidad 5px por U
+		// supongamos que solo transcurrió medio U, deltaTime sería 0.5
+		// Multiplicamos la velocidad por deltaTime y obtenemos 2.5px,
+		// Osea, el movimiento correspondiente a su velocidad en el tiempo transcurrido
+
+		// De esta forma las entidades no saltan
+		entidadController.updateEntidades(deltaTime);
+		System.out.println("dt: " + deltaTime);
+		colManager.updateColisiones();
+	}
+
 	private void configurarNivel() {
-		// TODO: Pasamos el alto de forma provisoria
+		// TODO: Pasamos interfaz.getAlto() de forma provisoria
 		nivel = new Nivel(50, interfaz.getAlto());
 		Infectado[] primerOleada = nivel.getPrimerOleada();
 
@@ -82,16 +102,6 @@ public class Juego extends Mediator {
 			primerOleada[i].setMediador(this);
 			addEntidadSecundaria(primerOleada[i]);
 		}
-	}
-
-	/**
-	 * Permite regular la velocidad del tiempo de sleep del run, para que sin
-	 * importar la cantidad de NPC se desplacen a la misma velocidad.
-	 * 
-	 * (Mejoro pero no es constante, hay que perfeccionarlo.)
-	 */
-	private void actualizarSleepTime() {
-		sleepTime = 1000 / entidadController.size();
 	}
 
 	public Jugador getJugador() {
