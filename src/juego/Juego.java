@@ -18,7 +18,8 @@ public class Juego extends Mediator {
 
 	protected GUI_juego interfaz;
 	protected Jugador jugador;
-	protected Nivel nivel;
+	protected Generador_de_niveles niveles;
+	protected Nivel nivelActual;
 	protected ComandoPlayer controlesPlayer;
 	protected GameController entidadController;
 	protected CollisionManager colManager;
@@ -28,7 +29,9 @@ public class Juego extends Mediator {
 		interfaz = inter;
 		entidadController = new GameController();
 		colManager = new CollisionManager();
-
+		
+		niveles=new Generador_de_niveles();
+		
 		this.setPriority(Thread.MAX_PRIORITY);
 		configurarJugador();
 	}
@@ -55,7 +58,8 @@ public class Juego extends Mediator {
 		long frameEnd;
 		long elapsedTime;
 
-		configurarNivel();
+		cargarNivel();
+		cargarOleada();
 
 		// Las entidades se tienen que mover en una unidad fija de tiempo
 		// por ej: 10 px por segundo
@@ -68,9 +72,11 @@ public class Juego extends Mediator {
 		frameStart = System.nanoTime();
 		deltaTime = 1;
 
-		while (!Thread.currentThread().isInterrupted()) {
+		while (!Thread.currentThread().isInterrupted() && (niveles.quedanNiveles() || nivelActual.quedanInfectadosEnLaOleada())) {
 			update();
-
+			
+			administrarNiveles();
+			
 			// Este comando soluciona la baja en el rendimiento que desaparecia cuando
 			// pasabamos el mouse por arriba o moviamos el player
 			Toolkit.getDefaultToolkit().sync();
@@ -89,6 +95,7 @@ public class Juego extends Mediator {
 		}
 	}
 
+
 	/**
 	 * Detiene el thread por el tiempo necesario para obtener el framerate deseado
 	 */
@@ -97,8 +104,6 @@ public class Juego extends Mediator {
 		if (sleepTime < 0)
 			sleepTime = 0;
 		try {
-			System.out.println("st: " + sleepTime);
-
 			Thread.sleep(sleepTime);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -118,20 +123,52 @@ public class Juego extends Mediator {
 		// De esta forma las entidades no saltan
 		// y su velocidad no cambia si cambiamos el frameRate
 		entidadController.updateEntidades(deltaTime);
-		System.out.println("dt: " + deltaTime);
 		colManager.updateColisiones();
 	}
+	
+	/**
+	 * Se encrga de pasar de una oleada a otra o de un nivel a otro.
+	 */
+	public void administrarNiveles() {
+		if(nivelActual.quedanInfectadosEnLaOleada()==false) {
+			System.out.println("no queda infectados");//<-----------------Borrar e informar a la interfaz que muestre un mensaje
+			if(nivelActual.termino()==false)
+				cargarOleada();
+			else {
+				System.out.println("Terminaste el nivel");//<-----------------Borrar e informar a la interfaz que muestre un mensaje
+				if(niveles.quedanNiveles()) {
+					cargarNivel();
+					cargarOleada();
+				}else {
+					System.out.println("Game over");//<-----------------Borrar e informar a la interfaz que muestre un mensaje
+				}
+			}	
+		}
+	}
 
-	private void configurarNivel() {
+	/*
+	 * Actualiza el nivel al siguiente;
+	 */
+	private void cargarNivel() {
 		// TODO: Pasamos interfaz.getAlto() de forma provisoria
-		nivel = new Nivel(50, interfaz.getAlto());
-		Infectado[] primerOleada = nivel.getPrimerOleada();
+		nivelActual = niveles.getSiguienteNivel();
+	}
+	/*
+	 * carga una nueva oleada.
+	 */
+	private void cargarOleada() {
+		// TODO Auto-generated method stub
+		Infectado[] oleada = nivelActual.getOleada();
 
 		// inserto infectados en gameController
-		for (int i = 0; i < primerOleada.length; i++) {
-			primerOleada[i].setMediador(this);
-			addEntidadSecundaria(primerOleada[i]);
+		for (int i = 0; i < oleada.length; i++) {
+			oleada[i].setMediador(this);
+			addEntidadSecundaria(oleada[i]);
 		}
+	}
+	
+	public void decrementarInfectados() {
+		nivelActual.decrementarOleada();
 	}
 
 	public Jugador getJugador() {

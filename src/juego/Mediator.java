@@ -31,5 +31,10 @@ public abstract class Mediator extends Thread {
 	 * @param entidad
 	 */
 	public abstract void addEntidadSecundaria(Entidad entidad);
+	
+	/**
+	 * Decrementa en uno la cantidad de infectados
+	 */
+	public abstract void decrementarInfectados();
 
 }

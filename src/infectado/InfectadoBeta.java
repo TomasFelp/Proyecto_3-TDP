@@ -8,8 +8,8 @@ import juego.Vector;
 
 public class InfectadoBeta extends Infectado{
 
-	public InfectadoBeta(Vector posicion,int recorrido) {
-		super(posicion,recorrido);
+	public InfectadoBeta(Vector posicion) {
+		super(posicion);
 		this.velocidad = new Vector(0, 1);
 		this.setIcon(juego.ImageProvider.getInstancia().getSpriteInfectadoBeta());
 	}
@@ -25,9 +25,7 @@ public class InfectadoBeta extends Infectado{
 		// TODO Auto-generated method stub
 		cargaViral-=34;
 		
-		if(cargaViral<=0) {
-			mediadorJuego.removeEntidadSecundaria(this);
-		}
+		estaVivo();
 	}
 
 }

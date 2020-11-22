@@ -1,34 +1,29 @@
 package juego;
 
-import java.util.Random;
+import entidades.Infectado;
 
-import entidades.*;
-import infectado.InfectadoAlfa;
-import infectado.InfectadoBeta;
-
-public class Nivel {
-	int sizeOleada;
-	protected Infectado[] primerOleada;
-
-	public Nivel(int sOleada, int altoRecorrido) {
-		this.sizeOleada = sOleada;
-		primerOleada = new Infectado[sizeOleada];
-		Random r = new Random();
-		for (int i = 0; i < sizeOleada; i++) {
-			//Para que no esten todos en la misma fila
-			int y = r.nextInt(15) * -20;
-			//Ajustar valores para que no se salga de la pantalla (20
-			int x = r.nextInt(25) * 20;
-										// porque es el tamaño de lavel provisorio que defini en el )
-			if(r.nextInt(3)==1)
-				primerOleada[i] = new InfectadoBeta(new Vector(x, y),altoRecorrido);
-			 else
-				primerOleada[i] = new InfectadoAlfa(new Vector(x, y),altoRecorrido);
-			
-		}
-	}
-
-	public Infectado[] getPrimerOleada() {
-		return primerOleada;
-	}
+public interface Nivel {
+	
+	/**
+	 * Retorna la siguiente oleada de infectados
+	 * @return oleada de infectados.
+	 */
+	public Infectado[] getOleada();
+	
+	/**
+	 * Consulta si al nivel le quedan oleadas.
+	 * @return True si termino, false en caso contrario
+	 */
+	public boolean termino();
+	
+	/**
+	 * Determina si la oleada actual aun tiene infectados.
+	 * @return true si si tiene, false de lo contrario.
+	 */
+	public boolean quedanInfectadosEnLaOleada();
+	
+	/**
+	 * Decrementa la cantidad de infectados de la oleada actual.
+	 */
+	public void decrementarOleada();
 }

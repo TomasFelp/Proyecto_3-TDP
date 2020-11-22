@@ -9,8 +9,8 @@ import juego.*;
 
 public class InfectadoAlfa extends Infectado {
 
-	public InfectadoAlfa(Vector posicion,int recorrido) {
-		super(posicion,recorrido);
+	public InfectadoAlfa(Vector posicion) {
+		super(posicion);
 		this.velocidad = new Vector(0, 1);
 		this.setIcon(juego.ImageProvider.getInstancia().getSpriteInfectadoAlfa());
 	}
@@ -21,13 +21,10 @@ public class InfectadoAlfa extends Infectado {
 	public void accionar() {
 		cargaViral-=50;
 		
-		if(cargaViral<=0) {
-			mediadorJuego.removeEntidadSecundaria(this);
-		}else {
-			if(cargaViral==50) {//Si el infectado alfa tiene un nivel de vida critico duplica su velocidad
-				velocidad.y=velocidad.y*2;
-			}
-		}
+		estaVivo();
+			
+		if(cargaViral==50) //Si el infectado alfa tiene un nivel de vida critico duplica su velocidad
+			velocidad.y=velocidad.y*2;
 	}
 
 	@Override

@@ -7,12 +7,9 @@ import juego.Vector;
 
 public abstract class Infectado extends Personaje {
 
-	protected int recorrido;
-
-	public Infectado(Vector posicion, int r) {
+	public Infectado(Vector posicion) {
 		super(posicion);
 		cargaViral = 100;
-		recorrido = r;
 		this.setSize(20, 20);
 	}
 
@@ -43,4 +40,21 @@ public abstract class Infectado extends Personaje {
 		return new ZonaColision(centroX, centroY, radio);
 	}
 	
+	/**
+	 * Determina si el infectado esta vivo, si no es asi le informa al juego que hacer.
+	 */
+	protected void estaVivo() {
+		if(cargaViral<=0) {
+			mediadorJuego.removeEntidadSecundaria(this);
+			mediadorJuego.decrementarInfectados();
+		}
+	}
+	
 }
+
+
+
+
+
+
+
