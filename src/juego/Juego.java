@@ -153,6 +153,7 @@ public class Juego extends Mediator {
 	public void addGeneral(Entidad entidad) {
 		entidadController.insertarEntidad(entidad);
 		interfaz.addEntidad(entidad);
+		interfaz.repaint();
 	}
 
 	@Override
@@ -170,6 +171,7 @@ public class Juego extends Mediator {
 	private void removeGeneral(Entidad entidad) {
 		entidadController.removeEntidad(entidad);
 		interfaz.removeEntidad(entidad);
+		interfaz.repaint();
 	}
 
 	public double getDeltaTime() {

@@ -32,6 +32,4 @@ public abstract class Mediator extends Thread {
 	 */
 	public abstract void addEntidadSecundaria(Entidad entidad);
 
-	// Pendiente los metodos para agregar las entidades no verificables (respecto
-	// del collisionManager)
 }

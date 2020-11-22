@@ -23,6 +23,10 @@ public class InfectadoAlfa extends Infectado {
 		
 		if(cargaViral<=0) {
 			mediadorJuego.removeEntidadSecundaria(this);
+		}else {
+			if(cargaViral==50) {//Si el infectado alfa tiene un nivel de vida critico duplica su velocidad
+				velocidad.y=velocidad.y*2;
+			}
 		}
 	}
 

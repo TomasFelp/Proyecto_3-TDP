@@ -38,7 +38,7 @@ public class ImageProvider {
     }
 
     private void loadSpriteEnemigoBeta() {
-        URL path = getClass().getResource("/SpritesInfectados/InfectadoAlfa.png");
+        URL path = getClass().getResource("/SpritesInfectados/InfectadoBeta.png");
         spriteEnemigoBeta = new ImageIcon(path);
     }
 

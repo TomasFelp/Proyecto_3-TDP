@@ -24,7 +24,7 @@ public abstract class Infectado extends Personaje {
 	public void update(float deltaTime) {
 		Point location = this.getLocation();
 
-		mover(velocidad.x * deltaTime, velocidad.y * deltaTime);
+		mover(velocidad.x * deltaTime, (velocidad.y * deltaTime)/3);
 
 		if (location.y > 600) {
 			// <----Para que vuelva a aparecer arriba. Analizar si es más conveniente usar
@@ -34,6 +34,7 @@ public abstract class Infectado extends Personaje {
 		}
 	}
 
+	
 	// TODO: ver si funciona sin redefinirlo de Entidad
 	public ZonaColision getZonaColision() {
 		int centroX = (int) (this.getLocation().x - (this.getSize().getWidth()) / 2);
@@ -41,4 +42,5 @@ public abstract class Infectado extends Personaje {
 		int radio = (int) (this.getSize().getHeight() / 2);
 		return new ZonaColision(centroX, centroY, radio);
 	}
+	
 }

@@ -74,8 +74,8 @@ public class Jugador extends Personaje {
 
 		try {
 			infectado = (Infectado) entidad;
-			cargaViral--;
-
+			cargaViral-=34;
+			
 			if (cargaViral <= 0)
 				this.setOpaque(true);
 

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entidades.*;
 import infectado.InfectadoAlfa;
+import infectado.InfectadoBeta;
 
 public class Nivel {
 	int sizeOleada;
@@ -19,7 +20,10 @@ public class Nivel {
 			//Ajustar valores para que no se salga de la pantalla (20
 			int x = r.nextInt(25) * 20;
 										// porque es el tamaño de lavel provisorio que defini en el )
-			primerOleada[i] = new InfectadoAlfa(new Vector(x, y),altoRecorrido);
+			if(r.nextInt(3)==1)
+				primerOleada[i] = new InfectadoBeta(new Vector(x, y),altoRecorrido);
+			 else
+				primerOleada[i] = new InfectadoAlfa(new Vector(x, y),altoRecorrido);
 			
 		}
 	}
