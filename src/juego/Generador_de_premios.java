@@ -18,7 +18,7 @@ public class Generador_de_premios {
 		premios=new Premio[3];
 		premios[0]=new Super_arma();
 		premios[1]=new Super_arma_perforadora();
-		premios[1]=new Pocion_vida();
+		premios[2]=new Pocion_vida();
 	}
 	
 //Methods
