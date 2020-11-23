@@ -16,7 +16,6 @@ public abstract class Premio extends Entidad{
 	
 //Builder
 	public Premio() {
-		this.setIcon(juego.ImageProvider.getInstancia().getSpritePremio());
 		setSize(20, 20);
 		setVisible(true);
 		setOpaque(true);

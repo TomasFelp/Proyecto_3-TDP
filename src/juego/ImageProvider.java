@@ -13,7 +13,10 @@ public class ImageProvider {
     private ImageIcon spriteEnemigoBeta;
     private ImageIcon spritePlayer;
     private ImageIcon spriteProyectilSanitario;
-    private ImageIcon spritePremio;
+    private ImageIcon spritePremioProyectilPower;
+    private ImageIcon spritePremioProyectilPerforador;
+    private ImageIcon spritePremioPocionVida;
+    private ImageIcon spritePremioCuarentena;
     private static ImageProvider instancia;
 
     private ImageProvider() {
@@ -21,7 +24,12 @@ public class ImageProvider {
         loadSpriteEnemigoAlfa();
         loadSpriteEnemigoBeta();
         loadSpriteProyectilSanitario();
-        loadSpritePremio();
+        
+        //Cargo sprites de los premios
+        loadSpritePremioProyectilPower();
+        loadSpritePremioProyectilPerforador();
+        loadSpritePremioPocionVida();
+        loadSpritePremioCuarentena();
     }
 
     /**
@@ -54,9 +62,24 @@ public class ImageProvider {
         spriteProyectilSanitario = new ImageIcon(path);
     }
 	
-	private void loadSpritePremio() {
-        URL path = getClass().getResource("/ImagenesPlayer/player.png");
-        spritePremio = new ImageIcon(path);
+	private void loadSpritePremioProyectilPower() {
+        URL path = getClass().getResource("/Premios/ProyectilPower.png");
+        spritePremioProyectilPower = new ImageIcon(path);
+    }
+	
+	private void loadSpritePremioProyectilPerforador() {
+        URL path = getClass().getResource("/Premios/ProyectilPowerPerforador.png");
+        spritePremioProyectilPerforador = new ImageIcon(path);
+    }
+	
+	private void loadSpritePremioPocionVida() {
+        URL path = getClass().getResource("/Premios/pocionVida.png");
+        spritePremioPocionVida = new ImageIcon(path);
+    }
+	
+	private void loadSpritePremioCuarentena() {
+        URL path = getClass().getResource("/Premios/cuarentena.png");
+        spritePremioCuarentena = new ImageIcon(path);
     }
 
     /**
@@ -80,9 +103,23 @@ public class ImageProvider {
         return spriteProyectilSanitario;
     }
     
-    public ImageIcon getSpritePremio() {
-        return spritePremio;
+    
+    public ImageIcon getSpritePremioSuperArma() {
+        return spritePremioProyectilPower;
     }
+    
+    public ImageIcon getSpritePremioSuperArmaPerforadora() {
+        return spritePremioProyectilPerforador;
+    }
+    
+    public ImageIcon getSpritePremioPocionVida() {
+        return spritePremioPocionVida;
+    }
+    
+    public ImageIcon getSpritePremioCuarentena() {
+        return spritePremioCuarentena;
+    }
+    
 }
 
 

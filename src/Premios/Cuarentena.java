@@ -4,6 +4,12 @@ import entidades.Jugador;
 
 public class Cuarentena extends Premio{
 
+	public Cuarentena() {
+		// TODO Auto-generated constructor stub
+		super();
+		this.setIcon(juego.ImageProvider.getInstancia().getSpritePremioCuarentena());
+	}
+	
 	@Override
 	public Premio clone() {
 		// TODO Auto-generated method stub
