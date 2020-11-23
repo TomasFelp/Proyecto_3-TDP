@@ -12,9 +12,12 @@ import juego.Vector;
 public class Jugador extends Personaje {
 	// Obtengo los segundos en nanosegundos
 	protected static final long SEGUNDOS_INVENCIBLE = 2 * 1000000000;
-	private Timer timerInvencible;
+	protected static final long SEGUNDOS_PREMIO = 1000000000;
+	
 	private boolean invencible;
+	private boolean premioActivado;
 	private long segundosInvencible;
+	private long segundosPremio;
 	private Arma arma;
 	private int velocidad;
 
@@ -24,7 +27,7 @@ public class Jugador extends Personaje {
 		setSize(20, 20);
 		setVisible(true);
 
-		timerInvencible = new Timer();
+		
 		this.velocidad = 10;
 		this.setIcon(juego.ImageProvider.getInstancia().getSpritePlayer());
 		this.arma = ArmaFactory.getDefaultArma();
@@ -38,8 +41,16 @@ public class Jugador extends Personaje {
 
 	public void setArma(Arma a) {
 		this.arma = a;
+		premioTemporal(10*SEGUNDOS_PREMIO);
 	}
-
+	
+	private void premioTemporal(long nanoSegundos) {
+		premioActivado=true;
+		segundosPremio=System.nanoTime() + nanoSegundos;
+		this.setOpaque(true);
+		this.setBackground(Color.YELLOW);
+	}
+	
 	public Proyectil disparar() {
 
 		Point pos = this.getLocation();
@@ -55,6 +66,16 @@ public class Jugador extends Personaje {
 	public void update(float deltaTime) {
 		if (invencible && segundosInvencible <= System.nanoTime())
 			deshacerInvencible();
+		
+		if (premioActivado && segundosPremio <= System.nanoTime())
+			quitarPremio();
+	}
+	
+	private void quitarPremio() {
+		System.out.println("quitar premio");
+		arma=ArmaFactory.getDefaultArma();
+		premioActivado=false;
+		this.setOpaque(false);
 	}
 
 	public double getVelocidadY() {
