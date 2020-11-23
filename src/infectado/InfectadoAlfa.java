@@ -19,7 +19,6 @@ public class InfectadoAlfa extends Infectado {
 	 * Use el accionar para que reciba el daño cuando le impacta un proyectil
 	 */
 	public void accionar() {
-		cargaViral-=50;
 		
 		estaVivo();
 			

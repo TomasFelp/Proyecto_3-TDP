@@ -12,6 +12,8 @@ public class InfectadoBeta extends Infectado{
 		super(posicion);
 		this.velocidad = new Vector(0, 1);
 		this.setIcon(juego.ImageProvider.getInstancia().getSpriteInfectadoBeta());
+		
+		cargaViral=(int) (cargaViral*1.5);
 	}
 
 	@Override
@@ -23,7 +25,6 @@ public class InfectadoBeta extends Infectado{
 	@Override
 	public void accionar() {
 		// TODO Auto-generated method stub
-		cargaViral-=34;
 		
 		estaVivo();
 	}

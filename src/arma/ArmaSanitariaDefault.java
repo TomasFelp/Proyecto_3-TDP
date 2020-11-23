@@ -9,7 +9,7 @@ class ArmaSanitariaDefault implements Arma{
 	@Override
 	public Proyectil disparar(Vector posicion) {
 		System.out.println("shot");
-		Proyectil p = new Proyectil_sanitario(posicion,new Vector(0,-5));
+		Proyectil p = new Proyectil_sanitario(posicion);
 		return p;
 	}
 

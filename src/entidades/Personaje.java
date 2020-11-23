@@ -27,6 +27,10 @@ public abstract class Personaje extends Entidad {
 	protected void setCargaViral(int cargaViral) {
 		this.cargaViral = cargaViral;
 	}
+	
+	public void setDamage(int d) {
+		this.cargaViral -= d;
+	}
 
 	public Vector getVelocidad() {
 		return new Vector(velocidad.x, velocidad.y);
