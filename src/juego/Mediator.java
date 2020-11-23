@@ -1,6 +1,7 @@
 package juego;
 
 import entidades.Entidad;
+import entidades.Jugador;
 
 public abstract class Mediator extends Thread {
 
@@ -36,5 +37,10 @@ public abstract class Mediator extends Thread {
 	 * Decrementa en uno la cantidad de infectados
 	 */
 	public abstract void decrementarInfectados();
+	
+	/**
+	 * Devuelve el player.
+	 */
+	public abstract Jugador getPlayer();
 
 }

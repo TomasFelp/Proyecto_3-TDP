@@ -51,6 +51,7 @@ public class Juego extends Mediator {
 
 		entidadController.insertarEntidad(jugador);
 
+		colManager.putEntidad(jugador);
 		colManager.putEntidadVerificable(jugador);
 	}
 
@@ -95,6 +96,7 @@ public class Juego extends Mediator {
 
 			vSync(elapsedTime);
 		}
+		mostrarCartel("GAME OVER");
 	}
 
 
@@ -141,8 +143,6 @@ public class Juego extends Mediator {
 				if(niveles.quedanNiveles()) {
 					cargarNivel();
 					cargarOleada();
-				}else {
-					mostrarCartel("GAME OVER");
 				}
 			}	
 		}
@@ -193,7 +193,7 @@ public class Juego extends Mediator {
 		nivelActual.decrementarOleada();
 	}
 
-	public Jugador getJugador() {
+	public Jugador getPlayer() {
 		return jugador;
 	}
 

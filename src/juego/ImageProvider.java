@@ -13,6 +13,7 @@ public class ImageProvider {
     private ImageIcon spriteEnemigoBeta;
     private ImageIcon spritePlayer;
     private ImageIcon spriteProyectilSanitario;
+    private ImageIcon spritePremio;
     private static ImageProvider instancia;
 
     private ImageProvider() {
@@ -20,6 +21,7 @@ public class ImageProvider {
         loadSpriteEnemigoAlfa();
         loadSpriteEnemigoBeta();
         loadSpriteProyectilSanitario();
+        loadSpritePremio();
     }
 
     /**
@@ -51,6 +53,11 @@ public class ImageProvider {
         URL path = getClass().getResource("/Proyectil/ProyectilSanitario.png");
         spriteProyectilSanitario = new ImageIcon(path);
     }
+	
+	private void loadSpritePremio() {
+        URL path = getClass().getResource("/ImagenesPlayer/player.png");
+        spritePremio = new ImageIcon(path);
+    }
 
     /**
      * Devuelve la sprite asignada al jugador
@@ -72,4 +79,26 @@ public class ImageProvider {
     public ImageIcon getSpriteProyectilSanitario(){
         return spriteProyectilSanitario;
     }
+    
+    public ImageIcon getSpritePremio() {
+        return spritePremio;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

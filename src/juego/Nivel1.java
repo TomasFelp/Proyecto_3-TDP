@@ -24,8 +24,8 @@ public class Nivel1 implements Nivel{
 //Builder
 	public Nivel1() {
 		oleadas=new LinkedList<Infectado[]>();
-		oleadas.add(armarOleada(1,1));
-		oleadas.add(armarOleada(1,1));
+		oleadas.add(armarOleada(3,2));
+		oleadas.add(armarOleada(3,4));
 	}
 
 //Methods

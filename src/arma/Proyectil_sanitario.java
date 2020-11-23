@@ -24,13 +24,15 @@ public class Proyectil_sanitario extends Proyectil {
 		// <<<<--------Redefiniendo esta metodo para que haga lo mismo pero en toda la
 		// lista ya podira ser un power up extra
 		Entidad entidadImpactada = colisiones.get(0);
-
-		entidadImpactada.setOpaque(true);
-		entidadImpactada.setBackground(Color.BLUE);
-
-		entidadImpactada.accionar();
-
-		mediadorJuego.removeEntidad(this);
+        
+		if(entidadImpactada!=mediadorJuego.getPlayer()) {
+			entidadImpactada.setOpaque(true);
+			entidadImpactada.setBackground(Color.BLUE);
+	
+			entidadImpactada.accionar();
+	
+			mediadorJuego.removeEntidad(this);
+		}
 
 	}
 }

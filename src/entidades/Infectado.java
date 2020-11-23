@@ -1,6 +1,7 @@
 package entidades;
 
 import java.awt.Point;
+import java.util.Random;
 
 import colisiones.ZonaColision;
 import juego.Vector;
@@ -44,10 +45,24 @@ public abstract class Infectado extends Personaje {
 	 * Determina si el infectado esta vivo, si no es asi le informa al juego que hacer.
 	 */
 	protected void estaVivo() {
+		Random r =new Random();
 		if(cargaViral<=0) {
 			mediadorJuego.removeEntidadSecundaria(this);
 			mediadorJuego.decrementarInfectados();
+			
+			if(r.nextInt(3)==0)
+				lanzarPremio();
 		}
+	}
+	
+	protected void lanzarPremio() {
+		Premio premio=juego.Generador_de_premios.getInstancia().getPremio();
+		int x=this.getX();
+		int y=this.getY();
+		Vector posicion=new Vector(x, y);
+		premio.setPosicion(posicion);
+		premio.setMediador(mediadorJuego);
+		mediadorJuego.addEntidad(premio);
 	}
 	
 }
