@@ -16,12 +16,12 @@ public abstract class Proyectil extends Entidad {
 	protected int daño;
 	protected Vector velocidad;
 
-	public Proyectil(Point posicion, Vector velocidad, int daño) {
+	public Proyectil(Vector posicion) {
 		xReal = posicion.x;
 		yReal = posicion.y;
 
-		this.daño = daño;
-		this.velocidad = velocidad;
+		this.daño = 50;
+		this.velocidad=new Vector(0,10);
 		this.setIcon(ImageProvider.getInstancia().getSpriteProyectilSanitario());
 
 		this.setVisible(true);

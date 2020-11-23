@@ -4,6 +4,7 @@ import java.util.Random;
 
 import entidades.Premio;
 import entidades.Super_arma;
+import entidades.Super_arma_perforadora;
 
 public class Generador_de_premios {
 
@@ -13,8 +14,9 @@ public class Generador_de_premios {
 	
 //Builder
 	private Generador_de_premios() {
-		premios=new Premio[1];
+		premios=new Premio[2];
 		premios[0]=new Super_arma();
+		premios[1]=new Super_arma_perforadora();
 	}
 	
 //Methods
