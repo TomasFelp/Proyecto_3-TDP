@@ -24,7 +24,7 @@ public class Nivel1 implements Nivel{
 //Builder
 	public Nivel1() {
 		oleadas=new LinkedList<Infectado[]>();
-		oleadas.add(armarOleada(10,10));
+		oleadas.add(armarOleada(10,5));
 		oleadas.add(armarOleada(12,15));
 	}
 
@@ -79,9 +79,9 @@ public class Nivel1 implements Nivel{
 		Random r = new Random();
 		int x,y;
 		
-		y = r.nextInt(15) * -20;
+		y = r.nextInt(30) * -20;
 		//Ajustar valores para que no se salga de la pantalla
-		x = r.nextInt(20) * 20;
+		x = r.nextInt(24) * 20;
 		
 		return new Vector(x, y);
 	}
