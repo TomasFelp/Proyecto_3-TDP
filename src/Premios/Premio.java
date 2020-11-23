@@ -17,9 +17,7 @@ public abstract class Premio extends Entidad{
 //Builder
 	public Premio() {
 		setSize(20, 20);
-		setVisible(true);
-		setOpaque(true);
-		this.setBackground(Color.YELLOW);
+
 		Random r=new Random();
 		velocidad=new Vector(0,r.nextInt(5)+1);
 	}
