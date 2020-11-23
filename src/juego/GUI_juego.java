@@ -3,11 +3,13 @@ package juego;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 
 public class GUI_juego extends JFrame {
 
@@ -83,5 +85,17 @@ public class GUI_juego extends JFrame {
 	
 	public int getAlto() {
 		return panelEntidades.getHeight();
+	}
+	
+	public JLabel mostrarCartel(String msj) {
+		
+		JLabel mensaje=new JLabel(msj);
+		mensaje.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+		mensaje.setSize(300,50);
+		mensaje.setLocation(panelEntidades.getWidth()/2-mensaje.getWidth()/2,panelEntidades.getHeight()/2-mensaje.getHeight()/2);
+		panelEntidades.add(mensaje);
+		
+		return mensaje;
 	}
 }

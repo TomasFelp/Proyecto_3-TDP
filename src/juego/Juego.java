@@ -2,6 +2,8 @@ package juego;
 
 import java.awt.Toolkit;
 
+import javax.swing.JLabel;
+
 import cerebros.ComandoPlayer;
 import cerebros.GameController;
 import colisiones.CollisionManager;
@@ -73,9 +75,9 @@ public class Juego extends Mediator {
 		deltaTime = 1;
 
 		while (!Thread.currentThread().isInterrupted() && (niveles.quedanNiveles() || nivelActual.quedanInfectadosEnLaOleada())) {
-			update();
-			
 			administrarNiveles();
+			
+			update();
 			
 			// Este comando soluciona la baja en el rendimiento que desaparecia cuando
 			// pasabamos el mouse por arriba o moviamos el player
@@ -131,16 +133,16 @@ public class Juego extends Mediator {
 	 */
 	public void administrarNiveles() {
 		if(nivelActual.quedanInfectadosEnLaOleada()==false) {
-			System.out.println("no queda infectados");//<-----------------Borrar e informar a la interfaz que muestre un mensaje
-			if(nivelActual.termino()==false)
+			if(nivelActual.termino()==false) {
+				mostrarCartel("OLEADA COMPLETADA");
 				cargarOleada();
-			else {
-				System.out.println("Terminaste el nivel");//<-----------------Borrar e informar a la interfaz que muestre un mensaje
+			}else {
+				mostrarCartel("NIVEL COMPLETADO");
 				if(niveles.quedanNiveles()) {
 					cargarNivel();
 					cargarOleada();
 				}else {
-					System.out.println("Game over");//<-----------------Borrar e informar a la interfaz que muestre un mensaje
+					mostrarCartel("GAME OVER");
 				}
 			}	
 		}
@@ -165,6 +167,26 @@ public class Juego extends Mediator {
 			oleada[i].setMediador(this);
 			addEntidadSecundaria(oleada[i]);
 		}
+	}
+	
+	/**
+	 * Le indica a la interfaz que agregue un cartel con el texto del parametro.
+	 * 
+	 * >>>>>>>>>>>>>>>>>>>>>>Solucionar que los infectados se siguen desplazando mientras esta el cartel<<<<<<<<<<<<<<<<<<<<<<<<<
+	 * 
+	 * @param msj
+	 */
+	public void mostrarCartel(String msj) {
+		JLabel cartel=interfaz.mostrarCartel(msj);
+		interfaz.repaint();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		interfaz.removeEntidad(cartel);
+		interfaz.repaint();
 	}
 	
 	public void decrementarInfectados() {
