@@ -2,11 +2,17 @@ package juego;
 
 import java.util.Random;
 
+import Premios.Cuarentena;
 import Premios.Pocion_vida;
 import Premios.Premio;
 import Premios.Super_arma;
 import Premios.Super_arma_perforadora;
 
+/**
+ * Guarda una coleccionde premios y retorna una instancia de uno, seleccionada aleatoriamente.
+ * @author Tomás
+ *
+ */
 public class Generador_de_premios {
 
 //Attributes
@@ -15,10 +21,11 @@ public class Generador_de_premios {
 	
 //Builder
 	private Generador_de_premios() {
-		premios=new Premio[3];
+		premios=new Premio[4];
 		premios[0]=new Super_arma();
 		premios[1]=new Super_arma_perforadora();
 		premios[2]=new Pocion_vida();
+		premios[3]=new Cuarentena();
 	}
 	
 //Methods

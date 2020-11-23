@@ -1,27 +1,25 @@
 package Premios;
 
-import arma.ArmaSanitariaPerforadora;
-import arma.ArmaSanitariaPower;
 import entidades.Jugador;
 
-public class Super_arma_perforadora extends Premio{
+public class Cuarentena extends Premio{
 
 	@Override
 	public Premio clone() {
 		// TODO Auto-generated method stub
-		return new Super_arma_perforadora();
+		return new Cuarentena();
 	}
 
-	
+	@Override
 	protected void activarPoder(Jugador player) {
-		player.setArma(new ArmaSanitariaPerforadora());
+		// TODO Auto-generated method stub
+		mediadorJuego.relentizarInfectados();;
 	}
-
 
 	@Override
 	public void accionar() {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 }

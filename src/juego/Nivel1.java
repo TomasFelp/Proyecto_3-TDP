@@ -18,14 +18,14 @@ public class Nivel1 implements Nivel{
 
 //Attributes
 	protected Queue<Infectado[]> oleadas;
-	int cantInfectados;
+	protected int cantInfectados;
 	protected Infectado[] oleadaActual;
 
 //Builder
 	public Nivel1() {
 		oleadas=new LinkedList<Infectado[]>();
-		oleadas.add(armarOleada(3,2));
-		oleadas.add(armarOleada(3,4));
+		oleadas.add(armarOleada(10,10));
+		oleadas.add(armarOleada(12,15));
 	}
 
 //Methods
@@ -81,7 +81,7 @@ public class Nivel1 implements Nivel{
 		
 		y = r.nextInt(15) * -20;
 		//Ajustar valores para que no se salga de la pantalla
-		x = r.nextInt(25) * 20;
+		x = r.nextInt(20) * 20;
 		
 		return new Vector(x, y);
 	}
@@ -96,6 +96,14 @@ public class Nivel1 implements Nivel{
 	public void decrementarOleada() {
 		// TODO Auto-generated method stub
 		cantInfectados--;
+	}
+
+	@Override
+	public void relentizarOleada() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<oleadaActual.length;i++) {
+			oleadaActual[i].relentizar();
+		}
 	}
 }
 

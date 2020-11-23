@@ -49,6 +49,7 @@ public abstract class Premio extends Entidad{
 		for(Entidad ent:colisiones) {
 			if(ent==player) {
 				activarPoder(player);
+				mediadorJuego.removeEntidad(this);
 			}
 		}
 	}

@@ -9,12 +9,19 @@ import juego.Vector;
 
 public abstract class Infectado extends Personaje {
 
+//Attributes
+	protected static final long SEGUNDOS_RELENTIZADO = 1000000000;
+	protected boolean relentizado;
+	protected long tiempoRelentizado;
+	
+//Builder
 	public Infectado(Vector posicion) {
 		super(posicion);
 		cargaViral = 100;
 		this.setSize(20, 20);
 	}
 
+//Methods
 	public void PropagarVirus() {
 
 	}
@@ -23,6 +30,10 @@ public abstract class Infectado extends Personaje {
 	public void update(float deltaTime) {
 		Point location = this.getLocation();
 
+		if (relentizado && tiempoRelentizado <= System.nanoTime()) {
+			desRelentizar();
+		}
+		
 		mover(velocidad.x * deltaTime, (velocidad.y * deltaTime)/3);
 
 		if (location.y > 600) {
@@ -31,6 +42,7 @@ public abstract class Infectado extends Personaje {
 			this.setLocation(this.getLocation().x, 0);
 			this.setPosicionReal(xReal, 0);
 		}
+		
 	}
 
 	
@@ -64,6 +76,18 @@ public abstract class Infectado extends Personaje {
 		premio.setPosicion(posicion);
 		premio.setMediador(mediadorJuego);
 		mediadorJuego.addEntidad(premio);
+	}
+	
+	public void relentizar() {
+		velocidad.y=0;
+		relentizado=true;
+		
+		tiempoRelentizado=System.nanoTime() + 4 * SEGUNDOS_RELENTIZADO;
+	}
+	
+	public void desRelentizar() {
+		relentizado=false;
+		velocidad.y=velocidadDefault;
 	}
 	
 }

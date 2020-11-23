@@ -23,6 +23,5 @@ public class Super_arma extends Premio{
 	
 	protected void activarPoder(Jugador player) {
 		player.setArma(new ArmaSanitariaPower());
-		mediadorJuego.removeEntidad(this);
 	}
 }
