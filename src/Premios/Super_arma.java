@@ -1,8 +1,9 @@
-package entidades;
+package Premios;
 
 import java.util.List;
 
 import arma.ArmaSanitariaPower;
+import entidades.Jugador;
 import juego.Vector;
 
 public class Super_arma extends Premio{

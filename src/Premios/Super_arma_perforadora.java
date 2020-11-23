@@ -1,7 +1,8 @@
-package entidades;
+package Premios;
 
 import arma.ArmaSanitariaPerforadora;
 import arma.ArmaSanitariaPower;
+import entidades.Jugador;
 
 public class Super_arma_perforadora extends Premio{
 

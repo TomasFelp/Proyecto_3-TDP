@@ -1,4 +1,4 @@
-package entidades;
+package Premios;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 import arma.ArmaSanitariaPower;
+import entidades.Entidad;
+import entidades.Jugador;
 import juego.Vector;
 
 public abstract class Premio extends Entidad{
@@ -56,6 +58,6 @@ public abstract class Premio extends Entidad{
 	 * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Este es el metodo que hay que redefinir para cada premio
 	 * @param player
 	 */
-	protected void activarPoder(Jugador player) {}
+	protected abstract void activarPoder(Jugador player);
 	
 }

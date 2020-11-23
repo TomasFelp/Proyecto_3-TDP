@@ -4,6 +4,7 @@ import juego.Vector;
 
 public abstract class Personaje extends Entidad {
 
+	protected static int maxVida;
 	protected int cargaViral;
 	protected Vector velocidad;
 
@@ -24,8 +25,8 @@ public abstract class Personaje extends Entidad {
 		return cargaViral;
 	}
 
-	protected void setCargaViral(int cargaViral) {
-		this.cargaViral = cargaViral;
+	public void restaurarVida() {
+		this.cargaViral = maxVida;
 	}
 	
 	public void setDamage(int d) {

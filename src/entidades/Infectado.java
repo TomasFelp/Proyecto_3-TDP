@@ -3,6 +3,7 @@ package entidades;
 import java.awt.Point;
 import java.util.Random;
 
+import Premios.Premio;
 import colisiones.ZonaColision;
 import juego.Vector;
 
