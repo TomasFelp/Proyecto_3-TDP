@@ -15,6 +15,7 @@ public class ImageProvider {
     private ImageIcon spriteProyectilSanitario;
     private ImageIcon spritePremioProyectilPower;
     private ImageIcon spritePremioProyectilPerforador;
+    private ImageIcon spriteProyectilViral;
     private ImageIcon spritePremioPocionVida;
     private ImageIcon spritePremioCuarentena;
     private static ImageProvider instancia;
@@ -24,6 +25,7 @@ public class ImageProvider {
         loadSpriteEnemigoAlfa();
         loadSpriteEnemigoBeta();
         loadSpriteProyectilSanitario();
+        loadSpriteProyectilViral();
         
         //Cargo sprites de los premios
         loadSpritePremioProyectilPower();
@@ -81,6 +83,11 @@ public class ImageProvider {
         URL path = getClass().getResource("/Premios/cuarentena.png");
         spritePremioCuarentena = new ImageIcon(path);
     }
+	
+	private void loadSpriteProyectilViral() {
+		URL path = getClass().getResource("/Proyectil/ProyectilViral.png");
+        spriteProyectilViral = new ImageIcon(path);
+    }
 
     /**
      * Devuelve la sprite asignada al jugador
@@ -118,6 +125,10 @@ public class ImageProvider {
     
     public ImageIcon getSpritePremioCuarentena() {
         return spritePremioCuarentena;
+    }
+    
+    public ImageIcon getSpriteProyectilViral(){
+        return spriteProyectilViral;
     }
     
 }

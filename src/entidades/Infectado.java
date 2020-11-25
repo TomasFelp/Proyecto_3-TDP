@@ -4,6 +4,9 @@ import java.awt.Point;
 import java.util.Random;
 
 import Premios.Premio;
+import arma.Proyectil;
+import arma.ProyectilViral;
+import arma.Proyectil_sanitario;
 import colisiones.ZonaColision;
 import juego.Vector;
 
@@ -23,12 +26,23 @@ public abstract class Infectado extends Personaje {
 
 //Methods
 	public void PropagarVirus() {
-
+		
+		Point pos = this.getLocation();
+		int x, y;
+		x = (int) pos.getX();
+		y = (int) pos.getY();
+		Vector posicion = new Vector(x, y);
+		
+		Proyectil p = new ProyectilViral(posicion);
+		p.setMediador(mediadorJuego);
+		
+		mediadorJuego.addEntidad(p);
 	}
 
 	@Override
 	public void update(float deltaTime) {
 		Point location = this.getLocation();
+		Random r=new Random();
 
 		if (relentizado && tiempoRelentizado <= System.nanoTime()) {
 			desRelentizar();
@@ -41,6 +55,10 @@ public abstract class Infectado extends Personaje {
 			// un valor fijo o hacer que conosca la ventana o su tamaño
 			this.setLocation(this.getLocation().x, 0);
 			this.setPosicionReal(xReal, 0);
+		}
+		
+		if(r.nextInt(2500)==0) {
+			PropagarVirus();
 		}
 		
 	}
