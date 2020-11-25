@@ -1,9 +1,6 @@
 package juego;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,7 +52,12 @@ public class GUI_juego extends JFrame {
 		
 
 	}
-	
+
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+	}
+
 	/**
 	 * Arma el panel en el cual se desplazaran las entidades del juego
 	 */

@@ -102,7 +102,7 @@ public class Nivel1 implements Nivel{
 	public void relentizarOleada() {
 		// TODO Auto-generated method stub
 		for(int i=0;i<oleadaActual.length;i++) {
-			oleadaActual[i].relentizar();
+			oleadaActual[i].ralentizar();
 		}
 	}
 }
