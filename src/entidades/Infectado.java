@@ -10,7 +10,7 @@ import juego.Vector;
 public abstract class Infectado extends Personaje {
 
 //Attributes
-	protected static final long SEGUNDOS_RELENTIZADO = 1000000000;
+	protected static final long SEGUNDOS_RALENTIZADO = 1000000000;
 	protected boolean relentizado;
 	protected long tiempoRelentizado;
 	
@@ -31,7 +31,7 @@ public abstract class Infectado extends Personaje {
 		Point location = this.getLocation();
 
 		if (relentizado && tiempoRelentizado <= System.nanoTime()) {
-			desRelentizar();
+			desRalentizar();
 		}
 		
 		mover(velocidad.x * deltaTime, (velocidad.y * deltaTime)/3);
@@ -69,23 +69,26 @@ public abstract class Infectado extends Personaje {
 	}
 	
 	protected void lanzarPremio() {
-		Premio premio=juego.Generador_de_premios.getInstancia().getPremio();
 		int x=this.getX();
 		int y=this.getY();
+
 		Vector posicion=new Vector(x, y);
+		Premio premio=juego.Generador_de_premios.getInstancia().getPremio();
+
 		premio.setPosicion(posicion);
 		premio.setMediador(mediadorJuego);
+
 		mediadorJuego.addEntidad(premio);
 	}
 	
-	public void relentizar() {
+	public void ralentizar() {
 		velocidad.y=0;
 		relentizado=true;
 		
-		tiempoRelentizado=System.nanoTime() + 4 * SEGUNDOS_RELENTIZADO;
+		tiempoRelentizado=System.nanoTime() + 4 * SEGUNDOS_RALENTIZADO;
 	}
 	
-	public void desRelentizar() {
+	public void desRalentizar() {
 		relentizado=false;
 		velocidad.y=velocidadDefault;
 	}

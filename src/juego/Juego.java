@@ -14,7 +14,7 @@ import entidades.Jugador;
 public class Juego extends Mediator {
 	private static final int UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS = 10000000;
 	private static final int NANOSEGUNDOS_EN_UN_SEGUNDO = 1000000000;
-	private static final int FRAMERATE_DESEADO = 60;
+	private static final int FRAMERATE_DESEADO = 120;
 	private static final int TIEMPO_POR_FRAME = NANOSEGUNDOS_EN_UN_SEGUNDO / FRAMERATE_DESEADO;
 	private static final long NANOSEGUNDOS_EN_UN_MILISEGUNDO = 1000000;
 
