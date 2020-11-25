@@ -13,6 +13,7 @@ public class InfectadoAlfa extends Infectado {
 		super(posicion);
 		this.velocidad = new Vector(0, 1);
 		this.setIcon(juego.ImageProvider.getInstancia().getSpriteInfectadoAlfa());
+		velocidadDefault=1;
 	}
 
 	/**

@@ -237,4 +237,10 @@ public class Juego extends Mediator {
 		return deltaTime;
 	}
 
+	@Override
+	public void relentizarInfectados() {
+		// TODO Auto-generated method stub
+		nivelActual.relentizarOleada();
+	}
+
 }

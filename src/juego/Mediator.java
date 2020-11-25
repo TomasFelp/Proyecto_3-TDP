@@ -42,5 +42,10 @@ public abstract class Mediator extends Thread {
 	 * Devuelve el player.
 	 */
 	public abstract Jugador getPlayer();
+	
+	/**
+	 * Relentiza la oleada actual de infectados
+	 */
+	public abstract void relentizarInfectados();
 
 }

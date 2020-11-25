@@ -26,4 +26,9 @@ public interface Nivel {
 	 * Decrementa la cantidad de infectados de la oleada actual.
 	 */
 	public void decrementarOleada();
+	
+	/**
+	 * Relentiza la oleada actual
+	 */
+	public void relentizarOleada();
 }

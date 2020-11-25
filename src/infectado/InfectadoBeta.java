@@ -12,7 +12,7 @@ public class InfectadoBeta extends Infectado{
 		super(posicion);
 		this.velocidad = new Vector(0, 1);
 		this.setIcon(juego.ImageProvider.getInstancia().getSpriteInfectadoBeta());
-		
+		velocidadDefault=1;
 		cargaViral=(int) (cargaViral*1.5);
 	}
 

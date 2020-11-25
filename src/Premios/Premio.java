@@ -1,4 +1,4 @@
-package entidades;
+package Premios;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 import arma.ArmaSanitariaPower;
+import entidades.Entidad;
+import entidades.Jugador;
 import juego.Vector;
 
 public abstract class Premio extends Entidad{
@@ -14,11 +16,8 @@ public abstract class Premio extends Entidad{
 	
 //Builder
 	public Premio() {
-		this.setIcon(juego.ImageProvider.getInstancia().getSpritePremio());
 		setSize(20, 20);
-		setVisible(true);
-		setOpaque(true);
-		this.setBackground(Color.YELLOW);
+
 		Random r=new Random();
 		velocidad=new Vector(0,r.nextInt(5)+1);
 	}
@@ -47,6 +46,7 @@ public abstract class Premio extends Entidad{
 		for(Entidad ent:colisiones) {
 			if(ent==player) {
 				activarPoder(player);
+				mediadorJuego.removeEntidad(this);
 			}
 		}
 	}
@@ -56,6 +56,6 @@ public abstract class Premio extends Entidad{
 	 * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Este es el metodo que hay que redefinir para cada premio
 	 * @param player
 	 */
-	protected void activarPoder(Jugador player) {}
+	protected abstract void activarPoder(Jugador player);
 	
 }
