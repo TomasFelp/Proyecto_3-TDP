@@ -10,11 +10,19 @@ import java.awt.event.KeyListener;
 import arma.Proyectil;
 
 public class ComandoPlayer extends Thread implements KeyListener{
+	/*
+	* Si no limitamos el tiempo entre disparos, la GUI (AWT) lanza una excepción.
+	* Para evitarlo, seteamos un tiempo mímimo entre disparos.
+	*/
+	private static final int TIEMPO_MIN_ENTRE_DISPAROS_EN_MILLIS = 250;
+
 	protected Jugador jugador;
 	protected boolean ejecucion=true;
 	protected int anchoPantalla;
 	protected GameController npcController;
 	protected Juego juego;
+
+	private long tiempoUltimoDisparo = 0;
 	
 	public ComandoPlayer(Jugador p, int anchoPantalla) {
 		jugador =p;
@@ -52,9 +60,15 @@ public class ComandoPlayer extends Thread implements KeyListener{
 		}
 
 	  if(teclaPresionada == KeyEvent.VK_W || teclaPresionada==KeyEvent.VK_UP) {
-		  Proyectil proyectil=this.jugador.disparar();
-		  proyectil.setMediador(juego);
-		  juego.addEntidad(proyectil);
+	  	//Solo se ejecutará el disparo si ha pasado el tiempo minimo en milisegundos desde el ultimo disparo.
+		  if(System.currentTimeMillis() - tiempoUltimoDisparo > TIEMPO_MIN_ENTRE_DISPAROS_EN_MILLIS) {
+
+			  Proyectil proyectil = this.jugador.disparar();
+			  proyectil.setMediador(juego);
+			  juego.addEntidad(proyectil);
+
+			  tiempoUltimoDisparo = System.currentTimeMillis();
+		  }
 	  }
 
 		jugador.setLocation(posicion);
