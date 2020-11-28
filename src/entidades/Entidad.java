@@ -7,7 +7,6 @@ import java.util.Random;
 import javax.swing.JLabel;
 
 import cerebros.GameController;
-import colisiones.ZonaColision;
 import juego.Mediator;
 import juego.Vector;
 
@@ -35,11 +34,6 @@ public abstract class Entidad extends JLabel {
 	 */
 	public abstract void update(float deltaTime);
 
-	/**
-	 * Acciona el comportamiento que tiene al colisionar
-	 */
-	public abstract void accionar();
-
 	@Override
 	public int hashCode() {
 		return ID;
@@ -47,13 +41,6 @@ public abstract class Entidad extends JLabel {
 
 	public void setMediador(Mediator m) {
 		mediadorJuego = m;
-	}
-
-	public ZonaColision getZonaColision() {
-		int x = this.getX() - this.getWidth() / 2;
-		int y = this.getY();
-		int height = this.getHeight();
-		return new ZonaColision(x, y, height);
 	}
 
 	public void mover(float vx, float vy) {

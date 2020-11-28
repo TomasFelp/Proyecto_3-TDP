@@ -9,7 +9,7 @@ import arma.ArmaFactory;
 import arma.Proyectil;
 import juego.Vector;
 
-public class Jugador extends Personaje {
+public class Jugador extends Personaje implements Colisionable{
 	// Obtengo los segundos en nanosegundos
 	protected static final long SEGUNDOS_INVENCIBLE = 2 * 1000000000;
 	protected static final long SEGUNDOS_PREMIO = 1000000000;
@@ -35,8 +35,24 @@ public class Jugador extends Personaje {
 		this.setBackground(Color.BLUE);
 	}
 
+
 	public void accionar() {
 
+	}
+
+	/**
+	 * Decrementa la carga viral del Jugador con el valor pasado por parametro.
+	 * Lleva la carga viral a 0 si el valor es mayor a la carga viral actual.
+	 * @param dano carga viral a decrementarle al Jugador
+	 */
+	public void recibirDano(int dano){
+		cargaViral++;
+		/**
+		if(this.cargaViral + dano < 100) {
+			this.cargaViral += dano;
+		} else{
+			this.cargaViral = 100;
+		} */
 	}
 
 	public void setArma(Arma a) {
@@ -118,5 +134,9 @@ public class Jugador extends Personaje {
 		invencible = false;
 		segundosInvencible = 0;
 		this.setOpaque(false);
+	}
+
+	public void aceptarColision(Colisionador colisionador) {
+		colisionador.chocarConJugador(this);
 	}
 }

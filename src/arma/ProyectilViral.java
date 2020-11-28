@@ -1,10 +1,10 @@
 package arma;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.util.List;
 
 import entidades.Entidad;
+import entidades.Infectado;
 import entidades.Jugador;
 import entidades.Personaje;
 import juego.ImageProvider;
@@ -23,14 +23,6 @@ public class ProyectilViral extends Proyectil{
 		alcance=200;
 		posY_inicial=(int) posicion.getY();
 		this.setIcon(ImageProvider.getInstancia().getSpriteProyectilViral());
-	}
-
-	
-//Methods	
-	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void update(float deltaTime) {
@@ -53,7 +45,7 @@ public class ProyectilViral extends Proyectil{
 			
 			if(entidadImpactada==objetivo) {
 				mediadorJuego.removeEntidad(this);
-				objetivo.setDamage(daño);
+				objetivo.recibirDano(daño);
 				System.out.println("Player impactado");
 			}
 		}
@@ -62,4 +54,12 @@ public class ProyectilViral extends Proyectil{
 
 	}
 
+	//TODO: Revisar
+	public void chocarConJugador(Jugador jugador) {
+
+	}
+
+	public void chocarConInfectado(Infectado infectado) {
+
+	}
 }

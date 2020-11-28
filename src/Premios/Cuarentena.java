@@ -1,5 +1,6 @@
 package Premios;
 
+import entidades.Infectado;
 import entidades.Jugador;
 
 public class Cuarentena extends Premio{
@@ -16,16 +17,12 @@ public class Cuarentena extends Premio{
 		return new Cuarentena();
 	}
 
-	@Override
-	protected void activarPoder(Jugador player) {
-		// TODO Auto-generated method stub
-		mediadorJuego.relentizarInfectados();;
+	public void chocarConJugador(Jugador jugador) {
+		mediadorJuego.relentizarInfectados();
+		mediadorJuego.removeEntidad(this);
 	}
 
-	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
+	public void chocarConInfectado(Infectado infectado) {
+		//hacer nada
 	}
-
 }

@@ -2,6 +2,7 @@ package Premios;
 
 import arma.ArmaSanitariaPerforadora;
 import arma.ArmaSanitariaPower;
+import entidades.Infectado;
 import entidades.Jugador;
 
 public class Super_arma_perforadora extends Premio{
@@ -18,16 +19,14 @@ public class Super_arma_perforadora extends Premio{
 		return new Super_arma_perforadora();
 	}
 
-	
-	protected void activarPoder(Jugador player) {
-		player.setArma(new ArmaSanitariaPerforadora());
+	@Override
+	public void chocarConJugador(Jugador jugador) {
+		jugador.setArma(new ArmaSanitariaPerforadora());
+		mediadorJuego.removeEntidad(this);
 	}
-
 
 	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
+	public void chocarConInfectado(Infectado infectado) {
+		//hacer nada
 	}
-	
 }

@@ -1,15 +1,15 @@
 package juego;
 
-import java.awt.Toolkit;
+import java.awt.*;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.JLabel;
 
+import arma.Proyectil;
 import cerebros.ComandoPlayer;
 import cerebros.GameController;
-import colisiones.CollisionManager;
-import entidades.Entidad;
-import entidades.Infectado;
-import entidades.Jugador;
+import entidades.*;
 
 public class Juego extends Mediator {
 	private static final int UNIDAD_DE_TIEMPO_EN_NANOSEGUNDOS = 10000000;
@@ -18,19 +18,24 @@ public class Juego extends Mediator {
 	private static final int TIEMPO_POR_FRAME = NANOSEGUNDOS_EN_UN_SEGUNDO / FRAMERATE_DESEADO;
 	private static final long NANOSEGUNDOS_EN_UN_MILISEGUNDO = 1000000;
 
+	private Map<Integer, Colisionador> colisionadores;
+	private Map<Integer, Colisionable> colisionables;
+
 	protected GUI_juego interfaz;
 	protected Jugador jugador;
 	protected Generador_de_niveles niveles;
 	protected Nivel nivelActual;
 	protected ComandoPlayer controlesPlayer;
 	protected GameController entidadController;
-	protected CollisionManager colManager;
 	private float deltaTime;
 
 	public Juego(GUI_juego inter) {
 		interfaz = inter;
 		entidadController = new GameController();
-		colManager = new CollisionManager();
+
+		//Mantienen las referencias a los colisionadores y colisionables en el juego
+		colisionadores =new ConcurrentHashMap<Integer, Colisionador>();
+		colisionables = new ConcurrentHashMap<Integer, Colisionable>();
 		
 		niveles=new Generador_de_niveles();
 		
@@ -45,14 +50,13 @@ public class Juego extends Mediator {
 		int y = interfaz.getAlto() - jugador.getHeight();
 		jugador.setLocation(x, y);
 
+		addColisionable(jugador);
+
 		controlesPlayer = new ComandoPlayer(jugador, interfaz.getAncho() - 20);
 		controlesPlayer.setJuego(this);
 		interfaz.addKeyListener(controlesPlayer);
 
 		entidadController.insertarEntidad(jugador);
-
-		colManager.putEntidad(jugador);
-		colManager.putEntidadVerificable(jugador);
 	}
 
 	@Override
@@ -64,7 +68,7 @@ public class Juego extends Mediator {
 		cargarNivel();
 		cargarOleada();
 
-		// Las entidades se tienen que mover en una unidad fija de tiempo
+		// Las colisionadores se tienen que mover en una unidad fija de tiempo
 		// por ej: 10 px por segundo
 		// El problema es que no podemos asegurar que cada update ocurra cada un
 		// segundo.
@@ -79,6 +83,8 @@ public class Juego extends Mediator {
 			administrarNiveles();
 			
 			update();
+
+			chequearColisiones();
 			
 			// Este comando soluciona la baja en el rendimiento que desaparecia cuando
 			// pasabamos el mouse por arriba o moviamos el player
@@ -97,6 +103,27 @@ public class Juego extends Mediator {
 			vSync(elapsedTime);
 		}
 		mostrarCartel("GAME OVER");
+	}
+
+	/**
+	 * Verifica las colisiones entre los Colisionables y los Colisionadores
+	 */
+	private void chequearColisiones() {
+
+		for(Colisionable colisionable : colisionables.values()){
+			Rectangle areaColisionable = ((Entidad) colisionable).getBounds();
+
+			for(Colisionador colisionador : colisionadores.values()){
+				Rectangle areaColisionador = ((Entidad) colisionador).getBounds();
+
+				if(areaColisionable.intersects(areaColisionador)){
+					colisionable.aceptarColision(colisionador);
+				}
+
+			}
+
+		}
+
 	}
 
 
@@ -118,16 +145,16 @@ public class Juego extends Mediator {
 	 * Realiza todas las actividades que son requeridas dentro del loop del juego
 	 */
 	private void update() {
-		// Actualizamos las entidades pasando como parámetro el porcentaje de U
+		// Actualizamos las colisionadores pasando como parámetro el porcentaje de U
 		// Entonces, al mover una entidad que tiene velocidad 5px por U
 		// supongamos que solo transcurrió medio U, deltaTime sería 0.5
 		// Multiplicamos la velocidad por deltaTime y obtenemos 2.5px,
 		// Osea, el movimiento correspondiente a su velocidad en el tiempo transcurrido
 
-		// De esta forma las entidades no saltan
+		// De esta forma las colisionadores no saltan
 		// y su velocidad no cambia si cambiamos el frameRate
 		entidadController.updateEntidades(deltaTime);
-		colManager.updateColisiones();
+		//colManager.updateColisiones();
 	}
 	
 	/**
@@ -165,7 +192,8 @@ public class Juego extends Mediator {
 		// inserto infectados en gameController
 		for (int i = 0; i < oleada.length; i++) {
 			oleada[i].setMediador(this);
-			addEntidadSecundaria(oleada[i]);
+			addColisionable(oleada[i]);
+			addColisionador(oleada[i]);
 		}
 	}
 	
@@ -198,18 +226,19 @@ public class Juego extends Mediator {
 	}
 
 	@Override
-	public void addEntidad(Entidad entidad) {
-		addGeneral(entidad);
-		colManager.putEntidadVerificable(entidad);
+	public void addColisionador(Colisionador colisionador) {
+		colisionadores.put(colisionador.hashCode(), colisionador);
+		addEntidad((Entidad)colisionador);
 	}
 
 	@Override
-	public void addEntidadSecundaria(Entidad entidad) {
-		addGeneral(entidad);
-		colManager.putEntidad(entidad);
+	public void addColisionable(Colisionable colisionable){
+		colisionables.put(colisionable.hashCode(), colisionable);
+		addEntidad((Entidad) colisionable);
 	}
 
-	public void addGeneral(Entidad entidad) {
+	@Override
+	public void addEntidad(Entidad entidad) {
 		entidadController.insertarEntidad(entidad);
 		interfaz.addEntidad(entidad);
 		interfaz.repaint();
@@ -217,18 +246,7 @@ public class Juego extends Mediator {
 
 	@Override
 	public void removeEntidad(Entidad entidad) {
-		removeGeneral(entidad);
-		colManager.removeEntidadVerificable(entidad);
-	}
-
-	@Override
-	public void removeEntidadSecundaria(Entidad entidad) {
-		removeGeneral(entidad);
-		colManager.removeEntidad(entidad);
-	}
-
-	private void removeGeneral(Entidad entidad) {
-		entidadController.removeEntidad(entidad);
+		colisionadores.remove(entidad.hashCode());
 		interfaz.removeEntidad(entidad);
 		interfaz.repaint();
 	}

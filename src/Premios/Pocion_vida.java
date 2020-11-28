@@ -1,5 +1,6 @@
 package Premios;
 
+import entidades.Infectado;
 import entidades.Jugador;
 
 public class Pocion_vida extends Premio{
@@ -17,15 +18,13 @@ public class Pocion_vida extends Premio{
 	}
 
 	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
+	public void chocarConJugador(Jugador jugador) {
+		jugador.restaurarVida();
+		mediadorJuego.removeEntidad(this);
 	}
 
 	@Override
-	protected void activarPoder(Jugador player) {
-		// TODO Auto-generated method stub
-		player.restaurarVida();
+	public void chocarConInfectado(Infectado infectado) {
+		//hacer
 	}
-
 }

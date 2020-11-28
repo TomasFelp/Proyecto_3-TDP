@@ -65,7 +65,7 @@ public class ComandoPlayer extends Thread implements KeyListener{
 
 			  Proyectil proyectil = this.jugador.disparar();
 			  proyectil.setMediador(juego);
-			  juego.addEntidad(proyectil);
+			  juego.addColisionador(proyectil);
 
 			  tiempoUltimoDisparo = System.currentTimeMillis();
 		  }

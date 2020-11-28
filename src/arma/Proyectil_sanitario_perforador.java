@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import entidades.Entidad;
+import entidades.Infectado;
 import entidades.Personaje;
 import juego.Vector;
 
@@ -18,29 +19,14 @@ public class Proyectil_sanitario_perforador extends Proyectil_sanitario_power{
 		super(posicion);
 	}
 
-	@Override
-	public void accionar() {
+	public void chocarConInfectado(Infectado infectado) {
+		System.out.println("Chocó con un proyectil sanitario.");
 
-	}
+		infectado.setOpaque(true);
+		infectado.setBackground(Color.BLUE);
+		infectado.recibirDano(daño);
 
-	@Override
-	public void enColision(List<Entidad> colisiones) {
-
-		Personaje entidadImpactada;
-		
-		for(Entidad ent:colisiones) {
-			entidadImpactada = (Personaje) ent;
-			
-			if(entidadImpactada!=mediadorJuego.getPlayer()) {
-				entidadImpactada.setOpaque(true);
-				entidadImpactada.setBackground(Color.BLUE);
-		
-				entidadImpactada.setDamage(daño);
-				entidadImpactada.accionar();
-		}
-        
-	
-		}
+		mediadorJuego.removeEntidad(this);
 	}
 
 }

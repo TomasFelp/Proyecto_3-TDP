@@ -3,6 +3,7 @@ package Premios;
 import java.util.List;
 
 import arma.ArmaSanitariaPower;
+import entidades.Infectado;
 import entidades.Jugador;
 import juego.Vector;
 
@@ -13,12 +14,6 @@ public class Super_arma extends Premio{
 		super();
 		this.setIcon(juego.ImageProvider.getInstancia().getSpritePremioSuperArma());
 	}
-	
-	@Override
-	public void accionar() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Premio clone() {
@@ -28,6 +23,17 @@ public class Super_arma extends Premio{
 
 	
 	protected void activarPoder(Jugador player) {
-		player.setArma(new ArmaSanitariaPower());
+
+	}
+
+	@Override
+	public void chocarConJugador(Jugador jugador) {
+		jugador.setArma(new ArmaSanitariaPower());
+		mediadorJuego.removeEntidad(this);
+	}
+
+	@Override
+	public void chocarConInfectado(Infectado infectado) {
+		//hacer nada
 	}
 }

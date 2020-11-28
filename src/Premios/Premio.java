@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Random;
 
 import arma.ArmaSanitariaPower;
+import entidades.Colisionador;
 import entidades.Entidad;
 import entidades.Jugador;
 import juego.Vector;
 
-public abstract class Premio extends Entidad{
+public abstract class Premio extends Entidad implements Colisionador {
 //Attributes
 	protected Vector velocidad;
 	
@@ -40,22 +41,5 @@ public abstract class Premio extends Entidad{
 		if (posicion.getY() < 0 || posicion.getY() > 650)
 			mediadorJuego.removeEntidad(this);
 	}
-	
-	public void enColision(List<Entidad> colisiones) {
-		Jugador player=mediadorJuego.getPlayer();
-		for(Entidad ent:colisiones) {
-			if(ent==player) {
-				activarPoder(player);
-				mediadorJuego.removeEntidad(this);
-			}
-		}
-	}
-	
-	/**
-	 * Metodo que establece el comportamiento especifico del premio
-	 * >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Este es el metodo que hay que redefinir para cada premio
-	 * @param player
-	 */
-	protected abstract void activarPoder(Jugador player);
 	
 }

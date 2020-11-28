@@ -29,17 +29,6 @@ public class GameController {
 	}
 
 	/**
-	 * Agrega una coleccion de entidades al controlador.
-	 * 
-	 * @param ent coleccion a agregar.
-	 */
-	public void insertarColeccionNPC(Infectado[] ent) {
-		for (int i = 0; i < ent.length; i++) {
-			entidades.put(ent[i].hashCode(), ent[i]);
-		}
-	}
-
-	/**
 	 * Recorre todas las entidades almacenadas y llama su funcion update()
 	 */
 	public void updateEntidades(float deltaTime) {

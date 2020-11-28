@@ -5,12 +5,12 @@ import java.awt.Point;
 
 import javax.swing.JLabel;
 
-import colisiones.ZonaColision;
+import entidades.Colisionador;
 import entidades.Entidad;
 import juego.ImageProvider;
 import juego.Vector;
 
-public abstract class Proyectil extends Entidad {
+public abstract class Proyectil extends Entidad implements Colisionador {
 	private static final int radioColision = 1;
 
 	protected int daño;

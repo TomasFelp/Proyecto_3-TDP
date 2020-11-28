@@ -7,10 +7,9 @@ import Premios.Premio;
 import arma.Proyectil;
 import arma.ProyectilViral;
 import arma.Proyectil_sanitario;
-import colisiones.ZonaColision;
 import juego.Vector;
 
-public abstract class Infectado extends Personaje {
+public abstract class Infectado extends Personaje implements Colisionador, Colisionable {
 
 //Attributes
 	protected static final long SEGUNDOS_RALENTIZADO = 1000000000;
@@ -23,6 +22,8 @@ public abstract class Infectado extends Personaje {
 		cargaViral = 100;
 		this.setSize(20, 20);
 	}
+
+
 
 //Methods
 	public void PropagarVirus() {
@@ -42,13 +43,13 @@ public abstract class Infectado extends Personaje {
 	@Override
 	public void update(float deltaTime) {
 		Point location = this.getLocation();
-		Random r=new Random();
+		Random r = new Random();
 
 		if (relentizado && tiempoRelentizado <= System.nanoTime()) {
 			desRalentizar();
 		}
-		
-		mover(velocidad.x * deltaTime, (velocidad.y * deltaTime)/3);
+
+		mover(velocidad.x * deltaTime, (velocidad.y * deltaTime) / 3);
 
 		if (location.y > 600) {
 			// <----Para que vuelva a aparecer arriba. Analizar si es más conveniente usar
@@ -56,34 +57,25 @@ public abstract class Infectado extends Personaje {
 			this.setLocation(this.getLocation().x, 0);
 			this.setPosicionReal(xReal, 0);
 		}
-		
-		if(r.nextInt(2500)==0) {
+
+		if (r.nextInt(2500) == 0) {
 			PropagarVirus();
 		}
-		
+
 	}
 
-	
-	// TODO: ver si funciona sin redefinirlo de Entidad
-	public ZonaColision getZonaColision() {
-		int centroX = (int) (this.getLocation().x - (this.getSize().getWidth()) / 2);
-		int centroY = (int) (this.getLocation().y - (this.getSize().getHeight()) / 2);
-		int radio = (int) (this.getSize().getHeight() / 2);
-		return new ZonaColision(centroX, centroY, radio);
-	}
 	
 	/**
 	 * Determina si el infectado esta vivo, si no es asi le informa al juego que hacer.
 	 */
-	protected void estaVivo() {
+	protected void declararRecuperado() {
 		Random r =new Random();
-		if(cargaViral<=0) {
-			mediadorJuego.removeEntidadSecundaria(this);
-			mediadorJuego.decrementarInfectados();
-			
-			if(r.nextInt(3)==0)
-				lanzarPremio();
-		}
+		System.out.println("[Infectado]: Se declaró recuperado.");
+		mediadorJuego.removeEntidad(this);
+		mediadorJuego.decrementarInfectados();
+
+		if(r.nextInt(3)==0)
+			lanzarPremio();
 	}
 	
 	protected void lanzarPremio() {
@@ -96,7 +88,7 @@ public abstract class Infectado extends Personaje {
 		premio.setPosicion(posicion);
 		premio.setMediador(mediadorJuego);
 
-		mediadorJuego.addEntidad(premio);
+		mediadorJuego.addColisionador(premio);
 	}
 	
 	public void ralentizar() {

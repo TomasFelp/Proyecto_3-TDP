@@ -23,16 +23,18 @@ public abstract class Personaje extends Entidad {
 
 	}
 
+	/**
+	 * Actualiza la cargaViral del Personaje con el dano pasado por parametro
+	 * @param dano dano recibido
+	 */
+	public abstract void recibirDano(int dano);
+
 	public int getCargaViral() {
 		return cargaViral;
 	}
 
 	public void restaurarVida() {
 		this.cargaViral = maxVida;
-	}
-	
-	public void setDamage(int d) {
-		this.cargaViral -= d;
 	}
 
 	public Vector getVelocidad() {
