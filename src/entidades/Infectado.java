@@ -58,7 +58,7 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 			this.setPosicionReal(xReal, 0);
 		}
 
-		if (r.nextInt(2500) == 0) {
+		if (r.nextInt(2500) == 0 && relentizado==false) {
 			PropagarVirus();
 		}
 
