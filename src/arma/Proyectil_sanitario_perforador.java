@@ -25,8 +25,7 @@ public class Proyectil_sanitario_perforador extends Proyectil_sanitario_power{
 		infectado.setOpaque(true);
 		infectado.setBackground(Color.BLUE);
 		infectado.recibirDano(daño);
-
-		mediadorJuego.removeEntidad(this);
+		
 	}
 
 }
