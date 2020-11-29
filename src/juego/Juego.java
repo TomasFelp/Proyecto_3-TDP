@@ -247,6 +247,8 @@ public class Juego extends Mediator {
 	@Override
 	public void removeEntidad(Entidad entidad) {
 		colisionadores.remove(entidad.hashCode());
+		colisionables.remove(entidad.hashCode());
+		entidadController.removeEntidad(entidad);
 		interfaz.removeEntidad(entidad);
 		interfaz.repaint();
 	}
