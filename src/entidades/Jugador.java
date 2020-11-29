@@ -33,6 +33,7 @@ public class Jugador extends Personaje implements Colisionable{
 		this.arma = ArmaFactory.getDefaultArma();
 		invencible = false;
 		this.setBackground(Color.BLUE);
+		cargaViral=maxVida;
 	}
 
 

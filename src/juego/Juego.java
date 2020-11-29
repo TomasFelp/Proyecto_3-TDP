@@ -154,6 +154,7 @@ public class Juego extends Mediator {
 		// De esta forma las colisionadores no saltan
 		// y su velocidad no cambia si cambiamos el frameRate
 		entidadController.updateEntidades(deltaTime);
+		interfaz.decrementarVida(jugador.getCargaViral());
 		//colManager.updateColisiones();
 	}
 	

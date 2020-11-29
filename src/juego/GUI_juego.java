@@ -2,16 +2,20 @@ package juego;
 
 import java.awt.*;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-
 
 public class GUI_juego extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panelEntidades;
+	private JPanel panelInformacion;
+	private JPanel panelVida;
+	private JLabel [] vida;
 	private static int alto=600;
 	private static int ancho=500;
 
@@ -49,13 +53,44 @@ public class GUI_juego extends JFrame {
 		
 		armarPanelEntidades();
 		
-		
+		armarPanelInformacion();
 
 	}
 
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+	}
+	
+	private void armarPanelInformacion() {
+		panelInformacion=new JPanel();
+		contentPane.add(panelInformacion,BorderLayout.NORTH);
+		panelInformacion.setLayout(new GridLayout(1,3));
+		panelInformacion.setBackground(Color.orange);
+		panelInformacion.setVisible(true);
+				
+		
+		panelVida=new JPanel();
+		
+		panelInformacion.add(new JLabel("lugar libre"));
+		panelInformacion.add(new JLabel("-------MEGA JUEGO-------"),BorderLayout.EAST);
+		panelInformacion.add(panelVida);
+		
+		panelVida.setBackground(Color.BLUE);
+		
+		panelVida.setLayout(new GridLayout(1,5));
+		
+		vida=new JLabel[10];
+		
+		for(int i=0;i<vida.length;i++) {
+			vida[i]=new JLabel();
+			vida[i].setBackground(Color.green);
+			vida[i].setOpaque(true);
+			vida[i].setVisible(true);
+			vida[i].setBorder(BorderFactory.createLineBorder(Color.black));
+			panelVida.add(vida[i]);
+		}
+		
 	}
 
 	/**
@@ -99,5 +134,19 @@ public class GUI_juego extends JFrame {
 		panelEntidades.add(mensaje);
 		
 		return mensaje;
+	}
+	
+	
+	public void decrementarVida(int x) {
+		int v=(x*vida.length)/500;
+		
+		for(int i=vida.length-1;i>=v && i>=0;i--) {
+			vida[i].setBackground(Color.red);
+		}
+		
+		for(int i=0;i<vida.length && i<v;i++) {
+			vida[i].setBackground(Color.green);
+		}
+		
 	}
 }

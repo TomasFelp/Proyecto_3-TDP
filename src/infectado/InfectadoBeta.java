@@ -10,7 +10,7 @@ import juego.Vector;
 
 public class InfectadoBeta extends Infectado{
 
-	private int daño = 15;
+	private int daño = 50;
 
 	public InfectadoBeta(Vector posicion) {
 		super(posicion);
@@ -36,11 +36,14 @@ public class InfectadoBeta extends Infectado{
 	}
 
 	public void chocarConJugador(Jugador jugador) {
-		System.out.print(" chocó con un BETA, su salud pasó de " + jugador.getCargaViral());
-		if(inofensivo=false)
+		
+		if(inofensivo==false) {
+			System.out.print(" chocó con un BETA, su salud pasó de " + jugador.getCargaViral());
 			jugador.recibirDano(daño);
-		System.out.println(" a " + jugador.getCargaViral());
-		hacerInofensivo(SEGUNDOS_INOFENSIVO);
+			System.out.println(" a " + jugador.getCargaViral());
+			hacerInofensivo(SEGUNDOS_INOFENSIVO);
+		}
+		
 	}
 
 	public void chocarConInfectado(Infectado infectado) {

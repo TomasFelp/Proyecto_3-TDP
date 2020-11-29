@@ -44,11 +44,13 @@ public class InfectadoAlfa extends Infectado {
 	//Metodos patron visitor
 
 	public void chocarConJugador(Jugador jugador) {
-		System.out.print(" chocó con un ALPHA, su salud pasó de " + jugador.getCargaViral());
-		if(inofensivo==false)
+		
+		if(inofensivo==false) {
+			System.out.print(" chocó con un ALPHA, su salud pasó de " + jugador.getCargaViral());
 			jugador.recibirDano(daño);
-		System.out.println(" a " + jugador.getCargaViral());
-		hacerInofensivo(SEGUNDOS_INOFENSIVO);
+			System.out.println(" a " + jugador.getCargaViral());
+			hacerInofensivo(SEGUNDOS_INOFENSIVO);
+		}
 	}
 
 	public void chocarConInfectado(Infectado infectado) {
