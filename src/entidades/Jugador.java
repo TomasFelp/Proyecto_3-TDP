@@ -57,12 +57,11 @@ public class Jugador extends Personaje implements Colisionable{
 
 	public void setArma(Arma a) {
 		this.arma = a;
-		premioTemporal(10*SEGUNDOS_PREMIO);
 	}
 	
-	private void premioTemporal(long nanoSegundos) {
+	public void premioTemporal(int seg) {
 		premioActivado=true;
-		segundosPremio=System.nanoTime() + nanoSegundos;
+		segundosPremio=System.nanoTime() + SEGUNDOS_PREMIO * seg;
 		this.setOpaque(true);
 		this.setBackground(Color.YELLOW);
 	}

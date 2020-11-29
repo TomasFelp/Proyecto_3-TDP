@@ -22,6 +22,7 @@ public class Super_arma_perforadora extends Premio{
 	@Override
 	public void chocarConJugador(Jugador jugador) {
 		jugador.setArma(new ArmaSanitariaPerforadora());
+		jugador.premioTemporal(5);
 		mediadorJuego.removeEntidad(this);
 	}
 
