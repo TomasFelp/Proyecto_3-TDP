@@ -13,6 +13,8 @@ public class ImageProvider {
     private ImageIcon spriteEnemigoBeta;
     private ImageIcon spritePlayer;
     private ImageIcon spriteProyectilSanitario;
+    private ImageIcon spriteProyectilSanitarioPerforador;
+    private ImageIcon spriteProyectilSanitarioPower;
     private ImageIcon spritePremioProyectilPower;
     private ImageIcon spritePremioProyectilPerforador;
     private ImageIcon spriteProyectilViral;
@@ -32,6 +34,9 @@ public class ImageProvider {
         loadSpritePremioProyectilPerforador();
         loadSpritePremioPocionVida();
         loadSpritePremioCuarentena();
+        
+        loadSpriteProyectilSanitarioPerforador();
+        loadSpriteProyectilSanitarioPower();
     }
 
     /**
@@ -88,6 +93,16 @@ public class ImageProvider {
 		URL path = getClass().getResource("/Proyectil/ProyectilViral.png");
         spriteProyectilViral = new ImageIcon(path);
     }
+	
+	private void loadSpriteProyectilSanitarioPerforador() {
+        URL path = getClass().getResource("/Proyectil/ProyectilSanitarioPerforador.png");
+        spriteProyectilSanitarioPerforador = new ImageIcon(path);
+    }
+	
+	private void loadSpriteProyectilSanitarioPower() {
+        URL path = getClass().getResource("/Proyectil/ProyectilSanitarioPower.png");
+        spriteProyectilSanitarioPower = new ImageIcon(path);
+    }
 
     /**
      * Devuelve la sprite asignada al jugador
@@ -108,6 +123,14 @@ public class ImageProvider {
 
     public ImageIcon getSpriteProyectilSanitario(){
         return spriteProyectilSanitario;
+    }
+    
+    public ImageIcon getSpriteProyectilSanitarioPower(){
+        return spriteProyectilSanitarioPower;
+    }
+    
+    public ImageIcon getSpriteProyectilSanitarioPerforador(){
+        return spriteProyectilSanitarioPerforador;
     }
     
     

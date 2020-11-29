@@ -22,7 +22,6 @@ public abstract class Proyectil extends Entidad implements Colisionador {
 
 		this.daño = 50;
 		this.velocidad=new Vector(0,10);
-		this.setIcon(ImageProvider.getInstancia().getSpriteProyectilSanitario());
 
 		this.setVisible(true);
 		this.setLocation(posicion.x, posicion.y);
