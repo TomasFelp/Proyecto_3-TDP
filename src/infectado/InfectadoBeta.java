@@ -23,8 +23,6 @@ public class InfectadoBeta extends Infectado{
 	public void recibirDano(int dano) {
 		if(cargaViral - dano > 0){
 			this.cargaViral -= dano; //recibe el dano
-			if(cargaViral<50) //Si el infectado alfa tiene un nivel de vida critico duplica su velocidad
-				velocidad.y=velocidad.y*2;
 		} else{
 			//morido
 			this.declararRecuperado();
