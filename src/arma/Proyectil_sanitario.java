@@ -28,9 +28,6 @@ public class Proyectil_sanitario extends Proyectil {
 		infectado.setBackground(Color.BLUE);
 		infectado.recibirDano(daño);
 		
-		if(infectado.getCargaViral()<=0)
-			mediadorJuego.removeEntidad(infectado);;
-		
 		mediadorJuego.removeEntidad(this);
 	}
 }
