@@ -29,9 +29,12 @@ public class ProyectilViral extends Proyectil{
 		Point posicion = this.getLocation();
 
 		mover(velocidad.x * deltaTime, velocidad.y * deltaTime);
-
+/*
 		if (posicion.getY() > 650 || (posicion.getY()-posY_inicial)>=alcance)
 				mediadorJuego.removeEntidad(this);
+	*/	
+		if (posicion.getY() > 650 )
+			mediadorJuego.removeEntidad(this);
 	}
 	
 	@Override
@@ -56,7 +59,10 @@ public class ProyectilViral extends Proyectil{
 
 	//TODO: Revisar
 	public void chocarConJugador(Jugador jugador) {
-
+		System.out.print(" chocó con un proyecti VIRAL, su salud pasó de " + jugador.getCargaViral());
+		jugador.recibirDano(daño);
+		System.out.println(" a " + jugador.getCargaViral());
+		mediadorJuego.removeEntidad(this);
 	}
 
 	public void chocarConInfectado(Infectado infectado) {

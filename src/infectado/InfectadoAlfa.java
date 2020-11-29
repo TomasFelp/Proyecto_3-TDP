@@ -45,8 +45,10 @@ public class InfectadoAlfa extends Infectado {
 
 	public void chocarConJugador(Jugador jugador) {
 		System.out.print(" chocó con un ALPHA, su salud pasó de " + jugador.getCargaViral());
-		jugador.recibirDano(daño);
+		if(inofensivo==false)
+			jugador.recibirDano(daño);
 		System.out.println(" a " + jugador.getCargaViral());
+		hacerInofensivo(SEGUNDOS_INOFENSIVO);
 	}
 
 	public void chocarConInfectado(Infectado infectado) {

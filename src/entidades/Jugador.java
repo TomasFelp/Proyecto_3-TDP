@@ -46,9 +46,9 @@ public class Jugador extends Personaje implements Colisionable{
 	 * @param dano carga viral a decrementarle al Jugador
 	 */
 	public void recibirDano(int dano){
-		cargaViral++;
+		cargaViral-=dano;
 		/**
-		if(this.cargaViral + dano < 100) {
+		if(this.cargaViral - dano < 0) {
 			this.cargaViral += dano;
 		} else{
 			this.cargaViral = 100;

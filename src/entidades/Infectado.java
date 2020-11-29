@@ -13,8 +13,11 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 
 //Attributes
 	protected static final long SEGUNDOS_RALENTIZADO = 1000000000;
+	protected static final long SEGUNDOS_INOFENSIVO= 2 * 1000000000;
 	protected boolean relentizado;
+	protected boolean inofensivo;
 	protected long tiempoRelentizado;
+	protected long tiempoInofensivo;
 	
 //Builder
 	public Infectado(Vector posicion) {
@@ -37,7 +40,7 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 		Proyectil p = new ProyectilViral(posicion);
 		p.setMediador(mediadorJuego);
 		
-		mediadorJuego.addEntidad(p);
+		mediadorJuego.addColisionador(p);
 	}
 
 	@Override
@@ -47,6 +50,11 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 
 		if (relentizado && tiempoRelentizado <= System.nanoTime()) {
 			desRalentizar();
+		}
+		
+		if (inofensivo && tiempoInofensivo <= System.nanoTime()) {//<--------------------------------------Hacer inocuo
+			inofensivo=false;
+			tiempoInofensivo=0;
 		}
 
 		mover(velocidad.x * deltaTime, (velocidad.y * deltaTime) / 3);
@@ -101,6 +109,17 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 	public void desRalentizar() {
 		relentizado=false;
 		velocidad.y=velocidadDefault;
+	}
+	
+	/**
+	 * Setea el estado del infectado en inofensivo para que este no pueda causarle daño al player.
+	 * <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Esta echo con el fin de remplazar el hacer invencible del player ya que ahora lo colision se esta viendo desde el lado del infectado>>>>>>>>>>>>>>>>>>>>>>>
+	 * 
+	 * @param nanoSegundos
+	 */
+	protected void hacerInofensivo(long nanoSegundos) {
+		inofensivo=true;
+		tiempoInofensivo= System.nanoTime() + nanoSegundos;
 	}
 	
 }
