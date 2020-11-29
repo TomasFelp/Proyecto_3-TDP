@@ -29,12 +29,10 @@ public class ProyectilViral extends Proyectil{
 		Point posicion = this.getLocation();
 
 		mover(velocidad.x * deltaTime, velocidad.y * deltaTime);
-/*
+
 		if (posicion.getY() > 650 || (posicion.getY()-posY_inicial)>=alcance)
 				mediadorJuego.removeEntidad(this);
-	*/	
-		if (posicion.getY() > 650 )
-			mediadorJuego.removeEntidad(this);
+
 	}
 	
 	@Override
