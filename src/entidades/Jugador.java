@@ -29,7 +29,7 @@ public class Jugador extends Personaje implements Colisionable{
 
 		
 		this.velocidad = 10;
-		this.setIcon(juego.ImageProvider.getInstancia().getSpritePlayer());
+		this.setIcon(GUI.ImageProvider.getInstancia().getSpritePlayer());
 		this.arma = ArmaFactory.getDefaultArma();
 		invencible = false;
 		this.setBackground(Color.BLUE);

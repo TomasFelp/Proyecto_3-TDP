@@ -1,4 +1,4 @@
-package juego;
+package GUI;
 
 import java.awt.*;
 

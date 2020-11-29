@@ -15,7 +15,7 @@ public class InfectadoAlfa extends Infectado {
 	public InfectadoAlfa(Vector posicion) {
 		super(posicion);
 		this.velocidad = new Vector(0, 1);
-		this.setIcon(juego.ImageProvider.getInstancia().getSpriteInfectadoAlfa());
+		this.setIcon(GUI.ImageProvider.getInstancia().getSpriteInfectadoAlfa());
 		this.setVisible(true);
 		velocidadDefault=1;
 	}

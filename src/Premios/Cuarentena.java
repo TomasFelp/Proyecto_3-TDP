@@ -8,7 +8,7 @@ public class Cuarentena extends Premio{
 	public Cuarentena() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.setIcon(juego.ImageProvider.getInstancia().getSpritePremioCuarentena());
+		this.setIcon(GUI.ImageProvider.getInstancia().getSpritePremioCuarentena());
 	}
 	
 	@Override

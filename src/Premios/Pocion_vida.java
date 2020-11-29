@@ -8,7 +8,7 @@ public class Pocion_vida extends Premio{
 	public Pocion_vida() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.setIcon(juego.ImageProvider.getInstancia().getSpritePremioPocionVida());
+		this.setIcon(GUI.ImageProvider.getInstancia().getSpritePremioPocionVida());
 	}
 	
 	@Override

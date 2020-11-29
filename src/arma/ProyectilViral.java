@@ -3,11 +3,11 @@ package arma;
 import java.awt.Point;
 import java.util.List;
 
+import GUI.ImageProvider;
 import entidades.Entidad;
 import entidades.Infectado;
 import entidades.Jugador;
 import entidades.Personaje;
-import juego.ImageProvider;
 import juego.Vector;
 
 public class ProyectilViral extends Proyectil{

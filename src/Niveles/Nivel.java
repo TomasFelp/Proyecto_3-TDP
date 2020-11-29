@@ -1,4 +1,4 @@
-package juego;
+package Niveles;
 
 import entidades.Infectado;
 

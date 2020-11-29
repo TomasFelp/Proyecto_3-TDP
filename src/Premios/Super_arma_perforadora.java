@@ -10,7 +10,7 @@ public class Super_arma_perforadora extends Premio{
 	public Super_arma_perforadora() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.setIcon(juego.ImageProvider.getInstancia().getSpritePremioSuperArmaPerforadora());
+		this.setIcon(GUI.ImageProvider.getInstancia().getSpritePremioSuperArmaPerforadora());
 	}
 	
 	@Override

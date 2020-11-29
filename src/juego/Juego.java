@@ -6,6 +6,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.swing.JLabel;
 
+import GUI.GUI_juego;
+import Niveles.Nivel;
 import arma.Proyectil;
 import cerebros.ComandoPlayer;
 import cerebros.GameController;

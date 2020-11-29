@@ -1,10 +1,11 @@
-package juego;
+package Niveles;
 
 import java.util.Random;
 
 import entidades.*;
 import infectado.InfectadoAlfa;
 import infectado.InfectadoBeta;
+import juego.Vector;
 
 import java.util.LinkedList;
 import java.util.Queue;

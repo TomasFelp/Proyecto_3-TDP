@@ -5,9 +5,9 @@ import java.awt.Point;
 
 import javax.swing.JLabel;
 
+import GUI.ImageProvider;
 import entidades.Colisionador;
 import entidades.Entidad;
-import juego.ImageProvider;
 import juego.Vector;
 
 public abstract class Proyectil extends Entidad implements Colisionador {

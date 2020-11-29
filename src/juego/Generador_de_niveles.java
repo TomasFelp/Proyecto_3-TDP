@@ -3,6 +3,10 @@ package juego;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import Niveles.Nivel;
+import Niveles.Nivel1;
+import Niveles.Nivel2;
+
 /**
  * Gurda una cola de niveles.
  * @author Tomás 
