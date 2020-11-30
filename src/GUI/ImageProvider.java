@@ -20,7 +20,9 @@ public class ImageProvider {
     private ImageIcon spriteProyectilViral;
     private ImageIcon spritePremioPocionVida;
     private ImageIcon spritePremioCuarentena;
+    private ImageIcon spriteFondo;
     private static ImageProvider instancia;
+   
 
     private ImageProvider() {
         loadSpritePlayer();
@@ -37,6 +39,8 @@ public class ImageProvider {
         
         loadSpriteProyectilSanitarioPerforador();
         loadSpriteProyectilSanitarioPower();
+        
+        loadSpriteFondo();
     }
 
     /**
@@ -103,6 +107,11 @@ public class ImageProvider {
         URL path = getClass().getResource("/Proyectil/ProyectilSanitarioPower.png");
         spriteProyectilSanitarioPower = new ImageIcon(path);
     }
+	
+	private void loadSpriteFondo() {
+        URL path = getClass().getResource("/escenario/fondo.png");
+        spriteFondo = new ImageIcon(path);
+    }
 
     /**
      * Devuelve la sprite asignada al jugador
@@ -152,6 +161,10 @@ public class ImageProvider {
     
     public ImageIcon getSpriteProyectilViral(){
         return spriteProyectilViral;
+    }
+    
+    public ImageIcon getSpriteFondo(){
+        return spriteFondo;
     }
     
 }

@@ -1,8 +1,10 @@
 package GUI;
 
 import java.awt.*;
+import java.net.URL;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -97,11 +99,13 @@ public class GUI_juego extends JFrame {
 	 * Arma el panel en el cual se desplazaran las entidades del juego
 	 */
 	private void armarPanelEntidades() {
-		panelEntidades= new JPanel();
+		panelEntidades= new PanelFondo();
 		panelEntidades.setOpaque(true);
 		panelEntidades.setBackground(Color.RED);
 		panelEntidades.setLayout(null);
 		contentPane.add(panelEntidades,BorderLayout.CENTER);
+		
+		
 	}
 	
 	/**
