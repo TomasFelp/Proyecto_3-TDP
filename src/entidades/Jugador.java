@@ -23,7 +23,6 @@ public class Jugador extends Personaje implements Colisionable{
 
 	public Jugador() {
 		super();
-		// tamaño genericos solo para prueba.
 		setSize(20, 20);
 		setVisible(true);
 
@@ -47,10 +46,12 @@ public class Jugador extends Personaje implements Colisionable{
 	 * @param dano carga viral a decrementarle al Jugador
 	 */
 	public void recibirDano(int dano){
-		cargaViral-=dano;
-
-		if(cargaViral <= 0)
-			
+		if(!invencible) {
+			cargaViral-=dano;
+			hacerInvencible(SEGUNDOS_INVENCIBLE);
+			if(cargaViral <= 0)
+				cargaViral = 0;
+		}
 	}
 
 	public void setArma(Arma a) {
@@ -95,31 +96,7 @@ public class Jugador extends Personaje implements Colisionable{
 		return velocidad;
 	}
 
-	@Override
-	public void enColision(List<Entidad> colisiones) {
-		for (Entidad a : colisiones) {
-			if (!invencible)
-				manageColisionInfectado(a);
-		}
-	}
-
-	private void manageColisionInfectado(Entidad entidad) {
-		Infectado infectado;
-
-		try {
-			infectado = (Infectado) entidad;
-			cargaViral-=34;
-			
-			if (cargaViral <= 0)
-				this.setOpaque(true);
-
-			hacerInvencible(SEGUNDOS_INVENCIBLE);
-		} catch (ClassCastException e) {
-
-		}
-	}
-
-	public void hacerInvencible(long nanoSegundos) {
+	private void hacerInvencible(long nanoSegundos) {
 		System.out.println("Player es invencible");
 		invencible = true;
 		segundosInvencible = System.nanoTime() + nanoSegundos;
