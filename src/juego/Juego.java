@@ -82,7 +82,7 @@ public class Juego extends Mediator {
 		frameStart = System.nanoTime();
 		deltaTime = 1;
 
-		while (!Thread.currentThread().isInterrupted() && !termino && (niveles.quedanNiveles() || nivelActual.quedanInfectadosEnLaOleada())) {
+		while (!Thread.currentThread().isInterrupted() && !termino) {
 			administrarNiveles();
 			
 			update();
@@ -105,7 +105,6 @@ public class Juego extends Mediator {
 
 			vSync(elapsedTime);
 		}
-		terminarJuego("Ganaste");
 	}
 
 	private void terminarJuego(String mj) {
@@ -177,6 +176,8 @@ public class Juego extends Mediator {
 				if(niveles.quedanNiveles()) {
 					cargarNivel();
 					cargarOleada();
+				} else {
+					terminarJuego("Ganaste");
 				}
 			}	
 		}
