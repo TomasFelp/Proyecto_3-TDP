@@ -103,6 +103,11 @@ public class Juego extends Mediator {
 
 			vSync(elapsedTime);
 		}
+		ganar();
+	}
+
+	private void ganar() {
+		interfaz.removeKeyListener(controlesPlayer);
 		mostrarCartel("GAME OVER");
 	}
 
@@ -195,8 +200,6 @@ public class Juego extends Mediator {
 	
 	/**
 	 * Le indica a la interfaz que agregue un cartel con el texto del parametro.
-	 * 
-	 * >>>>>>>>>>>>>>>>>>>>>>Solucionar que los infectados se siguen desplazando mientras esta el cartel<<<<<<<<<<<<<<<<<<<<<<<<<
 	 * 
 	 * @param msj
 	 */
