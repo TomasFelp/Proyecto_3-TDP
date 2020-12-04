@@ -23,6 +23,7 @@ public class Juego extends Mediator {
 	private Map<Integer, Colisionador> colisionadores;
 	private Map<Integer, Colisionable> colisionables;
 
+	private boolean termino;
 	protected GUI_juego interfaz;
 	protected Jugador jugador;
 	protected Generador_de_niveles niveles;
@@ -32,6 +33,7 @@ public class Juego extends Mediator {
 	private float deltaTime;
 
 	public Juego(GUI_juego inter) {
+		termino = false;
 		interfaz = inter;
 		entidadController = new GameController();
 
@@ -80,7 +82,7 @@ public class Juego extends Mediator {
 		frameStart = System.nanoTime();
 		deltaTime = 1;
 
-		while (!Thread.currentThread().isInterrupted() && (niveles.quedanNiveles() || nivelActual.quedanInfectadosEnLaOleada())) {
+		while (!Thread.currentThread().isInterrupted() && !termino && (niveles.quedanNiveles() || nivelActual.quedanInfectadosEnLaOleada())) {
 			administrarNiveles();
 			
 			update();
@@ -103,10 +105,11 @@ public class Juego extends Mediator {
 
 			vSync(elapsedTime);
 		}
-		ganar();
+		terminarJuego();
 	}
 
-	private void ganar() {
+	private void terminarJuego() {
+		termino = true;
 		interfaz.removeKeyListener(controlesPlayer);
 		mostrarCartel("GAME OVER");
 	}
@@ -157,7 +160,8 @@ public class Juego extends Mediator {
 		// De esta forma las colisionadores no saltan
 		// y su velocidad no cambia si cambiamos el frameRate
 		entidadController.updateEntidades(deltaTime);
-		interfaz.decrementarVida(jugador.getCargaViral());
+		chequearVidaPlayer();
+		interfaz.updateBarraVida(jugador.getCargaViral());
 	}
 	
 	/**
@@ -176,6 +180,11 @@ public class Juego extends Mediator {
 				}
 			}	
 		}
+	}
+	
+	private void chequearVidaPlayer() {
+		if(jugador.getCargaViral() <= 0)
+			terminarJuego();
 	}
 
 	/*

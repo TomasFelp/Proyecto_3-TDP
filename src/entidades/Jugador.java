@@ -49,8 +49,6 @@ public class Jugador extends Personaje implements Colisionable{
 		if(!invencible) {
 			cargaViral-=dano;
 			hacerInvencible(SEGUNDOS_INVENCIBLE);
-			if(cargaViral <= 0)
-				cargaViral = 0;
 		}
 	}
 

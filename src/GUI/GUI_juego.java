@@ -142,7 +142,7 @@ public class GUI_juego extends JFrame {
 	}
 	
 	
-	public void decrementarVida(int x) {
+	public void updateBarraVida(int x) {
 		int v=(x*vida.length)/500;
 		
 		for(int i=vida.length-1;i>=v && i>=0;i--) {
