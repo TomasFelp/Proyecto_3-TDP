@@ -105,13 +105,13 @@ public class Juego extends Mediator {
 
 			vSync(elapsedTime);
 		}
-		terminarJuego();
+		terminarJuego("Ganaste");
 	}
 
-	private void terminarJuego() {
+	private void terminarJuego(String mj) {
 		termino = true;
 		interfaz.removeKeyListener(controlesPlayer);
-		mostrarCartel("GAME OVER");
+		mostrarCartel(mj);
 	}
 
 	/**
@@ -184,7 +184,7 @@ public class Juego extends Mediator {
 	
 	private void chequearVidaPlayer() {
 		if(jugador.getCargaViral() <= 0)
-			terminarJuego();
+			terminarJuego("Perdiste");
 	}
 
 	/*
