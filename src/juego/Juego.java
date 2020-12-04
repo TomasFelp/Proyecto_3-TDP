@@ -41,7 +41,6 @@ public class Juego extends Mediator {
 		
 		niveles=new Generador_de_niveles();
 		
-		this.setPriority(Thread.MAX_PRIORITY);
 		configurarJugador();
 	}
 
