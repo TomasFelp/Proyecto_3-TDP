@@ -121,11 +121,8 @@ public class Juego extends Mediator {
 				if(areaColisionable.intersects(areaColisionador)){
 					colisionable.aceptarColision(colisionador);
 				}
-
 			}
-
 		}
-
 	}
 
 
@@ -157,7 +154,6 @@ public class Juego extends Mediator {
 		// y su velocidad no cambia si cambiamos el frameRate
 		entidadController.updateEntidades(deltaTime);
 		interfaz.decrementarVida(jugador.getCargaViral());
-		//colManager.updateColisiones();
 	}
 	
 	/**
@@ -182,14 +178,12 @@ public class Juego extends Mediator {
 	 * Actualiza el nivel al siguiente;
 	 */
 	private void cargarNivel() {
-		// TODO: Pasamos interfaz.getAlto() de forma provisoria
 		nivelActual = niveles.getSiguienteNivel();
 	}
 	/*
 	 * carga una nueva oleada.
 	 */
 	private void cargarOleada() {
-		// TODO Auto-generated method stub
 		Infectado[] oleada = nivelActual.getOleada();
 
 		// inserto infectados en gameController
@@ -213,7 +207,6 @@ public class Juego extends Mediator {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		interfaz.removeEntidad(cartel);
@@ -262,7 +255,6 @@ public class Juego extends Mediator {
 
 	@Override
 	public void relentizarInfectados() {
-		// TODO Auto-generated method stub
 		nivelActual.relentizarOleada();
 	}
 

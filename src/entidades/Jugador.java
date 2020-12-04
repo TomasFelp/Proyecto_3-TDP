@@ -48,12 +48,9 @@ public class Jugador extends Personaje implements Colisionable{
 	 */
 	public void recibirDano(int dano){
 		cargaViral-=dano;
-		/**
-		if(this.cargaViral - dano < 0) {
-			this.cargaViral += dano;
-		} else{
-			this.cargaViral = 100;
-		} */
+
+		if(cargaViral <= 0)
+			
 	}
 
 	public void setArma(Arma a) {
@@ -122,7 +119,7 @@ public class Jugador extends Personaje implements Colisionable{
 		}
 	}
 
-	private void hacerInvencible(long nanoSegundos) {
+	public void hacerInvencible(long nanoSegundos) {
 		System.out.println("Player es invencible");
 		invencible = true;
 		segundosInvencible = System.nanoTime() + nanoSegundos;
