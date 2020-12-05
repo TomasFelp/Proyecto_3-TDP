@@ -137,8 +137,8 @@ public class GUI_juego extends JFrame {
 	 */
 	public JLabel mostrarCartel(String msj) {
 		
-		JLabel mensaje=new JLabel(msj);
-		mensaje.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		JLabel mensaje=new JLabel(msj,0);
+		mensaje.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		mensaje.setForeground(Color.white);
 		mensaje.setSize(300,50);
 		mensaje.setLocation(panelEntidades.getWidth()/2-mensaje.getWidth()/2,panelEntidades.getHeight()/2-mensaje.getHeight()/2);

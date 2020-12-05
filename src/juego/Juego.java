@@ -112,6 +112,15 @@ public class Juego extends Mediator {
 	private void terminarJuego(String mj) {
 		termino = true;
 		interfaz.removeKeyListener(controlesPlayer);
+		
+		for(Colisionable colisionable : colisionables.values()){
+			removeEntidad((Entidad)colisionable);
+		}
+		
+		for(Colisionador colisionador : colisionadores.values()){
+			removeEntidad((Entidad)colisionador);
+		}
+		
 		mostrarCartel(mj);
 	}
 
@@ -179,7 +188,7 @@ public class Juego extends Mediator {
 					cargarOleada();
 					interfaz.setCartelSuperiorIzquierdo(nivelActual.getNombre());
 				} else {
-					terminarJuego("Ganaste");
+					terminarJuego("YOU WIN!");
 				}
 			}	
 		}
@@ -187,7 +196,7 @@ public class Juego extends Mediator {
 	
 	private void chequearVidaPlayer() {
 		if(jugador.getCargaViral() <= 0)
-			terminarJuego("Perdiste");
+			terminarJuego("GAME OVER");
 	}
 
 	/*

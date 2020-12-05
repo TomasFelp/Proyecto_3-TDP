@@ -20,9 +20,9 @@ public class Generador_de_niveles {
 //Builder
 	public Generador_de_niveles() {
 		niveles=new LinkedList<Nivel>();
-		niveles.add(new Nivel3());
 		niveles.add(new Nivel1());
 		niveles.add(new Nivel2());
+		niveles.add(new Nivel3());
 	}
 	
 //Methods
