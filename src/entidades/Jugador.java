@@ -23,7 +23,7 @@ public class Jugador extends Personaje implements Colisionable{
 
 	public Jugador() {
 		super();
-		setSize(20, 20);
+		setSize(30, 30);
 		setVisible(true);
 
 		

@@ -19,7 +19,7 @@ public class Nivel3 extends NivelBase{
 	protected Infectado[] armarOleada(int alfas,int betas) {
 		int betasTotales=betas;
 		int pos=0;
-		int x=0,y=-100;
+		int x=5,y=-100;
 		Vector vectorPosicion;
 		Infectado[] inf=new Infectado[alfas+betas];
 		
@@ -27,10 +27,10 @@ public class Nivel3 extends NivelBase{
 			
 			vectorPosicion=new Vector(x, y);
 		
-			if(x+40<485) {
-				x+=40;	
+			if(x+60<500) {
+				x+=50;	
 			}else{
-				x=0;
+				x=5;
 				y-=20;
 			}
 			
@@ -38,15 +38,15 @@ public class Nivel3 extends NivelBase{
 			pos++;
 			alfas--;
 		}
-		x=20;
+		x=5;
 		y=20;
 		while(betas!=betasTotales/3) {
 			
 			vectorPosicion=new Vector(x, y);
 		
 
-			if(x+40<480) {
-				x+=40;	
+			if(x+60<500) {
+				x+=50;	
 			}else{
 				x=0;
 				y-=20;

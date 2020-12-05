@@ -69,9 +69,9 @@ public abstract class NivelBase implements Nivel{
 			Random r = new Random();
 			int x,y;
 			
-			y = r.nextInt(30) * -20;
-			//Ajustar valores para que no se salga de la pantalla
-			x = r.nextInt(24) * 20;
+			y = r.nextInt(30) * -30;
+			
+			x = r.nextInt(16) * 30;//16*30=500 == ancho del frame
 			
 			return new Vector(x, y);
 		}

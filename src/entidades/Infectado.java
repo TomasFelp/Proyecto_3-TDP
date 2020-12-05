@@ -23,7 +23,7 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 	public Infectado(Vector posicion) {
 		super(posicion);
 		cargaViral = 100;
-		this.setSize(20, 20);
+		this.setSize(30, 30);
 	}
 
 
