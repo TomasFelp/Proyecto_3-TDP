@@ -7,7 +7,7 @@ import infectado.InfectadoAlfa;
 import infectado.InfectadoBeta;
 import juego.Vector;
 
-public class Nivel3 extends Nivel1{
+public class Nivel3 extends NivelBase{
 
 	
 	public Nivel3() {
@@ -27,7 +27,7 @@ public class Nivel3 extends Nivel1{
 			
 			vectorPosicion=new Vector(x, y);
 		
-			if(x+40<465) {
+			if(x+40<485) {
 				x+=40;	
 			}else{
 				x=0;

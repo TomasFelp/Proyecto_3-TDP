@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 import entidades.Infectado;
 
-public class Nivel2 extends Nivel1{
+public class Nivel2 extends NivelBase{
 
 //Builder
 	public Nivel2() {
