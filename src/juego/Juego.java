@@ -71,6 +71,8 @@ public class Juego extends Mediator {
 		cargarNivel();
 		cargarOleada();
 
+		interfaz.setCartelSuperiorIzquierdo(nivelActual.getNombre());
+		
 		// Las colisionadores se tienen que mover en una unidad fija de tiempo
 		// por ej: 10 px por segundo
 		// El problema es que no podemos asegurar que cada update ocurra cada un
@@ -169,13 +171,13 @@ public class Juego extends Mediator {
 	public void administrarNiveles() {
 		if(nivelActual.quedanInfectadosEnLaOleada()==false) {
 			if(nivelActual.termino()==false) {
-				mostrarCartel("OLEADA COMPLETADA");
 				cargarOleada();
+				interfaz.setCartelSuperiorIzquierdo(nivelActual.getNombre());
 			}else {
-				mostrarCartel("NIVEL COMPLETADO");
 				if(niveles.quedanNiveles()) {
 					cargarNivel();
 					cargarOleada();
+					interfaz.setCartelSuperiorIzquierdo(nivelActual.getNombre());
 				} else {
 					terminarJuego("Ganaste");
 				}

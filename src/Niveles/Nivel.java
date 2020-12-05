@@ -31,4 +31,9 @@ public interface Nivel {
 	 * Relentiza la oleada actual
 	 */
 	public void relentizarOleada();
+	
+	/**
+	 * Devuelve el nombre o numero de nivel seguido de la oleada actual.
+	 */
+	public String getNombre(); 
 }

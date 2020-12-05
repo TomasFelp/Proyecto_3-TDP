@@ -18,6 +18,7 @@ public class GUI_juego extends JFrame {
 	private JPanel panelInformacion;
 	private JPanel panelVida;
 	private JLabel [] vida;
+	private JLabel etiquetaSuperiorIzquierda;
 	private static int alto=600;
 	private static int ancho=500;
 
@@ -71,11 +72,11 @@ public class GUI_juego extends JFrame {
 		panelInformacion.setLayout(new GridLayout(1,3));
 		panelInformacion.setBackground(Color.orange);
 		panelInformacion.setVisible(true);
-				
+		etiquetaSuperiorIzquierda=new JLabel();
 		
 		panelVida=new JPanel();
 		
-		panelInformacion.add(new JLabel("lugar libre"));
+		panelInformacion.add(etiquetaSuperiorIzquierda);
 		panelInformacion.add(new JLabel("-------MEGA JUEGO-------"),BorderLayout.EAST);
 		panelInformacion.add(panelVida);
 		
@@ -129,16 +130,25 @@ public class GUI_juego extends JFrame {
 		return panelEntidades.getHeight();
 	}
 	
+	/**
+	 * Crea y coloca una etiqueta con el texto recibido por parametro, sobre el panel de entidades.
+	 * @param msj Mensaje de la etiqueta.
+	 * @return Etiqueta creada.
+	 */
 	public JLabel mostrarCartel(String msj) {
 		
 		JLabel mensaje=new JLabel(msj);
 		mensaje.setFont(new Font("Tahoma", Font.PLAIN, 20));
-
+		mensaje.setForeground(Color.white);
 		mensaje.setSize(300,50);
 		mensaje.setLocation(panelEntidades.getWidth()/2-mensaje.getWidth()/2,panelEntidades.getHeight()/2-mensaje.getHeight()/2);
 		panelEntidades.add(mensaje);
 		
 		return mensaje;
+	}
+	
+	public void setCartelSuperiorIzquierdo(String ms) {
+		etiquetaSuperiorIzquierda.setText(ms);
 	}
 	
 	

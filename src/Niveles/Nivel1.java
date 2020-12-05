@@ -21,12 +21,14 @@ public class Nivel1 implements Nivel{
 	protected Queue<Infectado[]> oleadas;
 	protected int cantInfectados;
 	protected Infectado[] oleadaActual;
+	protected int numOleadaActual;
 
 //Builder
 	public Nivel1() {
 		oleadas=new LinkedList<Infectado[]>();
 		oleadas.add(armarOleada(10,5));
 		oleadas.add(armarOleada(12,15));
+		numOleadaActual=0;
 	}
 
 //Methods
@@ -35,6 +37,7 @@ public class Nivel1 implements Nivel{
 		// TODO Auto-generated method stub
 		oleadaActual=oleadas.remove();
 		cantInfectados=oleadaActual.length;
+		numOleadaActual++;
 		return oleadaActual;
 	}
 
@@ -105,6 +108,12 @@ public class Nivel1 implements Nivel{
 		for(int i=0;i<oleadaActual.length;i++) {
 			oleadaActual[i].ralentizar();
 		}
+	}
+
+	@Override
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return "Nivel 1 - oleada "+numOleadaActual;
 	}
 }
 

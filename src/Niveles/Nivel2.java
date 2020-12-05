@@ -12,4 +12,10 @@ public class Nivel2 extends Nivel1{
 		oleadas.add(armarOleada(20,15));
 		oleadas.add(armarOleada(50,20));
 	}
+	
+//Methods
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return "Nivel 2 - oleada "+numOleadaActual;
+	}
 }
