@@ -10,7 +10,7 @@ import entidades.Personaje;
 import juego.Vector;
 
 /**
- * Causa el más daño que el proyectil normal
+ * Causa  más daño que el proyectil sanitario normal 
  * 
  *
  */
@@ -23,19 +23,6 @@ public class Proyectil_sanitario_power extends Proyectil_sanitario{
 		daño=100;
 		velocidad.y=-10;
 	}
-
-	public void chocarConInfectado(Infectado infectado) {
-		System.out.println("Chocó con un proyectil sanitario.");
-
-		infectado.setOpaque(true);
-		infectado.setBackground(Color.BLUE);
-		infectado.recibirDano(daño);
-
-		mediadorJuego.removeEntidad(this);
-	}
-	
-//Methods
-	
 }
 
 

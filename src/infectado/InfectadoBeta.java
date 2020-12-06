@@ -29,12 +29,6 @@ public class InfectadoBeta extends Infectado{
 		}
 	}
 
-	@Override
-	public void enColision(List<Entidad> colisiones) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public void chocarConJugador(Jugador jugador) {
 		
 		if(inofensivo==false) {

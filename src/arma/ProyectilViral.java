@@ -34,32 +34,10 @@ public class ProyectilViral extends Proyectil{
 				mediadorJuego.removeEntidad(this);
 
 	}
-	
-	@Override
-	public void enColision(List<Entidad> colisiones) {
-		Jugador objetivo= mediadorJuego.getPlayer();
-		Personaje entidadImpactada;
-		
-		for(Entidad ent:colisiones) {
-			
-			entidadImpactada = (Personaje) colisiones.get(0);
-			
-			if(entidadImpactada==objetivo) {
-				mediadorJuego.removeEntidad(this);
-				objetivo.recibirDano(daño);
-				System.out.println("Player impactado");
-			}
-		}
-		
-		
-
-	}
 
 	//TODO: Revisar
 	public void chocarConJugador(Jugador jugador) {
-		System.out.print(" chocó con un proyecti VIRAL, su salud pasó de " + jugador.getCargaViral());
 		jugador.recibirDano(daño);
-		System.out.println(" a " + jugador.getCargaViral());
 		mediadorJuego.removeEntidad(this);
 	}
 

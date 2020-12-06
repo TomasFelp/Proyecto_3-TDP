@@ -35,20 +35,12 @@ public class InfectadoAlfa extends Infectado {
 		}
 	}
 
-	@Override
-	public void enColision(List<Entidad> colisiones) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	//Metodos patron visitor
 
 	public void chocarConJugador(Jugador jugador) {
 		
 		if(inofensivo==false) {
-			System.out.print(" chocó con un ALPHA, su salud pasó de " + jugador.getCargaViral());
 			jugador.recibirDano(daño);
-			System.out.println(" a " + jugador.getCargaViral());
 			hacerInofensivo(SEGUNDOS_INOFENSIVO);
 		}
 	}
@@ -61,13 +53,5 @@ public class InfectadoAlfa extends Infectado {
 		colisionador.chocarConInfectado(this);
 	}
 	
-	/*
-	private boolean colisionConPlayer() {
-		ZonaColision z_player = mapa.getJugador().getZonaColision();
-		ZonaColision z_this = this.getZonaColision();
-
-		return Evaluador_de_colisiones.estanEnContacto(z_player, z_this);
-	}
-	*/
 
 }

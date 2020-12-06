@@ -13,6 +13,8 @@ public class Jugador extends Personaje implements Colisionable{
 	// Obtengo los segundos en nanosegundos
 	protected static final long SEGUNDOS_INVENCIBLE = 2 * 1000000000;
 	protected static final long SEGUNDOS_PREMIO = 1000000000;
+	protected static int maxVida=500;
+	
 	
 	private boolean invencible;
 	private boolean premioActivado;
@@ -25,13 +27,12 @@ public class Jugador extends Personaje implements Colisionable{
 		super();
 		setSize(30, 30);
 		setVisible(true);
-
 		
 		this.velocidad = 10;
 		this.setIcon(GUI.ImageProvider.getInstancia().getSpritePlayer());
 		this.arma = ArmaFactory.getDefaultArma();
 		invencible = false;
-		this.setBackground(Color.BLUE);
+		
 		cargaViral=maxVida;
 	}
 
@@ -84,7 +85,6 @@ public class Jugador extends Personaje implements Colisionable{
 	}
 	
 	private void quitarPremio() {
-		System.out.println("quitar premio");
 		arma=ArmaFactory.getDefaultArma();
 		premioActivado=false;
 		this.setOpaque(false);
@@ -95,20 +95,20 @@ public class Jugador extends Personaje implements Colisionable{
 	}
 
 	private void hacerInvencible(long nanoSegundos) {
-		System.out.println("Player es invencible");
 		invencible = true;
 		segundosInvencible = System.nanoTime() + nanoSegundos;
-		this.setOpaque(true);
 	}
 
 	private void deshacerInvencible() {
-		System.out.println("Player no es invencible");
 		invencible = false;
 		segundosInvencible = 0;
-		this.setOpaque(false);
 	}
 
 	public void aceptarColision(Colisionador colisionador) {
 		colisionador.chocarConJugador(this);
+	}
+	
+	public void restaurarVida() {
+		cargaViral=maxVida;
 	}
 }

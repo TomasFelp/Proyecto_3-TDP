@@ -52,18 +52,16 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 			desRalentizar();
 		}
 		
-		if (inofensivo && tiempoInofensivo <= System.nanoTime()) {//<--------------------------------------Hacer inocuo
+		if (inofensivo && tiempoInofensivo <= System.nanoTime()) {
 			inofensivo=false;
 			tiempoInofensivo=0;
 		}
 
 		mover(velocidad.x * deltaTime, (velocidad.y * deltaTime) / 3);
 
-		if (location.y > 600) {
-			// <----Para que vuelva a aparecer arriba. Analizar si es más conveniente usar
-			// un valor fijo o hacer que conosca la ventana o su tamaño
+		if (location.y > 600) {//Si pasa el limite de la pantalla vuelve a aparecer arriba
 			this.setLocation(this.getLocation().x, 0);
-			this.setPosicionReal(xReal, 0);
+			this.setPosicionReal(xReal, -this.getHeight());
 		}
 
 		if (r.nextInt(2500) == 0 && relentizado==false) {
@@ -78,11 +76,11 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 	 */
 	protected void declararRecuperado() {
 		Random r =new Random();
-		System.out.println("[Infectado]: Se declaró recuperado.");
+
 		mediadorJuego.removeEntidad(this);
 		mediadorJuego.decrementarInfectados();
 
-		if(r.nextInt(3)==0)
+		if(r.nextInt(5)==0)
 			lanzarPremio();
 	}
 	

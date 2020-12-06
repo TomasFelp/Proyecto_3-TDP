@@ -24,10 +24,7 @@ public class Proyectil_sanitario extends Proyectil {
 	}
 
 	public void chocarConInfectado(Infectado infectado) {
-		System.out.println("Chocó con un proyectil sanitario.");
 
-		infectado.setOpaque(true);
-		infectado.setBackground(Color.BLUE);
 		infectado.recibirDano(daño);
 		
 		mediadorJuego.removeEntidad(this);

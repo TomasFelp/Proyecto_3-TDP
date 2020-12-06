@@ -21,10 +21,6 @@ public class Super_arma extends Premio{
 		return new Super_arma();
 	}
 
-	
-	protected void activarPoder(Jugador player) {
-
-	}
 
 	@Override
 	public void chocarConJugador(Jugador jugador) {
