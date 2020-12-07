@@ -21,6 +21,9 @@ public class ImageProvider {
     private ImageIcon spritePremioPocionVida;
     private ImageIcon spritePremioCuarentena;
     private ImageIcon spriteFondo;
+    private ImageIcon splashScreen;
+    private ImageIcon winScreen;
+    private ImageIcon loseScreen;
     private static ImageProvider instancia;
    
 
@@ -39,6 +42,10 @@ public class ImageProvider {
         
         loadSpriteProyectilSanitarioPerforador();
         loadSpriteProyectilSanitarioPower();
+        
+        loadSplashScreen();
+        loadLoseScreen();
+        loadWinScreen();
         
         loadSpriteFondo();
     }
@@ -112,6 +119,21 @@ public class ImageProvider {
         URL path = getClass().getResource("/escenario/fondo.png");
         spriteFondo = new ImageIcon(path);
     }
+	
+	private void loadSplashScreen() {
+        URL path = getClass().getResource("/Screens/ImagenInicio.png");
+        splashScreen = new ImageIcon(path);
+    }
+	
+	private void loadWinScreen() {
+        URL path = getClass().getResource("/Screens/win.png");
+        winScreen = new ImageIcon(path);
+    }
+	
+	private void loadLoseScreen() {
+        URL path = getClass().getResource("/Screens/lose.png");
+        loseScreen = new ImageIcon(path);
+    }
 
     /**
      * Devuelve la sprite asignada al jugador
@@ -165,6 +187,18 @@ public class ImageProvider {
     
     public ImageIcon getSpriteFondo(){
         return spriteFondo;
+    }
+    
+    public ImageIcon getSplashScreen(){
+        return splashScreen;
+    }
+    
+    public ImageIcon getWinScreen(){
+        return winScreen;
+    }
+    
+    public ImageIcon getLoseScreen(){
+        return loseScreen;
     }
     
 }

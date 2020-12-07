@@ -43,7 +43,10 @@ public class GUI_juego extends JFrame {
 	 */
 	public GUI_juego() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 300, ancho, alto);
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (screen.width-ancho)/2;
+		int y = (screen.height-alto)/2;
+		setBounds(x, y, ancho, alto);
 		this.setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

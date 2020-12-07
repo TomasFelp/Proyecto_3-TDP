@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JLabel;
 
 import GUI.GUI_juego;
+import GUI.Screen;
 import Niveles.Nivel;
 import arma.Proyectil;
 import cerebros.ComandoPlayer;
@@ -31,8 +32,11 @@ public class Juego extends Mediator {
 	protected ComandoPlayer controlesPlayer;
 	protected GameController entidadController;
 	private float deltaTime;
+	private Screen screen;
 
 	public Juego(GUI_juego inter) {
+		screen=new Screen(3000);
+		screen.showSplash();
 		termino = false;
 		interfaz = inter;
 		entidadController = new GameController();
@@ -43,16 +47,17 @@ public class Juego extends Mediator {
 		
 		niveles=new Generador_de_niveles();
 		
+		interfaz.setVisible(true);
 		configurarJugador();
 	}
 
 	private void configurarJugador() {
 		jugador = new Jugador();
+		
 		interfaz.addEntidad(jugador);
 		int x = interfaz.getAncho() / 2 - jugador.getWidth() / 2;
 		int y = interfaz.getAlto() - jugador.getHeight();
 		jugador.setLocation(x, y);
-
 		addColisionable(jugador);
 
 		controlesPlayer = new ComandoPlayer(jugador, interfaz.getAncho() - 20);
@@ -60,6 +65,7 @@ public class Juego extends Mediator {
 		interfaz.addKeyListener(controlesPlayer);
 
 		entidadController.insertarEntidad(jugador);
+		
 	}
 
 	@Override
@@ -67,7 +73,7 @@ public class Juego extends Mediator {
 		long frameStart;
 		long frameEnd;
 		long elapsedTime;
-
+		
 		cargarNivel();
 		cargarOleada();
 
@@ -189,14 +195,19 @@ public class Juego extends Mediator {
 					interfaz.setCartelSuperiorIzquierdo(nivelActual.getNombre());
 				} else {
 					terminarJuego("YOU WIN!");
+					screen=new Screen(3000);
+					screen.showWin();
 				}
 			}	
 		}
 	}
 	
 	private void chequearVidaPlayer() {
-		if(jugador.getCargaViral() <= 0)
+		if(jugador.getCargaViral() <= 0) {
 			terminarJuego("GAME OVER");
+			screen=new Screen(3000);
+			screen.showLose();
+		}
 	}
 
 	/*
