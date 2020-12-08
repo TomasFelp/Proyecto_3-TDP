@@ -209,7 +209,7 @@ public class Juego extends Mediator {
 	 */
 	private void chequearVidaPlayer() {
 		if (jugador.getCargaViral() <= 0) {
-			terminarJuego();
+			terminarJuego(	);
 			mostrarCartelLose();
 		}
 	}
