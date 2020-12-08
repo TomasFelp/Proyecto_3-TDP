@@ -9,6 +9,10 @@ import infectado.InfectadoAlfa;
 import infectado.InfectadoBeta;
 import juego.Vector;
 
+/**
+ * Factoriza comportamiento comun a los niveles concretos
+ *
+ */
 public abstract class NivelBase implements Nivel{
 	//Attributes
 		protected Queue<Infectado[]> oleadas;
@@ -65,6 +69,10 @@ public abstract class NivelBase implements Nivel{
 			return inf;
 		}
 		
+		/**
+		 * Genera un vector representando una posicion aleatoria, dentro de los limites del juego.
+		 * @return
+		 */
 		private Vector generarPosicionaleatoria() {
 			Random r = new Random();
 			int x,y;

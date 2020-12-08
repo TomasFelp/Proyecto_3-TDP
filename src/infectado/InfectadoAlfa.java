@@ -8,9 +8,15 @@ import entidades.Infectado;
 import entidades.Jugador;
 import juego.*;
 
+/**
+ * 
+ * Modela un infectado tipo Alfa, tiene una resistencia moderada al igual que el daño que ocasiona.
+ * Ademas al poseer una carga viral critica duplica su velocidad.
+ *
+ */
 public class InfectadoAlfa extends Infectado {
 
-	private int daño = 34;
+	private int daño = 35;
 
 	public InfectadoAlfa(Vector posicion) {
 		super(posicion);
@@ -20,10 +26,7 @@ public class InfectadoAlfa extends Infectado {
 		velocidadDefault=1;
 	}
 
-	public void accionar() {
-
-	}
-
+	@Override
 	public void recibirDano(int dano) {
 		if(cargaViral - dano > 0){
 			this.cargaViral -= dano; //recibe el dano

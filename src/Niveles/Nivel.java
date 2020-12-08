@@ -2,6 +2,11 @@ package Niveles;
 
 import entidades.Infectado;
 
+/**
+ * 
+ * Interfaz general con todos los metodos que debe tener un nivel.
+ *
+ */
 public interface Nivel {
 	
 	/**

@@ -9,8 +9,7 @@ import Premios.Super_arma;
 import Premios.Super_arma_perforadora;
 
 /**
- * Guarda una coleccionde premios y retorna una instancia de uno, seleccionada aleatoriamente.
- * @author Tomás
+ * Guarda una coleccionde premios y retorna una instancia de uno seleccionada aleatoriamente.
  *
  */
 public class Generador_de_premios {

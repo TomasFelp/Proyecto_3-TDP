@@ -11,6 +11,10 @@ import entidades.Entidad;
 import entidades.Jugador;
 import juego.Vector;
 
+/**
+ * Modela el comportamiento general de un premio.
+ *
+ */
 public abstract class Premio extends Entidad implements Colisionador {
 //Attributes
 	protected Vector velocidad;
@@ -29,6 +33,7 @@ public abstract class Premio extends Entidad implements Colisionador {
 		this.setPosicionReal(posicion.x, posicion.y);
 	}
 	
+	@Override 
 	public abstract Premio clone();
 	
 	@Override

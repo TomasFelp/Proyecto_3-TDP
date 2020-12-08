@@ -8,6 +8,12 @@ import entidades.Infectado;
 import entidades.Jugador;
 import juego.Vector;
 
+
+/**
+ * 
+ * Modela un infectado Beta este tipo de infectados posee una mayor resistencia y produce un mayor daño.
+ *
+ */
 public class InfectadoBeta extends Infectado{
 
 	private int daño = 50;
@@ -22,9 +28,8 @@ public class InfectadoBeta extends Infectado{
 
 	public void recibirDano(int dano) {
 		if(cargaViral - dano > 0){
-			this.cargaViral -= dano; //recibe el dano
+			this.cargaViral -= dano; //recibe el daño
 		} else{
-			//morido
 			this.declararRecuperado();
 		}
 	}
@@ -32,9 +37,7 @@ public class InfectadoBeta extends Infectado{
 	public void chocarConJugador(Jugador jugador) {
 		
 		if(inofensivo==false) {
-			System.out.print(" chocó con un BETA, su salud pasó de " + jugador.getCargaViral());
 			jugador.recibirDano(daño);
-			System.out.println(" a " + jugador.getCargaViral());
 			hacerInofensivo(SEGUNDOS_INOFENSIVO);
 		}
 		

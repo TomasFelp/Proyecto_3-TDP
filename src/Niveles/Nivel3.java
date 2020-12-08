@@ -7,6 +7,10 @@ import infectado.InfectadoAlfa;
 import infectado.InfectadoBeta;
 import juego.Vector;
 
+/**
+ * Nivel concreto de digicultad media, los infectados se encuentran esparcidos siguiendo un patron especifico, contiene 2 oleadas.
+ *
+ */
 public class Nivel3 extends NivelBase{
 
 	
@@ -16,6 +20,9 @@ public class Nivel3 extends NivelBase{
 		oleadas.add(armarOleada(58,75));
 	}
 	
+	/**
+	 * Arma una oleada asignando a los infectados posiciones especificas.
+	 */
 	protected Infectado[] armarOleada(int alfas,int betas) {
 		int betasTotales=betas;
 		int pos=0;
@@ -77,6 +84,7 @@ public class Nivel3 extends NivelBase{
 		return inf;
 	}
 	
+	@Override
 	public String getNombre() {
 		// TODO Auto-generated method stub
 		return "Nivel 3 - oleada: "+numOleadaActual;

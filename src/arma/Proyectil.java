@@ -10,6 +10,11 @@ import entidades.Colisionador;
 import entidades.Entidad;
 import juego.Vector;
 
+/**
+ * 
+ * Clase base proyectil, factoriza las cualidades comunes a los distintos tipos de proyectiles.
+ *
+ */
 public abstract class Proyectil extends Entidad implements Colisionador {
 	private static final int radioColision = 1;
 
@@ -36,11 +41,6 @@ public abstract class Proyectil extends Entidad implements Colisionador {
 		if (posicion.getY() < 0 || posicion.getY() > 650)
 			mediadorJuego.removeEntidad(this);
 	}
+	
 
-	public int getDaño() {
-		return daño;
-	}
-
-	public void destruir() {
-	}
 }

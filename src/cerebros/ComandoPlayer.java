@@ -9,6 +9,10 @@ import java.awt.event.KeyListener;
 
 import arma.Proyectil;
 
+/**
+ * Hilo que controla las acciones del jugador
+ *
+ */
 public class ComandoPlayer extends Thread implements KeyListener{
 	/*
 	* Si no limitamos el tiempo entre disparos, la GUI (AWT) lanza una excepción.

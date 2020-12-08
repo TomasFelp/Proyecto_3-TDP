@@ -7,8 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
  
 /**
-*
-* @author Dikas
+*Panel con imagen de fondo perzonalizada.
 */
  
 public class PanelFondo extends JPanel {

@@ -7,6 +7,11 @@ import entidades.Infectado;
 import entidades.Jugador;
 import juego.Vector;
 
+/**
+ * 
+ * Premio temporal que le asigna un arma power al jugador.
+ *
+ */
 public class Super_arma extends Premio{
 
 	public Super_arma() {

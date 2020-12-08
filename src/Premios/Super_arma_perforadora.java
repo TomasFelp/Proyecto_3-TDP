@@ -5,6 +5,11 @@ import arma.ArmaSanitariaPower;
 import entidades.Infectado;
 import entidades.Jugador;
 
+/**
+ * 
+ * Premio temporal que le asigna un arma perforadora al jugador.
+ *
+ */
 public class Super_arma_perforadora extends Premio{
 
 	public Super_arma_perforadora() {

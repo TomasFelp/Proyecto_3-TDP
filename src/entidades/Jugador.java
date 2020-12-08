@@ -9,10 +9,16 @@ import arma.ArmaFactory;
 import arma.Proyectil;
 import juego.Vector;
 
+/**
+ * 
+ * Modela el protagonista del juego.
+ *
+ */
 public class Jugador extends Personaje implements Colisionable{
 	// Obtengo los segundos en nanosegundos
 	protected static final long SEGUNDOS_INVENCIBLE = 2 * 1000000000;
 	protected static final long SEGUNDOS_PREMIO = 1000000000;
+	
 	protected static int maxVida=500;
 	
 	
@@ -49,21 +55,30 @@ public class Jugador extends Personaje implements Colisionable{
 	public void recibirDano(int dano){
 		if(!invencible) {
 			cargaViral-=dano;
-			hacerInvencible(SEGUNDOS_INVENCIBLE);
 		}
 	}
-
+	
+	/**
+	 * Setea un arma al jugador.
+	 * @param a nueva arma del jugador.
+	 */
 	public void setArma(Arma a) {
 		this.arma = a;
 	}
 	
+	/**
+	 * Cambia el estado del jugador indicando que esta en posesion de un premio temporal.
+	 * @param seg tiempo de duracion del premio.
+	 */
 	public void premioTemporal(int seg) {
 		premioActivado=true;
 		segundosPremio=System.nanoTime() + SEGUNDOS_PREMIO * seg;
-		this.setOpaque(true);
-		this.setBackground(Color.YELLOW);
 	}
 	
+	/**
+	 * Dispara un proyectil del tipo correspondeinte al arma que tenga asignada.
+	 * @return
+	 */
 	public Proyectil disparar() {
 
 		Point pos = this.getLocation();
@@ -77,32 +92,27 @@ public class Jugador extends Personaje implements Colisionable{
 
 	@Override
 	public void update(float deltaTime) {
-		if (invencible && segundosInvencible <= System.nanoTime())
-			deshacerInvencible();
 		
 		if (premioActivado && segundosPremio <= System.nanoTime())
 			quitarPremio();
 	}
 	
+	/**
+	 * Quita todos los premios temporales que pueda poseer el jugador y cambia su estado indicando que no posee ningun premio.
+	 */
 	private void quitarPremio() {
 		arma=ArmaFactory.getDefaultArma();
 		premioActivado=false;
-		this.setOpaque(false);
 	}
 
+	/**
+	 * devuelve la velocidad de desplazamiento.
+	 * @return velocidad de desplazamieno.
+	 */
 	public double getVelocidadY() {
 		return velocidad;
 	}
 
-	private void hacerInvencible(long nanoSegundos) {
-		invencible = true;
-		segundosInvencible = System.nanoTime() + nanoSegundos;
-	}
-
-	private void deshacerInvencible() {
-		invencible = false;
-		segundosInvencible = 0;
-	}
 
 	public void aceptarColision(Colisionador colisionador) {
 		colisionador.chocarConJugador(this);

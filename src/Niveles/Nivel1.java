@@ -11,8 +11,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Almacena un coleccion de collecciones de infectados
- * @author Tomás
+ * Nivel concreto de digicultad facil, los infectados se encuentran esparcidos en forma aleatoria. contiene 2 oleadas.
  *
  */
 public class Nivel1 extends NivelBase{

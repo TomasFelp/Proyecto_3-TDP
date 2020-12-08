@@ -10,6 +10,11 @@ import entidades.Jugador;
 import entidades.Personaje;
 import juego.Vector;
 
+/**
+ * 
+ * Proyectil que afecta al jugador, causandole un daño moderado.
+ *
+ */
 public class ProyectilViral extends Proyectil{
 
 //Attributes	

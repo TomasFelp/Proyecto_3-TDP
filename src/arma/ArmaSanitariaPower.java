@@ -2,6 +2,11 @@ package arma;
 
 import juego.Vector;
 
+/**
+ * 
+ * Este arma dispara proyectiles sanitarios power
+ *
+ */
 public class ArmaSanitariaPower implements Arma{
 
 	public Proyectil disparar(Vector posicion) {

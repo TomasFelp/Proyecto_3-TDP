@@ -11,7 +11,6 @@ import juego.Vector;
 
 /**
  * Hace mas daño que el proyectil normal y ademas atraviesa multiples infectados.
- * @author tommy
  *
  */
 public class Proyectil_sanitario_perforador extends Proyectil_sanitario{

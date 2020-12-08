@@ -3,6 +3,10 @@ package Premios;
 import entidades.Infectado;
 import entidades.Jugador;
 
+/**
+ * 
+ * Premio que restaura la vida del jugador.
+ */
 public class Pocion_vida extends Premio{
 
 	public Pocion_vida() {

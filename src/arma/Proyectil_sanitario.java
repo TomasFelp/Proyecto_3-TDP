@@ -10,6 +10,11 @@ import entidades.Jugador;
 import entidades.Personaje;
 import juego.Vector;
 
+/**
+ * 
+ * Proyectil que solo daña a los infectados, causa daño moderado.
+ *
+ */
 public class Proyectil_sanitario extends Proyectil {
 
 	public Proyectil_sanitario(Vector posicion) {

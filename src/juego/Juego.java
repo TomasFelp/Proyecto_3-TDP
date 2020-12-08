@@ -51,6 +51,9 @@ public class Juego extends Mediator {
 		configurarJugador();
 	}
 
+	/**
+	 * Realiza todo lo pertienete a la inicializacion del jugador.
+	 */
 	private void configurarJugador() {
 		jugador = new Jugador();
 		
@@ -115,6 +118,10 @@ public class Juego extends Mediator {
 		}
 	}
 
+	/**
+	 * Realiza las acciones correspondientes a la finalizacion del juego tales como remover todas las entidades.
+	 * @param mj Mensaje a mostrar en el mapa.
+	 */
 	private void terminarJuego(String mj) {
 		termino = true;
 		interfaz.removeKeyListener(controlesPlayer);
@@ -181,7 +188,7 @@ public class Juego extends Mediator {
 	}
 	
 	/**
-	 * Se encrga de pasar de una oleada a otra o de un nivel a otro.
+	 * Se encarga de pasar de una oleada a otra o de un nivel a otro.
 	 */
 	public void administrarNiveles() {
 		if(nivelActual.quedanInfectadosEnLaOleada()==false) {
@@ -196,17 +203,24 @@ public class Juego extends Mediator {
 				} else {
 					terminarJuego("YOU WIN!");
 					screen=new Screen(3000);
+					interfaz.setVisible(false);
 					screen.showWin();
+					System.exit(-1);
 				}
 			}	
 		}
 	}
 	
+	/**
+	 * Analiza si el jugador sigue vivo y si no es asi procede a realizar la finalizacion del juego.
+	 */
 	private void chequearVidaPlayer() {
 		if(jugador.getCargaViral() <= 0) {
 			terminarJuego("GAME OVER");
 			screen=new Screen(3000);
+			interfaz.setVisible(false);
 			screen.showLose();
+			System.exit(-1);
 		}
 	}
 
@@ -231,8 +245,8 @@ public class Juego extends Mediator {
 	}
 	
 	/**
-	 * Le indica a la interfaz que agregue un cartel con el texto del parametro.
-	 * 
+	 * Le indica a la interfaz que agregue un cartel con el texto del parametro,
+	 * el cartel se mostrara por un periodo limitado de tiempo.
 	 * @param msj
 	 */
 	public void mostrarCartel(String msj) {
@@ -247,10 +261,12 @@ public class Juego extends Mediator {
 		interfaz.repaint();
 	}
 	
+	@Override
 	public void decrementarInfectados() {
 		nivelActual.decrementarOleada();
 	}
 
+	@Override
 	public Jugador getPlayer() {
 		return jugador;
 	}

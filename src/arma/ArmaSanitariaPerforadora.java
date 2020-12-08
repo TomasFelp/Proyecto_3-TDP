@@ -2,6 +2,10 @@ package arma;
 
 import juego.Vector;
 
+/**
+ * Este arma dispara proyectiles sanitarios perforadores.
+ *
+ */
 public class ArmaSanitariaPerforadora implements Arma{
 
 	@Override

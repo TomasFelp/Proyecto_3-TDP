@@ -9,6 +9,11 @@ import arma.ProyectilViral;
 import arma.Proyectil_sanitario;
 import juego.Vector;
 
+/**
+ * 
+ * Clase base infectado, factoriza el comportamiento comun a todos los infectados.
+ *
+ */
 public abstract class Infectado extends Personaje implements Colisionador, Colisionable {
 
 //Attributes
@@ -29,7 +34,10 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 
 
 //Methods
-	public void PropagarVirus() {
+	/**
+	 * Dispara un proyectil viral.
+	 */
+	private void PropagarVirus() {
 		
 		Point pos = this.getLocation();
 		int x, y;
@@ -72,7 +80,7 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 
 	
 	/**
-	 * Determina si el infectado esta vivo, si no es asi le informa al juego que hacer.
+	 * Realiza las acciones correspondienes a la muerte de un infectado.
 	 */
 	protected void declararRecuperado() {
 		Random r =new Random();
@@ -84,6 +92,9 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 			lanzarPremio();
 	}
 	
+	/**
+	 * Deja caer un premio desde la posicion actual del infectado.
+	 */
 	protected void lanzarPremio() {
 		int x=this.getX();
 		int y=this.getY();
@@ -97,6 +108,9 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 		mediadorJuego.addColisionador(premio);
 	}
 	
+	/**
+	 * Congela el movimiento del infectado.
+	 */
 	public void ralentizar() {
 		velocidad.y=0;
 		relentizado=true;
@@ -104,15 +118,16 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 		tiempoRelentizado=System.nanoTime() + 4 * SEGUNDOS_RALENTIZADO;
 	}
 	
+	/**
+	 * Descongela el movimento del infectado.
+	 */
 	public void desRalentizar() {
 		relentizado=false;
 		velocidad.y=velocidadDefault;
 	}
 	
 	/**
-	 * Setea el estado del infectado en inofensivo para que este no pueda causarle daño al player.
-	 * <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Esta echo con el fin de remplazar el hacer invencible del player ya que ahora lo colision se esta viendo desde el lado del infectado>>>>>>>>>>>>>>>>>>>>>>>
-	 * 
+	 * Cambia el estado del infectado a inofensivo, en este estado el infectado no causara daño alguno al jugador.
 	 * @param nanoSegundos
 	 */
 	protected void hacerInofensivo(long nanoSegundos) {

@@ -10,7 +10,6 @@ import Niveles.Nivel3;
 
 /**
  * Gurda una cola de niveles.
- * @author Tomás 
  */
 public class Generador_de_niveles {
 
@@ -34,6 +33,10 @@ public class Generador_de_niveles {
 		return !niveles.isEmpty();
 	}
 	
+	/**
+	 * Devuelve el siguiente nivel de la cola y lo remueve de la misma.
+	 * @return siguiente nivel.
+	 */
 	public Nivel getSiguienteNivel() {
 		return niveles.remove();
 	}

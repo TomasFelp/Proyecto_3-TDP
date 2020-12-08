@@ -4,6 +4,10 @@ import java.util.LinkedList;
 
 import entidades.Infectado;
 
+/**
+ * Nivel concreto de digicultad media, los infectados se encuentran esparcidos en forma aleatoria. contiene 2 oleadas.
+ *
+ */
 public class Nivel2 extends NivelBase{
 
 //Builder

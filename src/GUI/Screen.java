@@ -96,7 +96,6 @@ public class Screen extends JWindow {
 
 	public void showSplashAndExit() {
 		showSplash();
-		
 	}
 
 }

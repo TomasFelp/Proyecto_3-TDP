@@ -69,6 +69,10 @@ public class GUI_juego extends JFrame {
 		super.paint(g);
 	}
 	
+	/**
+	 * Arma el panel ubicado en la parte superior del juego, donde se encontraran los datos de interes para el jugador, 
+	 * tales como el n° de nivel o la carga viral actual del jugador.
+	 */
 	private void armarPanelInformacion() {
 		panelInformacion=new JPanel();
 		contentPane.add(panelInformacion,BorderLayout.NORTH);
@@ -121,14 +125,27 @@ public class GUI_juego extends JFrame {
 		panelEntidades.add(entidad);
 	}
 	
+	/**
+	 * Remueve una entidad del panel de entidades.
+	 * @param entidad a remover.
+	 */
 	public void removeEntidad(JLabel entidad) {
 		panelEntidades.remove(entidad);
 	}
 	
+	/**
+	 * Devuelve el ancho del panel destinado a contener las entidades.
+	 * @return ancho del panel.
+	 */
 	public int getAncho() {
 		return panelEntidades.getWidth();
 	}
 	
+	
+	/**
+	 * Devuelve el alto del panel destinado a contener las entidades.
+	 * @return alto del panel.
+	 */
 	public int getAlto() {
 		return panelEntidades.getHeight();
 	}
@@ -149,12 +166,19 @@ public class GUI_juego extends JFrame {
 		
 		return mensaje;
 	}
-	
+
+	/**
+	 * Modifica el contenido de la etiqueta superior izquerda, con el texto recibido por parametro.
+	 * @param ms nuevo contenido de la etiqueta.
+	 */
 	public void setCartelSuperiorIzquierdo(String ms) {
 		etiquetaSuperiorIzquierda.setText(ms);
 	}
 	
-	
+	/**
+	 * Actualiza la reprecentacion de la carga viral del player
+	 * @param x carga viral a representar.
+	 */
 	public void updateBarraVida(int x) {
 		int v=(x*vida.length)/500;
 		

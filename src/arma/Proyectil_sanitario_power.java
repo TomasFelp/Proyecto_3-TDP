@@ -11,7 +11,6 @@ import juego.Vector;
 
 /**
  * Causa  más daño que el proyectil sanitario normal 
- * 
  *
  */
 public class Proyectil_sanitario_power extends Proyectil_sanitario{

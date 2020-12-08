@@ -3,6 +3,11 @@ package Premios;
 import entidades.Infectado;
 import entidades.Jugador;
 
+/**
+ * 
+ * Premio que congela infectados de la oleada actual.
+ *
+ */
 public class Cuarentena extends Premio{
 
 	public Cuarentena() {
