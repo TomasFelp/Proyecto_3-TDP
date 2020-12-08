@@ -11,7 +11,7 @@ public class Main {
 		GUI_juego Gjuego=new GUI_juego();
 	
 		Juego juego=new Juego(Gjuego);
-		juego.run();
+		juego.empezarJuego();
 	
 	}
 

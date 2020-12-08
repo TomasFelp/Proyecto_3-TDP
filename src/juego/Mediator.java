@@ -5,7 +5,7 @@ import entidades.Colisionador;
 import entidades.Entidad;
 import entidades.Jugador;
 
-public abstract class Mediator extends Thread {
+public abstract class Mediator {
 
 	/**
 	 * Añade una referencia a un colisionador del juego

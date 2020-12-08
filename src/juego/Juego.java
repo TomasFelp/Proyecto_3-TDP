@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import GUI.GUI_juego;
 import GUI.Screen;
 import Niveles.Nivel;
-import arma.Proyectil;
 import cerebros.ComandoPlayer;
 import cerebros.GameController;
 import entidades.*;
@@ -35,18 +34,18 @@ public class Juego extends Mediator {
 	private Screen screen;
 
 	public Juego(GUI_juego inter) {
-		screen=new Screen(3000);
+		screen = new Screen(3000);
 		screen.showSplash();
 		termino = false;
 		interfaz = inter;
 		entidadController = new GameController();
 
-		//Mantienen las referencias a los colisionadores y colisionables en el juego
-		colisionadores =new ConcurrentHashMap<Integer, Colisionador>();
+		// Mantienen las referencias a los colisionadores y colisionables en el juego
+		colisionadores = new ConcurrentHashMap<Integer, Colisionador>();
 		colisionables = new ConcurrentHashMap<Integer, Colisionable>();
-		
-		niveles=new Generador_de_niveles();
-		
+
+		niveles = new Generador_de_niveles();
+
 		interfaz.setVisible(true);
 		configurarJugador();
 	}
@@ -56,7 +55,7 @@ public class Juego extends Mediator {
 	 */
 	private void configurarJugador() {
 		jugador = new Jugador();
-		
+
 		interfaz.addEntidad(jugador);
 		int x = interfaz.getAncho() / 2 - jugador.getWidth() / 2;
 		int y = interfaz.getAlto() - jugador.getHeight();
@@ -68,20 +67,18 @@ public class Juego extends Mediator {
 		interfaz.addKeyListener(controlesPlayer);
 
 		entidadController.insertarEntidad(jugador);
-		
 	}
 
-	@Override
-	public void run() {
+	public void empezarJuego() {
 		long frameStart;
 		long frameEnd;
 		long elapsedTime;
-		
+
 		cargarNivel();
 		cargarOleada();
 
 		interfaz.setCartelSuperiorIzquierdo(nivelActual.getNombre());
-		
+
 		// Las colisionadores se tienen que mover en una unidad fija de tiempo
 		// por ej: 10 px por segundo
 		// El problema es que no podemos asegurar que cada update ocurra cada un
@@ -95,11 +92,11 @@ public class Juego extends Mediator {
 
 		while (!Thread.currentThread().isInterrupted() && !termino) {
 			administrarNiveles();
-			
+
 			update();
 
 			chequearColisiones();
-			
+
 			// Este comando soluciona la baja en el rendimiento que desaparecia cuando
 			// pasabamos el mouse por arriba o moviamos el player
 			Toolkit.getDefaultToolkit().sync();
@@ -119,22 +116,14 @@ public class Juego extends Mediator {
 	}
 
 	/**
-	 * Realiza las acciones correspondientes a la finalizacion del juego tales como remover todas las entidades.
+	 * Realiza las acciones correspondientes a la finalizacion del juego tales como
+	 * remover todas las entidades.
+	 * 
 	 * @param mj Mensaje a mostrar en el mapa.
 	 */
-	private void terminarJuego(String mj) {
+	private void terminarJuego() {
 		termino = true;
 		interfaz.removeKeyListener(controlesPlayer);
-		
-		for(Colisionable colisionable : colisionables.values()){
-			removeEntidad((Entidad)colisionable);
-		}
-		
-		for(Colisionador colisionador : colisionadores.values()){
-			removeEntidad((Entidad)colisionador);
-		}
-		
-		mostrarCartel(mj);
 	}
 
 	/**
@@ -142,19 +131,18 @@ public class Juego extends Mediator {
 	 */
 	private void chequearColisiones() {
 
-		for(Colisionable colisionable : colisionables.values()){
+		for (Colisionable colisionable : colisionables.values()) {
 			Rectangle areaColisionable = ((Entidad) colisionable).getBounds();
 
-			for(Colisionador colisionador : colisionadores.values()){
+			for (Colisionador colisionador : colisionadores.values()) {
 				Rectangle areaColisionador = ((Entidad) colisionador).getBounds();
 
-				if(areaColisionable.intersects(areaColisionador)){
+				if (areaColisionable.intersects(areaColisionador)) {
 					colisionable.aceptarColision(colisionador);
 				}
 			}
 		}
 	}
-
 
 	/**
 	 * Detiene el thread por el tiempo necesario para obtener el framerate deseado
@@ -186,42 +174,51 @@ public class Juego extends Mediator {
 		chequearVidaPlayer();
 		interfaz.updateBarraVida(jugador.getCargaViral());
 	}
-	
+
 	/**
 	 * Se encarga de pasar de una oleada a otra o de un nivel a otro.
 	 */
 	public void administrarNiveles() {
-		if(nivelActual.quedanInfectadosEnLaOleada()==false) {
-			if(nivelActual.termino()==false) {
+		if (nivelActual.quedanInfectadosEnLaOleada() == false) {
+			if (nivelActual.termino() == false) {
 				cargarOleada();
 				interfaz.setCartelSuperiorIzquierdo(nivelActual.getNombre());
-			}else {
-				if(niveles.quedanNiveles()) {
+			} else {
+				if (niveles.quedanNiveles()) {
 					cargarNivel();
 					cargarOleada();
 					interfaz.setCartelSuperiorIzquierdo(nivelActual.getNombre());
 				} else {
-					terminarJuego("YOU WIN!");
-					screen=new Screen(3000);
-					interfaz.setVisible(false);
-					screen.showWin();
-					System.exit(-1);
+					terminarJuego();
+					mostrarCartelGanar();
 				}
-			}	
+			}
 		}
 	}
-	
+
+	private void mostrarCartelGanar() {
+		screen = new Screen(3000);
+		interfaz.setVisible(false);
+		screen.showWin();
+		System.exit(-1);
+	}
+
 	/**
-	 * Analiza si el jugador sigue vivo y si no es asi procede a realizar la finalizacion del juego.
+	 * Analiza si el jugador sigue vivo y si no es asi procede a realizar la
+	 * finalizacion del juego.
 	 */
 	private void chequearVidaPlayer() {
-		if(jugador.getCargaViral() <= 0) {
-			terminarJuego("GAME OVER");
-			screen=new Screen(3000);
-			interfaz.setVisible(false);
-			screen.showLose();
-			System.exit(-1);
+		if (jugador.getCargaViral() <= 0) {
+			terminarJuego();
+			mostrarCartelLose();
 		}
+	}
+
+	private void mostrarCartelLose() {
+		screen = new Screen(3000);
+		interfaz.setVisible(false);
+		screen.showLose();
+		System.exit(-1);
 	}
 
 	/*
@@ -230,6 +227,7 @@ public class Juego extends Mediator {
 	private void cargarNivel() {
 		nivelActual = niveles.getSiguienteNivel();
 	}
+
 	/*
 	 * carga una nueva oleada.
 	 */
@@ -243,14 +241,15 @@ public class Juego extends Mediator {
 			addColisionador(oleada[i]);
 		}
 	}
-	
+
 	/**
-	 * Le indica a la interfaz que agregue un cartel con el texto del parametro,
-	 * el cartel se mostrara por un periodo limitado de tiempo.
+	 * Le indica a la interfaz que agregue un cartel con el texto del parametro, el
+	 * cartel se mostrara por un periodo limitado de tiempo.
+	 * 
 	 * @param msj
 	 */
 	public void mostrarCartel(String msj) {
-		JLabel cartel=interfaz.mostrarCartel(msj);
+		JLabel cartel = interfaz.mostrarCartel(msj);
 		interfaz.repaint();
 		try {
 			Thread.sleep(2000);
@@ -260,7 +259,7 @@ public class Juego extends Mediator {
 		interfaz.removeEntidad(cartel);
 		interfaz.repaint();
 	}
-	
+
 	@Override
 	public void decrementarInfectados() {
 		nivelActual.decrementarOleada();
@@ -274,11 +273,11 @@ public class Juego extends Mediator {
 	@Override
 	public void addColisionador(Colisionador colisionador) {
 		colisionadores.put(colisionador.hashCode(), colisionador);
-		addEntidad((Entidad)colisionador);
+		addEntidad((Entidad) colisionador);
 	}
 
 	@Override
-	public void addColisionable(Colisionable colisionable){
+	public void addColisionable(Colisionable colisionable) {
 		colisionables.put(colisionable.hashCode(), colisionable);
 		addEntidad((Entidad) colisionable);
 	}
@@ -307,5 +306,4 @@ public class Juego extends Mediator {
 	public void relentizarInfectados() {
 		nivelActual.relentizarOleada();
 	}
-
 }
