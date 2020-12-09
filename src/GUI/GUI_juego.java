@@ -191,9 +191,6 @@ public class GUI_juego extends JFrame {
 	 */
 	public void updateBarraVida(float x) {
 		int v = (int) Math.ceil(x * vida.length);
-		System.out.println("x: " + x);
-
-		System.out.println("v " + v);
 
 		for (int i = vida.length - 1; i >= v && i >= 0; i--) {
 			vida[i].setBackground(Color.red);
