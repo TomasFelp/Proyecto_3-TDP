@@ -1,5 +1,6 @@
 package entidades;
 
+import java.awt.*;
 import java.util.Random;
 
 import javax.swing.JLabel;
@@ -71,6 +72,13 @@ public abstract class Entidad extends JLabel {
 	public void setPosicionReal(float x, float y) {
 		xReal = x;
 		yReal = y;
+	}
+
+	public Vector getVectorPosicion(){
+		Point pos = this.getLocation();
+		int x = (int) pos.getX();
+		int y = (int) pos.getY();
+		return new Vector(x, y);
 	}
 
 }

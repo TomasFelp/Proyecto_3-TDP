@@ -1,9 +1,5 @@
 package entidades;
 
-import java.awt.Color;
-import java.awt.Point;
-import java.util.*;
-
 import arma.Arma;
 import arma.ArmaFactory;
 import arma.Proyectil;
@@ -81,11 +77,8 @@ public class Jugador extends Personaje implements Colisionable{
 	 */
 	public Proyectil disparar() {
 
-		Point pos = this.getLocation();
-		int x, y;
-		x = (int) pos.getX();
-		y = (int) pos.getY();
-		Vector posicion = new Vector(x, y);
+		//Tomamos la posicion del jugador para efectuar el disparo
+		Vector posicion = this.getVectorPosicion();
 
 		return arma.disparar(posicion);
 	}
