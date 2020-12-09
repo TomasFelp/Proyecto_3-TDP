@@ -53,7 +53,6 @@ public class SplashScreen extends JWindow {
 		JLabel copyrt = new JLabel();
 		copyrt.setFont(new Font("Sans-Serif", Font.BOLD, 12));
 		copyrt.setForeground(new java.awt.Color(165, 42, 42));
-		copyrt.setText("ponele");
 		content.add(copyrt, "South");
 
 		int width = 915;
