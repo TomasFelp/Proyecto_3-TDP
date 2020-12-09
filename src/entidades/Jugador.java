@@ -36,7 +36,7 @@ public class Jugador extends Personaje implements Colisionable{
 		
 		this.velocidad = 10;
 		this.setIcon(GUI.ImageProvider.getInstancia().getSpritePlayer());
-		this.arma = ArmaFactory.getDefaultArma();
+		this.arma = ArmaFactory.getArmaFactory().getArmaDefault();
 		invencible = false;
 		
 		cargaViral=maxVida;
@@ -101,7 +101,7 @@ public class Jugador extends Personaje implements Colisionable{
 	 * Quita todos los premios temporales que pueda poseer el jugador y cambia su estado indicando que no posee ningun premio.
 	 */
 	private void quitarPremio() {
-		arma=ArmaFactory.getDefaultArma();
+		arma=ArmaFactory.getArmaFactory().getArmaDefault();
 		premioActivado=false;
 	}
 

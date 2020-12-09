@@ -2,7 +2,7 @@ package Premios;
 
 import java.util.List;
 
-import arma.ArmaSanitariaPower;
+import arma.ArmaFactory;
 import entidades.Infectado;
 import entidades.Jugador;
 import juego.Vector;
@@ -29,7 +29,7 @@ public class Super_arma extends Premio{
 
 	@Override
 	public void chocarConJugador(Jugador jugador) {
-		jugador.setArma(new ArmaSanitariaPower());
+		jugador.setArma(ArmaFactory.getArmaFactory().getArmaPower());
 		jugador.premioTemporal(10);
 		mediadorJuego.removeEntidad(this);
 	}

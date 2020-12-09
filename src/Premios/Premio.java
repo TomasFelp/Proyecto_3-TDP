@@ -1,14 +1,10 @@
 package Premios;
 
-import java.awt.Color;
 import java.awt.Point;
-import java.util.List;
 import java.util.Random;
 
-import arma.ArmaSanitariaPower;
 import entidades.Colisionador;
 import entidades.Entidad;
-import entidades.Jugador;
 import juego.Vector;
 
 /**

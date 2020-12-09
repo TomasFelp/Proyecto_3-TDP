@@ -303,7 +303,7 @@ public class Juego extends Mediator {
 	}
 
 	@Override
-	public void relentizarInfectados() {
-		nivelActual.relentizarOleada();
+	public void relentizarInfectados(int tiempo) {
+		nivelActual.relentizarOleada(tiempo);
 	}
 }

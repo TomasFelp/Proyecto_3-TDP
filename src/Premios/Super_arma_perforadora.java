@@ -1,7 +1,6 @@
 package Premios;
 
-import arma.ArmaSanitariaPerforadora;
-import arma.ArmaSanitariaPower;
+import arma.ArmaFactory;
 import entidades.Infectado;
 import entidades.Jugador;
 
@@ -26,7 +25,7 @@ public class Super_arma_perforadora extends Premio{
 
 	@Override
 	public void chocarConJugador(Jugador jugador) {
-		jugador.setArma(new ArmaSanitariaPerforadora());
+		jugador.setArma(ArmaFactory.getArmaFactory().getArmaPerforadora());
 		jugador.premioTemporal(5);
 		mediadorJuego.removeEntidad(this);
 	}

@@ -6,7 +6,7 @@ import juego.Vector;
  * Este arma dispara proyectiles sanitarios perforadores.
  *
  */
-public class ArmaSanitariaPerforadora implements Arma{
+class ArmaSanitariaPerforadora implements Arma{
 
 	@Override
 	public Proyectil disparar(Vector posicion) {

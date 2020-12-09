@@ -109,13 +109,14 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 	}
 	
 	/**
-	 * Congela el movimiento del infectado.
+	 * Congela el movimiento del infectado durante el tiempo determinado por el parametro.
+	 * @param tiempo.
 	 */
-	public void ralentizar() {
+	public void ralentizar(int tiempo) {
 		velocidad.y=0;
 		relentizado=true;
 		
-		tiempoRelentizado=System.nanoTime() + 4 * SEGUNDOS_RALENTIZADO;
+		tiempoRelentizado=System.nanoTime() + tiempo * SEGUNDOS_RALENTIZADO;
 	}
 	
 	/**

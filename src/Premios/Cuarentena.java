@@ -23,7 +23,7 @@ public class Cuarentena extends Premio{
 	}
 
 	public void chocarConJugador(Jugador jugador) {
-		mediadorJuego.relentizarInfectados();
+		mediadorJuego.relentizarInfectados(4);
 		mediadorJuego.removeEntidad(this);
 	}
 
