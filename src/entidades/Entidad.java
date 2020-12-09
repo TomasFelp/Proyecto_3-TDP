@@ -1,12 +1,9 @@
 package entidades;
 
-import java.awt.Point;
-import java.util.List;
 import java.util.Random;
 
 import javax.swing.JLabel;
 
-import cerebros.GameController;
 import juego.Mediator;
 import juego.Vector;
 

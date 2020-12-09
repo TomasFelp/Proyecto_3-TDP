@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import GUI.ImageProvider;
-import entidades.Entidad;
-import entidades.Infectado;
-import entidades.Jugador;
-import entidades.Personaje;
+import entidades.*;
 import juego.Vector;
 
 /**

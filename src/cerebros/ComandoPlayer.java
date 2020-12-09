@@ -23,7 +23,6 @@ public class ComandoPlayer extends Thread implements KeyListener{
 	protected Jugador jugador;
 	protected boolean ejecucion=true;
 	protected int anchoPantalla;
-	protected GameController npcController;
 	protected Juego juego;
 
 	private long tiempoUltimoDisparo = 0;
