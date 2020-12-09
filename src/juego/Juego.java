@@ -243,23 +243,6 @@ public class Juego extends Mediator {
 		}
 	}
 
-	/**
-	 * Le indica a la interfaz que agregue un cartel con el texto del parametro, el
-	 * cartel se mostrara por un periodo limitado de tiempo.
-	 * 
-	 * @param msj
-	 */
-	public void mostrarCartel(String msj) {
-		JLabel cartel = interfaz.mostrarCartel(msj);
-		interfaz.repaint();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		interfaz.removeEntidad(cartel);
-		interfaz.repaint();
-	}
 
 	@Override
 	public void decrementarInfectados() {
