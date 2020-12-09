@@ -43,6 +43,7 @@ public class GUI_juego extends JFrame {
 	 */
 	public GUI_juego() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Mega Juego by Comision13, Inc");
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (screen.width - ancho) / 2;
 		int y = (screen.height - alto) / 2;

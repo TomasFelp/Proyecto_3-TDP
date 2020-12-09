@@ -10,7 +10,6 @@ import GUI.GUI_juego;
 import GUI.Screen;
 import Niveles.Nivel;
 import cerebros.ComandoPlayer;
-import cerebros.GameController;
 import entidades.*;
 
 public class Juego extends Mediator {
@@ -19,6 +18,8 @@ public class Juego extends Mediator {
 	private static final int FRAMERATE_DESEADO = 120;
 	private static final int TIEMPO_POR_FRAME = NANOSEGUNDOS_EN_UN_SEGUNDO / FRAMERATE_DESEADO;
 	private static final long NANOSEGUNDOS_EN_UN_MILISEGUNDO = 1000000;
+
+	private Map<Integer, Entidad> entidades;
 
 	private Map<Integer, Colisionador> colisionadores;
 	private Map<Integer, Colisionable> colisionables;
@@ -29,7 +30,6 @@ public class Juego extends Mediator {
 	protected Generador_de_niveles niveles;
 	protected Nivel nivelActual;
 	protected ComandoPlayer controlesPlayer;
-	protected GameController entidadController;
 	private float deltaTime;
 	private Screen screen;
 
@@ -38,7 +38,8 @@ public class Juego extends Mediator {
 		screen.showSplash();
 		termino = false;
 		interfaz = inter;
-		entidadController = new GameController();
+
+		entidades = new ConcurrentHashMap<Integer, Entidad>();
 
 		// Mantienen las referencias a los colisionadores y colisionables en el juego
 		colisionadores = new ConcurrentHashMap<Integer, Colisionador>();
@@ -66,7 +67,7 @@ public class Juego extends Mediator {
 		controlesPlayer.setJuego(this);
 		interfaz.addKeyListener(controlesPlayer);
 
-		entidadController.insertarEntidad(jugador);
+		this.addEntidad(jugador);
 	}
 
 	public void empezarJuego() {
@@ -118,8 +119,6 @@ public class Juego extends Mediator {
 	/**
 	 * Realiza las acciones correspondientes a la finalizacion del juego tales como
 	 * remover todas las entidades.
-	 * 
-	 * @param mj Mensaje a mostrar en el mapa.
 	 */
 	private void terminarJuego() {
 		termino = true;
@@ -131,7 +130,7 @@ public class Juego extends Mediator {
 	 */
 	private void chequearColisiones() {
 
-		for (Colisionable colisionable : colisionables.values()) {
+		for (Colisionable colisionable : entidades.values()) { //Para simplificar los chequeos, todas las Entidades son colisionables
 			Rectangle areaColisionable = ((Entidad) colisionable).getBounds();
 
 			for (Colisionador colisionador : colisionadores.values()) {
@@ -170,7 +169,9 @@ public class Juego extends Mediator {
 
 		// De esta forma las colisionadores no saltan
 		// y su velocidad no cambia si cambiamos el frameRate
-		entidadController.updateEntidades(deltaTime);
+		for(Entidad ent : entidades.values()){
+			ent.update(deltaTime);
+		}
 		chequearVidaPlayer();
 		interfaz.updateBarraVida(jugador.getPorcentajeVida());
 	}
@@ -284,7 +285,8 @@ public class Juego extends Mediator {
 
 	@Override
 	public void addEntidad(Entidad entidad) {
-		entidadController.insertarEntidad(entidad);
+		//entidadController.insertarEntidad(entidad);
+		entidades.putIfAbsent(entidad.hashCode(), entidad);
 		interfaz.addEntidad(entidad);
 		interfaz.repaint();
 	}
@@ -293,7 +295,7 @@ public class Juego extends Mediator {
 	public void removeEntidad(Entidad entidad) {
 		colisionadores.remove(entidad.hashCode());
 		colisionables.remove(entidad.hashCode());
-		entidadController.removeEntidad(entidad);
+		entidades.remove(entidad.hashCode());
 		interfaz.removeEntidad(entidad);
 		interfaz.repaint();
 	}
@@ -303,7 +305,7 @@ public class Juego extends Mediator {
 	}
 
 	@Override
-	public void relentizarInfectados() {
-		nivelActual.relentizarOleada();
+	public void relentizarInfectados(int tiempo) {
+		nivelActual.relentizarOleada(tiempo);
 	}
 }

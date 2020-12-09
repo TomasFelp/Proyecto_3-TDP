@@ -4,10 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import GUI.ImageProvider;
-import entidades.Entidad;
-import entidades.Infectado;
-import entidades.Jugador;
-import entidades.Personaje;
+import entidades.*;
 import juego.Vector;
 
 /**
@@ -24,10 +21,17 @@ public class Proyectil_sanitario extends Proyectil {
 		velocidad.y=-10;
 	}
 
-	public void chocarConJugador(Jugador jugador) {
-
+	@Override
+	public void aceptarColision(Colisionador colisionador) {
+		//No hacer nada
 	}
 
+	@Override
+	public void chocarConJugador(Jugador jugador) {
+		//No hacer nada
+	}
+
+	@Override
 	public void chocarConInfectado(Infectado infectado) {
 
 		infectado.recibirDano(daño);

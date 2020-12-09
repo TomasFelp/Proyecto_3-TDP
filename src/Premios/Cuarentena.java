@@ -1,5 +1,6 @@
 package Premios;
 
+import entidades.Colisionador;
 import entidades.Infectado;
 import entidades.Jugador;
 
@@ -22,12 +23,19 @@ public class Cuarentena extends Premio{
 		return new Cuarentena();
 	}
 
+	@Override
 	public void chocarConJugador(Jugador jugador) {
-		mediadorJuego.relentizarInfectados();
+		mediadorJuego.relentizarInfectados(4);
 		mediadorJuego.removeEntidad(this);
 	}
 
+	@Override
 	public void chocarConInfectado(Infectado infectado) {
 		//hacer nada
+	}
+
+	@Override
+	public void aceptarColision(Colisionador colisionador) {
+		//No hacer nada
 	}
 }

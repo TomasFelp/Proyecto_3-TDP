@@ -1,5 +1,6 @@
 package Premios;
 
+import entidades.Colisionador;
 import entidades.Infectado;
 import entidades.Jugador;
 
@@ -30,5 +31,10 @@ public class Pocion_vida extends Premio{
 	@Override
 	public void chocarConInfectado(Infectado infectado) {
 		//hacer
+	}
+
+	@Override
+	public void aceptarColision(Colisionador colisionador) {
+		//No hacer nada
 	}
 }

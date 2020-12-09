@@ -46,7 +46,8 @@ public abstract class Mediator {
 	
 	/**
 	 * Relentiza la oleada actual de infectados
+	 * @param i tiempo a relentizar la oleada.
 	 */
-	public abstract void relentizarInfectados();
+	public abstract void relentizarInfectados(int i);
 
 }

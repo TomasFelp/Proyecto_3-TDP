@@ -34,8 +34,9 @@ public interface Nivel {
 	
 	/**
 	 * Relentiza la oleada actual
+	 * @param tiempo a relentizar la oleada
 	 */
-	public void relentizarOleada();
+	public void relentizarOleada(int tiempo);
 	
 	/**
 	 * Devuelve el nombre o numero de nivel seguido de la oleada actual.

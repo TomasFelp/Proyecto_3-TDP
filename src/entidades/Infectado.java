@@ -14,12 +14,12 @@ import juego.Vector;
  * Clase base infectado, factoriza el comportamiento comun a todos los infectados.
  *
  */
-public abstract class Infectado extends Personaje implements Colisionador, Colisionable {
+public abstract class Infectado extends Personaje implements Colisionador {
 
 //Attributes
 	protected static final long SEGUNDOS_RALENTIZADO = 1000000000;
 	protected static final long SEGUNDOS_INOFENSIVO= 2 * 1000000000;
-	protected boolean relentizado;
+	protected boolean ralentizado;
 	protected boolean inofensivo;
 	protected long tiempoRelentizado;
 	protected long tiempoInofensivo;
@@ -37,14 +37,12 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 	/**
 	 * Dispara un proyectil viral.
 	 */
-	private void PropagarVirus() {
-		
-		Point pos = this.getLocation();
-		int x, y;
-		x = (int) pos.getX();
-		y = (int) pos.getY();
-		Vector posicion = new Vector(x, y);
-		
+	private void dispararProyectilViral() {
+
+		//Tomamos la posicion actual del infectado para efectuar el disparo
+		Vector posicion = this.getVectorPosicion();
+
+		//Efectuamos el disparo
 		Proyectil p = new ProyectilViral(posicion);
 		p.setMediador(mediadorJuego);
 		
@@ -56,7 +54,9 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 		Point location = this.getLocation();
 		Random r = new Random();
 
-		if (relentizado && tiempoRelentizado <= System.nanoTime()) {
+		/*Chequea si el infectado ya cumplió el tiempo de alguna penalización
+		* (ralentización o inofensividad)*/
+		if (ralentizado && tiempoRelentizado <= System.nanoTime()) {
 			desRalentizar();
 		}
 		
@@ -72,8 +72,8 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 			this.setPosicionReal(xReal, -this.getHeight());
 		}
 
-		if (r.nextInt(2500) == 0 && relentizado==false) {
-			PropagarVirus();
+		if (r.nextInt(2500) == 0 && ralentizado==false) {
+			dispararProyectilViral();
 		}
 
 	}
@@ -84,11 +84,12 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 	 */
 	protected void declararRecuperado() {
 		Random r =new Random();
+		boolean tocaLanzarPremio = (r.nextInt(5) == 0);
 
 		mediadorJuego.removeEntidad(this);
 		mediadorJuego.decrementarInfectados();
 
-		if(r.nextInt(5)==0)
+		if(tocaLanzarPremio)
 			lanzarPremio();
 	}
 	
@@ -96,10 +97,8 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 	 * Deja caer un premio desde la posicion actual del infectado.
 	 */
 	protected void lanzarPremio() {
-		int x=this.getX();
-		int y=this.getY();
 
-		Vector posicion=new Vector(x, y);
+		Vector posicion = this.getVectorPosicion();
 		Premio premio=juego.Generador_de_premios.getInstancia().getPremio();
 
 		premio.setPosicion(posicion);
@@ -109,20 +108,20 @@ public abstract class Infectado extends Personaje implements Colisionador, Colis
 	}
 	
 	/**
-	 * Congela el movimiento del infectado.
+	 * Congela el movimiento del infectado durante el tiempo determinado por el parametro.
 	 */
-	public void ralentizar() {
+	public void ralentizar(int tiempo) {
 		velocidad.y=0;
-		relentizado=true;
+		ralentizado=true;
 		
-		tiempoRelentizado=System.nanoTime() + 4 * SEGUNDOS_RALENTIZADO;
+		tiempoRelentizado=System.nanoTime() + tiempo * SEGUNDOS_RALENTIZADO;
 	}
 	
 	/**
 	 * Descongela el movimento del infectado.
 	 */
 	public void desRalentizar() {
-		relentizado=false;
+		ralentizado=false;
 		velocidad.y=velocidadDefault;
 	}
 	

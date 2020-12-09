@@ -97,10 +97,10 @@ public abstract class NivelBase implements Nivel{
 		}
 
 		@Override
-		public void relentizarOleada() {
+		public void relentizarOleada(int tiempo) {
 			// TODO Auto-generated method stub
 			for(int i=0;i<oleadaActual.length;i++) {
-				oleadaActual[i].ralentizar();
+				oleadaActual[i].ralentizar(tiempo);
 			}
 		}
 }
