@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.swing.JLabel;
 
 import GUI.GUI_juego;
-import GUI.Screen;
+import GUI.SplashScreen;
 import Niveles.Nivel;
 import cerebros.ComandoPlayer;
 import entidades.*;
@@ -31,11 +31,11 @@ public class Juego extends Mediator {
 	protected Nivel nivelActual;
 	protected ComandoPlayer controlesPlayer;
 	private float deltaTime;
-	private Screen screen;
+	private SplashScreen screen;
 
 	public Juego(GUI_juego inter) {
-		screen = new Screen(3000);
-		screen.showSplash();
+		screen = new SplashScreen(3000);
+		screen.mostrarPantallaStart();
 		termino = false;
 		interfaz = inter;
 
@@ -198,9 +198,9 @@ public class Juego extends Mediator {
 	}
 
 	private void mostrarCartelGanar() {
-		screen = new Screen(3000);
+		screen = new SplashScreen(3000);
 		interfaz.setVisible(false);
-		screen.showWin();
+		screen.mostrarPantallaGanar();
 		System.exit(-1);
 	}
 
@@ -216,9 +216,9 @@ public class Juego extends Mediator {
 	}
 
 	private void mostrarCartelLose() {
-		screen = new Screen(3000);
+		screen = new SplashScreen(3000);
 		interfaz.setVisible(false);
-		screen.showLose();
+		screen.mostrarPantallaPerder();
 		System.exit(-1);
 	}
 
