@@ -14,7 +14,7 @@ import juego.Vector;
  * Clase base infectado, factoriza el comportamiento comun a todos los infectados.
  *
  */
-public abstract class Infectado extends Personaje implements Colisionador, Colisionable {
+public abstract class Infectado extends Personaje implements Colisionador {
 
 //Attributes
 	protected static final long SEGUNDOS_RALENTIZADO = 1000000000;

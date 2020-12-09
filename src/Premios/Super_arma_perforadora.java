@@ -1,6 +1,7 @@
 package Premios;
 
 import arma.ArmaFactory;
+import entidades.Colisionador;
 import entidades.Infectado;
 import entidades.Jugador;
 
@@ -33,5 +34,10 @@ public class Super_arma_perforadora extends Premio{
 	@Override
 	public void chocarConInfectado(Infectado infectado) {
 		//hacer nada
+	}
+
+	@Override
+	public void aceptarColision(Colisionador colisionador) {
+		//No hacer nada
 	}
 }

@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import juego.Mediator;
 import juego.Vector;
 
-public abstract class Entidad extends JLabel {
+public abstract class Entidad extends JLabel implements Colisionable {
 	protected Mediator mediadorJuego;
 	protected float xReal;
 	protected float yReal;

@@ -3,6 +3,7 @@ package Premios;
 import java.util.List;
 
 import arma.ArmaFactory;
+import entidades.Colisionador;
 import entidades.Infectado;
 import entidades.Jugador;
 import juego.Vector;
@@ -37,5 +38,10 @@ public class Super_arma extends Premio{
 	@Override
 	public void chocarConInfectado(Infectado infectado) {
 		//hacer nada
+	}
+
+	@Override
+	public void aceptarColision(Colisionador colisionador) {
+		//No hacer nada
 	}
 }

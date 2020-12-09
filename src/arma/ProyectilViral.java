@@ -4,10 +4,7 @@ import java.awt.Point;
 import java.util.List;
 
 import GUI.ImageProvider;
-import entidades.Entidad;
-import entidades.Infectado;
-import entidades.Jugador;
-import entidades.Personaje;
+import entidades.*;
 import juego.Vector;
 
 /**
@@ -40,13 +37,19 @@ public class ProyectilViral extends Proyectil{
 
 	}
 
-	//TODO: Revisar
+	@Override
 	public void chocarConJugador(Jugador jugador) {
 		jugador.recibirDano(daño);
 		mediadorJuego.removeEntidad(this);
 	}
 
+	@Override
 	public void chocarConInfectado(Infectado infectado) {
 
+	}
+
+	@Override
+	public void aceptarColision(Colisionador colisionador) {
+		//No hacer nada
 	}
 }

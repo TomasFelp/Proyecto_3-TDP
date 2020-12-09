@@ -130,7 +130,7 @@ public class Juego extends Mediator {
 	 */
 	private void chequearColisiones() {
 
-		for (Colisionable colisionable : colisionables.values()) {
+		for (Colisionable colisionable : entidades.values()) { //Para simplificar los chequeos, todas las Entidades son colisionables
 			Rectangle areaColisionable = ((Entidad) colisionable).getBounds();
 
 			for (Colisionador colisionador : colisionadores.values()) {
