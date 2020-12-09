@@ -172,7 +172,7 @@ public class Juego extends Mediator {
 		// y su velocidad no cambia si cambiamos el frameRate
 		entidadController.updateEntidades(deltaTime);
 		chequearVidaPlayer();
-		interfaz.updateBarraVida(jugador.getCargaViral());
+		interfaz.updateBarraVida(jugador.getPorcentajeVida());
 	}
 
 	/**
@@ -209,7 +209,7 @@ public class Juego extends Mediator {
 	 */
 	private void chequearVidaPlayer() {
 		if (jugador.getCargaViral() <= 0) {
-			terminarJuego(	);
+			terminarJuego();
 			mostrarCartelLose();
 		}
 	}
