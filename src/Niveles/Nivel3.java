@@ -7,7 +7,8 @@ import entidades.Infectado;
 import infectado.InfectadoAlfa;
 import infectado.InfectadoAlfaFactory;
 import infectado.InfectadoBeta;
-import infectado.InfectadoBetaFactory50;
+import infectado.InfectadoBetaFactory;
+import infectado.InfectadoBetaFactoryCant;
 import juego.Vector;
 
 /**
@@ -25,7 +26,7 @@ public class Nivel3 extends NivelBase{
 		
 		fabricaInfectados=new InfectadoAlfaFactory();
 		oleadas.add(armarOleada(200));
-		fabricaInfectados=new InfectadoBetaFactory50();
+		fabricaInfectados=new InfectadoBetaFactoryCant(50);
 		oleadas.add(armarOleada(200));
 	}
 	
