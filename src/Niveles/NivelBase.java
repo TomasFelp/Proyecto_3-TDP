@@ -43,7 +43,7 @@ public abstract class NivelBase implements Nivel{
 		 * @param betas cantidad de infectados beta en arreglo.
 		 * @return arreglo de infectados-
 		 */
-		protected Infectado[] armarOleada(int alfas,int betas) {
+		protected Infectado[] armarOleada(int alfas, int betas) {
 			int pos=0;
 			Vector vectorPosicion;
 			Infectado[] inf=new Infectado[alfas+betas];
@@ -52,7 +52,7 @@ public abstract class NivelBase implements Nivel{
 				
 				vectorPosicion=generarPosicionaleatoria();
 			
-				inf[pos]=new InfectadoAlfa(vectorPosicion);
+				inf[pos]= new InfectadoAlfa(vectorPosicion);
 				pos++;
 				alfas--;
 			}
@@ -61,7 +61,7 @@ public abstract class NivelBase implements Nivel{
 				
 				vectorPosicion=generarPosicionaleatoria();
 			
-				inf[pos]=new InfectadoBeta(vectorPosicion);
+				inf[pos]= new InfectadoBeta(vectorPosicion);
 				pos++;
 				betas--;
 			}

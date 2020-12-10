@@ -23,7 +23,7 @@ public class Nivel3 extends NivelBase{
 	/**
 	 * Arma una oleada asignando a los infectados posiciones especificas.
 	 */
-	protected Infectado[] armarOleada(int alfas,int betas) {
+	protected Infectado[] armarOleada(int alfas, int betas) {
 		int betasTotales=betas;
 		int pos=0;
 		int x=5,y=-100;
