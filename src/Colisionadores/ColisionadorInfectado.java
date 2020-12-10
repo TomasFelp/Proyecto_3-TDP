@@ -15,7 +15,6 @@ public class ColisionadorInfectado extends  ColisionadorBase{
 
     public void chocar(Jugador jugador) {
         if(!infectadoAsociado.estaInofensivo()){
-            System.out.println("El jugador deberia recibir " + infectadoAsociado.getDano() + " de daño.");
             jugador.recibirDano(infectadoAsociado.getDano());
             infectadoAsociado.hacerInofensivoTemporalmente();
         }

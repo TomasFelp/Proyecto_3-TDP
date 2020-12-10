@@ -30,7 +30,7 @@ public class Juego extends Mediator {
 	private SplashScreen screen;
 
 	public Juego(GUI_juego inter) {
-		screen = new SplashScreen(0);
+		screen = new SplashScreen(3000);
 		screen.mostrarPantallaStart();
 		termino = false;
 		interfaz = inter;

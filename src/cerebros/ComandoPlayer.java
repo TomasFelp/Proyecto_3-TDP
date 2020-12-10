@@ -3,6 +3,7 @@ package cerebros;
 import java.awt.Point;
 import entidades.*;
 import juego.Juego;
+import juego.Mediator;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -23,7 +24,7 @@ public class ComandoPlayer extends Thread implements KeyListener{
 	protected Jugador jugador;
 	protected boolean ejecucion=true;
 	protected int anchoPantalla;
-	protected Juego juego;
+	protected Mediator juego;
 
 	private long tiempoUltimoDisparo = 0;
 	
