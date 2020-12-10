@@ -27,11 +27,9 @@ public class Super_arma extends Premio{
 	}
 
 	public void activar(Jugador jugador) {
-		
 		jugador.setArma(ArmaFactory.getArmaFactory().getArmaPower());
 		jugador.premioTemporal(10);
 		mediadorJuego.removeEntidad(this);
-		
 	}
 
 	@Override

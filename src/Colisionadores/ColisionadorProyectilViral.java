@@ -17,9 +17,4 @@ public class ColisionadorProyectilViral extends ColisionadorProyectil{
         proyectilAsociado.removeDelJuego();
     }
 
-    public void chocar(Infectado infectado) {}
-
-    public void chocar(Premio premio) {}
-
-    public void chocar(Proyectil proyectil) {}
 }

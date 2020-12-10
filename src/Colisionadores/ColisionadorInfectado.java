@@ -5,7 +5,7 @@ import arma.Proyectil;
 import entidades.Infectado;
 import entidades.Jugador;
 
-public class ColisionadorInfectado implements Colisionador{
+public class ColisionadorInfectado extends  ColisionadorBase{
 
     protected Infectado infectadoAsociado;
 
@@ -19,18 +19,6 @@ public class ColisionadorInfectado implements Colisionador{
             jugador.recibirDano(infectadoAsociado.getDano());
             infectadoAsociado.hacerInofensivoTemporalmente();
         }
-    }
-
-    public void chocar(Infectado infectado) {
-
-    }
-
-    public void chocar(Premio premio) {
-
-    }
-
-    public void chocar(Proyectil proyectil) {
-
     }
 
 }

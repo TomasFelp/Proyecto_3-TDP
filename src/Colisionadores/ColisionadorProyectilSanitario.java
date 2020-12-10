@@ -17,11 +17,4 @@ public class ColisionadorProyectilSanitario extends ColisionadorProyectil {
         proyectilAsociado.removeDelJuego();
     }
 
-    public void chocar(Premio premio) {}
-
-    public void chocar(Jugador jugador) {}
-
-
-
-    public void chocar(Proyectil proyectil) {}
 }
