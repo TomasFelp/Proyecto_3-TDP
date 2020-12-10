@@ -1,12 +1,14 @@
 package arma;
 
+import Colisionadores.Colisionador;
+import Colisionadores.ColisionadorProyectilViral;
+
 import GUI.ImageProvider;
-import entidades.*;
 import juego.Vector;
 
 /**
  * 
- * Proyectil que afecta al jugador, causandole un daño moderado.
+ * Proyectil que afecta al jugador, causandole un dano moderado.
  *
  */
 public class ProyectilViral extends Proyectil {
@@ -21,6 +23,7 @@ public class ProyectilViral extends Proyectil {
 		setMovimiento(new MovimientoProyectilViral());
 		alcance = 200;
 		posY_inicial = (int) posicion.getY();
+		this.colisionador = new ColisionadorProyectilViral(this);
 		this.setIcon(ImageProvider.getInstancia().getSpriteProyectilViral());
 	}
 
@@ -32,19 +35,7 @@ public class ProyectilViral extends Proyectil {
 
 	}
 
-	@Override
-	public void chocarConJugador(Jugador jugador) {
-		jugador.recibirDano(daño);
-		mediadorJuego.removeEntidad(this);
-	}
-
-	@Override
-	public void chocarConInfectado(Infectado infectado) {
-
-	}
-
-	@Override
-	public void aceptarColision(Colisionador colisionador) {
-		// No hacer nada
+	public void recibirColision(Colisionador colisionador) {
+		colisionador.chocar(this);
 	}
 }

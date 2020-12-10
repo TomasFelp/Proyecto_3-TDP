@@ -4,8 +4,7 @@ import java.awt.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.swing.JLabel;
-
+import Colisionadores.Colisionador;
 import GUI.GUI_juego;
 import GUI.SplashScreen;
 import Niveles.Nivel;
@@ -20,9 +19,6 @@ public class Juego extends Mediator {
 	private static final long NANOSEGUNDOS_EN_UN_MILISEGUNDO = 1000000;
 
 	private Map<Integer, Entidad> entidades;
-
-	private Map<Integer, Colisionador> colisionadores;
-	private Map<Integer, Colisionable> colisionables;
 
 	private boolean termino;
 	protected GUI_juego interfaz;
@@ -41,10 +37,6 @@ public class Juego extends Mediator {
 
 		entidades = new ConcurrentHashMap<Integer, Entidad>();
 
-		// Mantienen las referencias a los colisionadores y colisionables en el juego
-		colisionadores = new ConcurrentHashMap<Integer, Colisionador>();
-		colisionables = new ConcurrentHashMap<Integer, Colisionable>();
-
 		niveles = new Generador_de_niveles();
 
 		interfaz.setVisible(true);
@@ -61,7 +53,7 @@ public class Juego extends Mediator {
 		int x = interfaz.getAncho() / 2 - jugador.getWidth() / 2;
 		int y = interfaz.getAlto() - jugador.getHeight();
 		jugador.setLocation(x, y);
-		addColisionable(jugador);
+		addEntidad(jugador);
 
 		controlesPlayer = new ComandoPlayer(jugador, interfaz.getAncho() - 20);
 		controlesPlayer.setJuego(this);
@@ -130,14 +122,14 @@ public class Juego extends Mediator {
 	 */
 	private void chequearColisiones() {
 
-		for (Colisionable colisionable : entidades.values()) { //Para simplificar los chequeos, todas las Entidades son colisionables
-			Rectangle areaColisionable = ((Entidad) colisionable).getBounds();
+		for (Entidad entA: entidades.values()) { //Para simplificar los chequeos, todas las Entidades son colisionables
+			Rectangle areaEntA = entA.getBounds();
 
-			for (Colisionador colisionador : colisionadores.values()) {
-				Rectangle areaColisionador = ((Entidad) colisionador).getBounds();
+			for (Entidad entB : entidades.values()) {
+				Rectangle areaEntB = entB.getBounds();
 
-				if (areaColisionable.intersects(areaColisionador)) {
-					colisionable.aceptarColision(colisionador);
+				if (areaEntA.intersects(areaEntB)) {
+					entA.recibirColision(entB.getColisionador());
 				}
 			}
 		}
@@ -238,8 +230,7 @@ public class Juego extends Mediator {
 		// inserto infectados en gameController
 		for (int i = 0; i < oleada.length; i++) {
 			oleada[i].setMediador(this);
-			addColisionable(oleada[i]);
-			addColisionador(oleada[i]);
+			addEntidad(oleada[i]);
 		}
 	}
 
@@ -255,20 +246,7 @@ public class Juego extends Mediator {
 	}
 
 	@Override
-	public void addColisionador(Colisionador colisionador) {
-		colisionadores.put(colisionador.hashCode(), colisionador);
-		addEntidad((Entidad) colisionador);
-	}
-
-	@Override
-	public void addColisionable(Colisionable colisionable) {
-		colisionables.put(colisionable.hashCode(), colisionable);
-		addEntidad((Entidad) colisionable);
-	}
-
-	@Override
 	public void addEntidad(Entidad entidad) {
-		//entidadController.insertarEntidad(entidad);
 		entidades.putIfAbsent(entidad.hashCode(), entidad);
 		interfaz.addEntidad(entidad);
 		interfaz.repaint();
@@ -276,8 +254,6 @@ public class Juego extends Mediator {
 
 	@Override
 	public void removeEntidad(Entidad entidad) {
-		colisionadores.remove(entidad.hashCode());
-		colisionables.remove(entidad.hashCode());
 		entidades.remove(entidad.hashCode());
 		interfaz.removeEntidad(entidad);
 		interfaz.repaint();

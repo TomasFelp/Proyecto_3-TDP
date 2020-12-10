@@ -21,7 +21,7 @@ public abstract class Personaje extends Entidad {
 	}
 
 	/**
-	 * Actualiza la cargaViral del Personaje con el daño pasado por parametro
+	 * Actualiza la cargaViral del Personaje con el dano pasado por parametro
 	 * @param dano dano recibido
 	 */
 	public abstract void recibirDano(int dano);

@@ -1,12 +1,7 @@
 package arma;
 
-import java.awt.Color;
 import java.awt.Point;
 
-import javax.swing.JLabel;
-
-import GUI.ImageProvider;
-import entidades.Colisionador;
 import entidades.Entidad;
 import juego.Vector;
 
@@ -16,15 +11,17 @@ import juego.Vector;
  * de proyectiles.
  *
  */
-public abstract class Proyectil extends Entidad implements Colisionador {
+public abstract class Proyectil extends Entidad{
+	private static final int radioColision = 1;
 
-	protected int daño;
+	protected int dano;
+	protected Vector velocidad;
 
 	public Proyectil(Vector posicion) {
 		xReal = posicion.x;
 		yReal = posicion.y;
 
-		this.daño = 50;
+		this.velocidad=new Vector(0,10);
 
 		this.setVisible(true);
 		this.setLocation(posicion.x, posicion.y);
@@ -38,6 +35,10 @@ public abstract class Proyectil extends Entidad implements Colisionador {
 
 		if (xReal < 0 || yReal > 650)
 			mediadorJuego.removeEntidad(this);
+	}
+
+	public int getDano(){
+		return dano;
 	}
 
 }

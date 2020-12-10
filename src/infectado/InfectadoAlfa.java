@@ -1,15 +1,13 @@
 package infectado;
 
-import java.util.List;
-
-import entidades.Colisionador;
-import entidades.Entidad;
+import Colisionadores.Colisionador;
+import Colisionadores.ColisionadorInfectado;
 import entidades.Infectado;
 import entidades.Jugador;
 import juego.*;
 
 /**
- * 
+ *
  * Modela un infectado tipo Alfa, tiene una resistencia moderada al igual que el
  * daño que ocasiona. Ademas al poseer una carga viral critica duplica su
  * velocidad.
@@ -17,13 +15,15 @@ import juego.*;
  */
 public class InfectadoAlfa extends Infectado {
 
-	private int daño = 35;
+	private final int DANO_INFECTADO_ALFA = 35;
 
 	public InfectadoAlfa(Vector posicion) {
 		super(posicion);
+		this.dano = DANO_INFECTADO_ALFA;
 		this.setIcon(GUI.ImageProvider.getInstancia().getSpriteInfectadoAlfa());
 		this.setVisible(true);
 		velocidadDefault = 1;
+		this.colisionador = new ColisionadorInfectado(this);
 	}
 
 	@Override
@@ -41,22 +41,8 @@ public class InfectadoAlfa extends Infectado {
 		}
 	}
 
-	// Metodos patron visitor
-
-	public void chocarConJugador(Jugador jugador) {
-
-		if (inofensivo == false) {
-			jugador.recibirDano(daño);
-			hacerInofensivo(SEGUNDOS_INOFENSIVO);
-		}
-	}
-
-	public void chocarConInfectado(Infectado infectado) {
-		// No hacer nada
-	}
-
-	public void aceptarColision(Colisionador colisionador) {
-		colisionador.chocarConInfectado(this);
+	public void recibirColision(Colisionador colisionador) {
+		colisionador.chocar(this);
 	}
 
 }

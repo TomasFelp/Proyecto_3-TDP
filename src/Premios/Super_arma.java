@@ -1,12 +1,10 @@
 package Premios;
 
-import java.util.List;
-
+import Colisionadores.ColisionadorPremio;
 import arma.ArmaFactory;
-import entidades.Colisionador;
+import Colisionadores.Colisionador;
 import entidades.Infectado;
 import entidades.Jugador;
-import juego.Vector;
 
 /**
  * 
@@ -18,6 +16,7 @@ public class Super_arma extends Premio{
 	public Super_arma() {
 		// TODO Auto-generated constructor stub
 		super();
+		this.colisionador = new ColisionadorPremio(this);
 		this.setIcon(GUI.ImageProvider.getInstancia().getSpritePremioSuperArma());
 	}
 
@@ -27,21 +26,14 @@ public class Super_arma extends Premio{
 		return new Super_arma();
 	}
 
-
-	@Override
-	public void chocarConJugador(Jugador jugador) {
+	public void activar(Jugador jugador) {
 		jugador.setArma(ArmaFactory.getArmaFactory().getArmaPower());
 		jugador.premioTemporal(10);
 		mediadorJuego.removeEntidad(this);
 	}
 
 	@Override
-	public void chocarConInfectado(Infectado infectado) {
-		//hacer nada
-	}
-
-	@Override
-	public void aceptarColision(Colisionador colisionador) {
+	public void recibirColision(Colisionador colisionador) {
 		//No hacer nada
 	}
 }

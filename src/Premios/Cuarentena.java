@@ -1,7 +1,7 @@
 package Premios;
 
-import entidades.Colisionador;
-import entidades.Infectado;
+import Colisionadores.Colisionador;
+import Colisionadores.ColisionadorPremio;
 import entidades.Jugador;
 
 /**
@@ -14,6 +14,7 @@ public class Cuarentena extends Premio{
 	public Cuarentena() {
 		// TODO Auto-generated constructor stub
 		super();
+		this.colisionador = new ColisionadorPremio(this);
 		this.setIcon(GUI.ImageProvider.getInstancia().getSpritePremioCuarentena());
 	}
 	
@@ -23,19 +24,16 @@ public class Cuarentena extends Premio{
 		return new Cuarentena();
 	}
 
-	@Override
-	public void chocarConJugador(Jugador jugador) {
+	public void ralentizarInfectados(){
+		mediadorJuego.relentizarInfectados(4);
+	}
+
+	public void activar(Jugador jugador) {
 		mediadorJuego.relentizarInfectados(4);
 		mediadorJuego.removeEntidad(this);
 	}
 
-	@Override
-	public void chocarConInfectado(Infectado infectado) {
-		//hacer nada
-	}
-
-	@Override
-	public void aceptarColision(Colisionador colisionador) {
+	public void recibirColision(Colisionador colisionador) {
 		//No hacer nada
 	}
 }

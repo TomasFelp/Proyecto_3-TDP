@@ -1,41 +1,29 @@
 package arma;
 
-import java.awt.Color;
-import java.util.List;
-
+import Colisionadores.Colisionador;
+import Colisionadores.ColisionadorPremio;
+import Colisionadores.ColisionadorProyectilSanitario;
 import GUI.ImageProvider;
-import entidades.*;
 import juego.Vector;
 
 /**
  * 
- * Proyectil que solo daña a los infectados, causa daño moderado.
+ * Proyectil que solo daña a los infectados, causa dano moderado.
  *
  */
 public class Proyectil_sanitario extends Proyectil {
 
+	private static final int DANO_PROYECTIL_SANITARIO = 25;
+
 	public Proyectil_sanitario(Vector posicion) {
 		super(posicion);
+		this.dano = DANO_PROYECTIL_SANITARIO;
+		this.colisionador = new ColisionadorProyectilSanitario(this);
 		this.setIcon(ImageProvider.getInstancia().getSpriteProyectilSanitario());
-		daño=25;
 		movimiento = new MovimientoProyectilSanitario();
 	}
 
-	@Override
-	public void aceptarColision(Colisionador colisionador) {
-		//No hacer nada
-	}
-
-	@Override
-	public void chocarConJugador(Jugador jugador) {
-		//No hacer nada
-	}
-
-	@Override
-	public void chocarConInfectado(Infectado infectado) {
-
-		infectado.recibirDano(daño);
-		
-		mediadorJuego.removeEntidad(this);
+	public void recibirColision(Colisionador colisionador) {
+		colisionador.chocar(this);
 	}
 }

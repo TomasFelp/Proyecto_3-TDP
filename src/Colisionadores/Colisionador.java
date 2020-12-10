@@ -1,7 +1,9 @@
-package entidades;
+package Colisionadores;
 
 import Premios.Premio;
 import arma.Proyectil;
+import entidades.Infectado;
+import entidades.Jugador;
 
 /**
  * Clase Colisionable. Un colisionador impacto en un colisionable.

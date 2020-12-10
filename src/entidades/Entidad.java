@@ -5,15 +5,19 @@ import java.util.Random;
 
 import javax.swing.JLabel;
 
+import Colisionadores.Colisionador;
 import juego.Mediator;
 import juego.Vector;
 
-public abstract class Entidad extends JLabel implements Colisionable {
+public abstract class Entidad extends JLabel {
+
 	protected Mediator mediadorJuego;
 	protected Movimiento movimiento;
 	protected float xReal;
 	protected float yReal;
 	private int ID;
+
+	protected Colisionador colisionador;
 
 	public Entidad() {
 		Random rnd = new Random();
@@ -38,6 +42,10 @@ public abstract class Entidad extends JLabel implements Colisionable {
 	public void update(float deltaTime) {
 		Vector velocidad = movimiento.calcularMovimiento(xReal, yReal);
 		mover(velocidad.x * deltaTime, (velocidad.y * deltaTime) / 3);
+	}
+
+	public Colisionador getColisionador(){
+		return colisionador;
 	}
 
 	@Override
@@ -93,5 +101,11 @@ public abstract class Entidad extends JLabel implements Colisionable {
 		int y = (int) pos.getY();
 		return new Vector(x, y);
 	}
+
+	public void removeDelJuego(){
+		mediadorJuego.removeEntidad(this);
+	}
+
+	public abstract void recibirColision(Colisionador colisionador);
 
 }

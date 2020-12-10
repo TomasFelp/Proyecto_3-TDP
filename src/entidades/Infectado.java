@@ -6,7 +6,6 @@ import java.util.Random;
 import Premios.Premio;
 import arma.Proyectil;
 import arma.ProyectilViral;
-import arma.Proyectil_sanitario;
 import infectado.MovimientoInfectado;
 import infectado.MovimientoInfectadoCuarentena;
 import juego.Vector;
@@ -17,21 +16,26 @@ import juego.Vector;
  * infectados.
  *
  */
-public abstract class Infectado extends Personaje implements Colisionador {
+public abstract class Infectado extends Personaje{
 
 //Attributes
+	protected Movimiento movimientoAnterior;
+
 	protected static final long SEGUNDOS_RALENTIZADO = 1000000000;
 	protected static final long SEGUNDOS_INOFENSIVO = 2 * 1000000000;
-	protected Movimiento movimientoAnterior;
+
 	protected boolean ralentizado;
 	protected boolean inofensivo;
 	protected long tiempoRelentizado;
 	protected long tiempoInofensivo;
 
+	protected int dano;
+
 //Builder
 	public Infectado(Vector posicion) {
 		super(posicion);
 		cargaViral = 100;
+		inofensivo = false;
 		this.setSize(30, 30);
 		this.setMovimiento(new MovimientoInfectado());
 		movimientoAnterior = movimiento;
@@ -49,8 +53,8 @@ public abstract class Infectado extends Personaje implements Colisionador {
 		// Efectuamos el disparo
 		Proyectil p = new ProyectilViral(posicion);
 		p.setMediador(mediadorJuego);
-
-		mediadorJuego.addColisionador(p);
+		
+		mediadorJuego.addEntidad(p);
 	}
 
 	@Override
@@ -110,7 +114,7 @@ public abstract class Infectado extends Personaje implements Colisionador {
 		premio.setPosicion(posicion);
 		premio.setMediador(mediadorJuego);
 
-		mediadorJuego.addColisionador(premio);
+		mediadorJuego.addEntidad(premio);
 	}
 
 	/**
@@ -134,14 +138,18 @@ public abstract class Infectado extends Personaje implements Colisionador {
 	}
 
 	/**
-	 * Cambia el estado del infectado a inofensivo, en este estado el infectado no
-	 * causara daño alguno al jugador.
-	 * 
-	 * @param nanoSegundos
+	 * Cambia el estado del infectado a inofensivo, en este estado el infectado no causara dano alguno al jugador.
 	 */
-	protected void hacerInofensivo(long nanoSegundos) {
-		inofensivo = true;
-		tiempoInofensivo = System.nanoTime() + nanoSegundos;
+	public void hacerInofensivoTemporalmente() {
+		inofensivo=true;
+		tiempoInofensivo= System.nanoTime() + SEGUNDOS_INOFENSIVO;
 	}
 
+	public int getDano(){
+		return dano;
+	}
+
+	public boolean estaInofensivo() {
+		return inofensivo;
+	}
 }

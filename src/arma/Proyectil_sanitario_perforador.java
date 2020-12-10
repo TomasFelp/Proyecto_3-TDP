@@ -1,27 +1,30 @@
 package arma;
 
-import java.awt.Color;
-import java.util.List;
-
+import Colisionadores.ColisionadorPremio;
+import Colisionadores.ColisionadorProyectilSanitario;
 import GUI.ImageProvider;
-import entidades.Entidad;
+import Colisionadores.Colisionador;
 import entidades.Infectado;
-import entidades.Personaje;
 import juego.Vector;
 
 /**
- * Hace mas daño que el proyectil normal y ademas atraviesa multiples infectados.
+ * Hace mas dano que el proyectil normal y ademas atraviesa multiples infectados.
  *
  */
 public class Proyectil_sanitario_perforador extends Proyectil_sanitario{
 
+	private static final int DANO_PROYECTIL_PERF = 25;
+
 	public Proyectil_sanitario_perforador(Vector posicion) {
 		super(posicion);
+		this.dano = DANO_PROYECTIL_PERF;
+		this.colisionador = new ColisionadorProyectilSanitario(this);
 		this.setIcon(ImageProvider.getInstancia().getSpriteProyectilSanitarioPerforador());
+		velocidad.y=-10;
 	}
 
-	public void chocarConInfectado(Infectado infectado) {
-		infectado.recibirDano(daño);
+	public void recibirColision(Colisionador colisionador) {
+		colisionador.chocar(this);
 	}
 }
 

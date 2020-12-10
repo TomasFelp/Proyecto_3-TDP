@@ -1,6 +1,7 @@
 package Premios;
 
-import entidades.Colisionador;
+import Colisionadores.Colisionador;
+import Colisionadores.ColisionadorPremio;
 import entidades.Infectado;
 import entidades.Jugador;
 
@@ -13,6 +14,7 @@ public class Pocion_vida extends Premio{
 	public Pocion_vida() {
 		// TODO Auto-generated constructor stub
 		super();
+		this.colisionador = new ColisionadorPremio(this);
 		this.setIcon(GUI.ImageProvider.getInstancia().getSpritePremioPocionVida());
 	}
 	
@@ -22,19 +24,12 @@ public class Pocion_vida extends Premio{
 		return new Pocion_vida();
 	}
 
-	@Override
-	public void chocarConJugador(Jugador jugador) {
+	public void activar(Jugador jugador) {
 		jugador.restaurarVida();
 		mediadorJuego.removeEntidad(this);
 	}
 
-	@Override
-	public void chocarConInfectado(Infectado infectado) {
-		//hacer
-	}
-
-	@Override
-	public void aceptarColision(Colisionador colisionador) {
+	public void recibirColision(Colisionador colisionador) {
 		//No hacer nada
 	}
 }
