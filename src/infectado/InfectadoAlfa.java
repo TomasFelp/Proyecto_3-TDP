@@ -31,7 +31,9 @@ public class InfectadoAlfa extends Infectado {
 		if (cargaViral - dano > 0) {
 			this.cargaViral -= dano; // recibe el dano
 			if (cargaViral < 50) { // Si el infectado alfa tiene un nivel de vida critico duplica su velocidad
-				setMovimiento(new MovimientoInfectadoAlfaEnojado());
+				movimientoAnterior = new MovimientoInfectadoAlfaEnojado();
+				if (!ralentizado)
+					setMovimiento(movimientoAnterior);
 			}
 		} else {
 			// morido

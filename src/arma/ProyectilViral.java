@@ -1,8 +1,5 @@
 package arma;
 
-import java.awt.Point;
-import java.util.List;
-
 import GUI.ImageProvider;
 import entidades.*;
 import juego.Vector;

@@ -1,6 +1,5 @@
 package Premios;
 
-import java.awt.Point;
 import java.util.Random;
 
 import entidades.Colisionador;
@@ -12,15 +11,11 @@ import juego.Vector;
  *
  */
 public abstract class Premio extends Entidad implements Colisionador {
-//Attributes
-	protected Vector velocidad;
-	
 //Builder
 	public Premio() {
 		setSize(20, 20);
 
-		Random r=new Random();
-		velocidad=new Vector(0,r.nextInt(5)+1);
+		setMovimiento(new MovimientoPremio());
 	}
 	
 //Methods
@@ -34,12 +29,11 @@ public abstract class Premio extends Entidad implements Colisionador {
 	
 	@Override
 	public void update(float deltaTime) {
-		// TODO Auto-generated method stub
-		Point posicion = this.getLocation();
+		Vector velocidad = movimiento.calcularMovimiento(xReal, yReal);
 
 		mover(velocidad.x * deltaTime, velocidad.y * deltaTime);
 
-		if (posicion.getY() < 0 || posicion.getY() > 650)
+		if (yReal < 0 || yReal > 650)
 			mediadorJuego.removeEntidad(this);
 	}
 	
