@@ -36,7 +36,8 @@ public class Generador_de_premios {
 	 */
 	public Premio getPremio() {
 		Random r=new Random();
-		Premio res = premios[r.nextInt(premios.length)].clone();
+		//Premio res = premios[r.nextInt(premios.length)].clone();
+		Premio res = premios[1].clone();
 		
 		if(r.nextInt(4) == 0)
 			res.setMovimiento(new MovimientoPremioResbaloso());
