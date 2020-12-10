@@ -18,7 +18,7 @@ public class Proyectil_sanitario extends Proyectil {
 		super(posicion);
 		this.setIcon(ImageProvider.getInstancia().getSpriteProyectilSanitario());
 		daño=25;
-		velocidad.y=-10;
+		movimiento = new MovimientoProyectilSanitario();
 	}
 
 	@Override

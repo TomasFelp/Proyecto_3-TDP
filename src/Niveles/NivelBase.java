@@ -1,12 +1,10 @@
 package Niveles;
 
-import java.util.LinkedList;
+
 import java.util.Queue;
 import java.util.Random;
 
 import entidades.Infectado;
-import infectado.InfectadoAlfa;
-import infectado.InfectadoBeta;
 import infectado.InfectadoFactory;
 import juego.Vector;
 
@@ -46,7 +44,9 @@ public abstract class NivelBase implements Nivel{
 		 * @param betas cantidad de infectados beta en arreglo.
 		 * @return arreglo de infectados-
 		 */
+
 		protected Infectado[] armarOleada(int cant) {
+
 			int pos=0;
 			Vector vectorPosicion;
 			Infectado[] inf=new Infectado[cant];
@@ -55,6 +55,7 @@ public abstract class NivelBase implements Nivel{
 				
 				vectorPosicion=generarPosicion();
 			
+
 				inf[pos]=fabricaInfectados.crearInfectado(vectorPosicion);
 				pos++;
 				cant--;
