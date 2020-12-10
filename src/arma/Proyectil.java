@@ -26,6 +26,8 @@ public abstract class Proyectil extends Entidad{
 		this.setVisible(true);
 		this.setLocation(posicion.x, posicion.y);
 		this.setSize(15, 15);
+		
+		dano=50;
 	}
 
 	public void update(float deltaTime) {
