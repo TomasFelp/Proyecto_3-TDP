@@ -1,0 +1,547 @@
+@startuml
+
+title __PROYECTO_3-TDP's Class Diagram__\n
+
+  namespace  {
+    namespace olisionadores {
+      interface Colisionadores.Colisionador {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace olisionadores {
+      class Colisionadores.ColisionadorInfectado {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace olisionadores {
+      class Colisionadores.ColisionadorJugador {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace olisionadores {
+      class Colisionadores.ColisionadorPremio {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace olisionadores {
+      abstract class Colisionadores.ColisionadorProyectil {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace olisionadores {
+      class Colisionadores.ColisionadorProyectilSanitario {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace olisionadores {
+      class Colisionadores.ColisionadorProyectilViral {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace UI {
+      class GUI.GUI_juego {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace UI {
+      class GUI.ImageProvider {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace UI {
+      class GUI.PanelFondo {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace UI {
+      class GUI.SplashScreen {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace iveles {
+      interface Niveles.Nivel {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace iveles {
+      class Niveles.Nivel1 {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace iveles {
+      class Niveles.Nivel2 {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace iveles {
+      class Niveles.Nivel3 {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace iveles {
+      abstract class Niveles.NivelBase {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace remios {
+      class Premios.Cuarentena {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace remios {
+      class Premios.MovimientoPremio {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace remios {
+      class Premios.MovimientoPremioResbaloso {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace remios {
+      class Premios.Pocion_vida {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace remios {
+      abstract class Premios.Premio {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace remios {
+      class Premios.Super_arma {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace remios {
+      class Premios.Super_arma_perforadora {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      interface arma.Arma {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.ArmaFactory {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.ArmaSanitariaDefault {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.ArmaSanitariaPerforadora {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.ArmaSanitariaPower {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.MovimientoProyectilSanitario {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.MovimientoProyectilViral {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      abstract class arma.Proyectil {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.ProyectilViral {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.Proyectil_sanitario {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.Proyectil_sanitario_perforador {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace rma {
+      class arma.Proyectil_sanitario_power {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace erebros {
+      class cerebros.ComandoPlayer {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ntidades {
+      abstract class entidades.Entidad {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ntidades {
+      abstract class entidades.Infectado {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ntidades {
+      class entidades.Jugador {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ntidades {
+      interface entidades.Movimiento {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace ntidades {
+      abstract class entidades.Personaje {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      class infectado.InfectadoAlfa {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      class infectado.InfectadoAlfaFactory {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      class infectado.InfectadoBeta {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      class infectado.InfectadoBetaFactory {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      class infectado.InfectadoBetaFactoryCant {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      interface infectado.InfectadoFactory {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      class infectado.InfectadoRandomFactory {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      class infectado.MovimientoInfectado {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      class infectado.MovimientoInfectadoAlfaEnojado {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace nfectado {
+      class infectado.MovimientoInfectadoCuarentena {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace uego {
+      class juego.Generador_de_niveles {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace uego {
+      class juego.Generador_de_premios {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace uego {
+      class juego.Juego {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace uego {
+      class juego.Main {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace uego {
+      abstract class juego.Mediator {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace uego {
+      class juego.PosicionReal {
+      }
+    }
+  }
+  
+
+  namespace  {
+    namespace uego {
+      class juego.Vector {
+      }
+    }
+  }
+  
+
+  Colisionadores.ColisionadorInfectado .up.|> Colisionadores.Colisionador
+  Colisionadores.ColisionadorInfectado o-- entidades.Infectado : infectadoAsociado
+  Colisionadores.ColisionadorJugador .up.|> Colisionadores.Colisionador
+  Colisionadores.ColisionadorPremio .up.|> Colisionadores.Colisionador
+  Colisionadores.ColisionadorPremio o-- Premios.Premio : premioAsociado
+  Colisionadores.ColisionadorProyectil .up.|> Colisionadores.Colisionador
+  Colisionadores.ColisionadorProyectil o-- arma.Proyectil : proyectilAsociado
+  Colisionadores.ColisionadorProyectilSanitario -up-|> Colisionadores.ColisionadorProyectil
+  Colisionadores.ColisionadorProyectilViral -up-|> Colisionadores.ColisionadorProyectil
+  GUI.GUI_juego -up-|> javax.swing.JFrame
+  GUI.PanelFondo -up-|> javax.swing.JPanel
+  GUI.SplashScreen -up-|> javax.swing.JWindow
+  Niveles.Nivel1 -up-|> Niveles.NivelBase
+  Niveles.Nivel2 -up-|> Niveles.NivelBase
+  Niveles.Nivel3 -up-|> Niveles.NivelBase
+  Niveles.NivelBase .up.|> Niveles.Nivel
+  Niveles.NivelBase o-- infectado.InfectadoFactory : fabricaInfectados
+  Premios.Cuarentena -up-|> Premios.Premio
+  Premios.MovimientoPremio .up.|> entidades.Movimiento
+  Premios.MovimientoPremioResbaloso .up.|> entidades.Movimiento
+  Premios.Pocion_vida -up-|> Premios.Premio
+  Premios.Premio -up-|> entidades.Entidad
+  Premios.Premio o-- juego.Vector : velocidad
+  Premios.Super_arma -up-|> Premios.Premio
+  Premios.Super_arma_perforadora -up-|> Premios.Premio
+  arma.ArmaFactory o-- arma.ArmaSanitariaDefault : armaDefault
+  arma.ArmaFactory o-- arma.ArmaSanitariaPerforadora : armaPerforadora
+  arma.ArmaFactory o-- arma.ArmaSanitariaPower : armaPower
+  arma.ArmaSanitariaDefault .up.|> arma.Arma
+  arma.ArmaSanitariaPerforadora .up.|> arma.Arma
+  arma.ArmaSanitariaPower .up.|> arma.Arma
+  arma.MovimientoProyectilSanitario .up.|> entidades.Movimiento
+  arma.MovimientoProyectilViral .up.|> entidades.Movimiento
+  arma.Proyectil -up-|> entidades.Entidad
+  arma.Proyectil o-- juego.Vector : velocidad
+  arma.ProyectilViral -up-|> arma.Proyectil
+  arma.Proyectil_sanitario -up-|> arma.Proyectil
+  arma.Proyectil_sanitario_perforador -up-|> arma.Proyectil_sanitario
+  arma.Proyectil_sanitario_power -up-|> arma.Proyectil_sanitario
+  cerebros.ComandoPlayer .up.|> java.awt.event.KeyListener
+  cerebros.ComandoPlayer o-- juego.Juego : juego
+  cerebros.ComandoPlayer o-- entidades.Jugador : jugador
+  entidades.Entidad -up-|> javax.swing.JLabel
+  entidades.Entidad o-- Colisionadores.Colisionador : colisionador
+  entidades.Entidad o-- juego.Mediator : mediadorJuego
+  entidades.Entidad o-- entidades.Movimiento : movimiento
+  entidades.Infectado -up-|> entidades.Personaje
+  entidades.Infectado o-- entidades.Movimiento : movimientoAnterior
+  entidades.Jugador -up-|> entidades.Personaje
+  entidades.Jugador o-- arma.Arma : arma
+  entidades.Personaje -up-|> entidades.Entidad
+  infectado.InfectadoAlfa -up-|> entidades.Infectado
+  infectado.InfectadoAlfaFactory .up.|> infectado.InfectadoFactory
+  infectado.InfectadoBeta -up-|> entidades.Infectado
+  infectado.InfectadoBetaFactory .up.|> infectado.InfectadoFactory
+  infectado.InfectadoBetaFactoryCant .up.|> infectado.InfectadoFactory
+  infectado.InfectadoRandomFactory .up.|> infectado.InfectadoFactory
+  infectado.MovimientoInfectado .up.|> entidades.Movimiento
+  infectado.MovimientoInfectadoAlfaEnojado .up.|> entidades.Movimiento
+  infectado.MovimientoInfectadoAlfaEnojado o-- entidades.Movimiento : movimientoDefaultInfectado
+  infectado.MovimientoInfectadoCuarentena .up.|> entidades.Movimiento
+  juego.Juego -up-|> juego.Mediator
+  juego.Juego o-- cerebros.ComandoPlayer : controlesPlayer
+  juego.Juego o-- GUI.GUI_juego : interfaz
+  juego.Juego o-- entidades.Jugador : jugador
+  juego.Juego o-- Niveles.Nivel : nivelActual
+  juego.Juego o-- juego.Generador_de_niveles : niveles
+  juego.Juego o-- GUI.SplashScreen : screen
+  juego.Vector -up-|> java.awt.Point
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
