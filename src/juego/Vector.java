@@ -18,4 +18,8 @@ public class Vector extends Point {
         double y = this.getY() + v.getY();
         this.setLocation(x, y);
     }
+    
+    public void multiplicar(int m) {
+    	this.setLocation(x*m, y*m);
+    }
 }

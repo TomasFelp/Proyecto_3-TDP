@@ -1,13 +1,9 @@
 package Niveles;
 
 import java.util.LinkedList;
-import java.util.Random;
 
 import entidades.Infectado;
-import infectado.InfectadoAlfa;
 import infectado.InfectadoAlfaFactory;
-import infectado.InfectadoBeta;
-import infectado.InfectadoBetaFactory;
 import infectado.InfectadoBetaFactoryCant;
 import juego.Vector;
 
@@ -30,8 +26,9 @@ public class Nivel3 extends NivelBase{
 		oleadas.add(armarOleada(200));
 	}
 	
+
 	protected Vector generarPosicion() {
-		
+
 		Vector pos=new Vector(posX,posY);
 		
 		if(posX+50<500) {
