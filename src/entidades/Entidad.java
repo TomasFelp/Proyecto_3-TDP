@@ -35,7 +35,10 @@ public abstract class Entidad extends JLabel implements Colisionable {
 	 * 
 	 * @param deltaTime tiempo en nanosegundos, entre un ciclo y otro
 	 */
-	public abstract void update(float deltaTime);
+	public void update(float deltaTime) {
+		Vector velocidad = movimiento.calcularMovimiento(xReal, yReal);
+		mover(velocidad.x * deltaTime, (velocidad.y * deltaTime) / 3);
+	}
 
 	@Override
 	public int hashCode() {

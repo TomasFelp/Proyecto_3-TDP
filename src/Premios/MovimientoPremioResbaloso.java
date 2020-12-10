@@ -5,13 +5,13 @@ import java.util.Random;
 import entidades.Movimiento;
 import juego.Vector;
 
-public class MovimientoPremio implements Movimiento {
+public class MovimientoPremioResbaloso implements Movimiento {
 
 	@Override
 	public Vector calcularMovimiento(float posX, float posY) {
 		Random r = new Random();
-		int movX = 0;
-		int movY = (r.nextInt(3) + 1);
+		int movX = (r.nextInt(11) - 5);
+		int movY = (r.nextInt(7) - 2);
 		Vector movimiento = new Vector(movX, movY);
 
 		return movimiento;

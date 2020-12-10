@@ -3,6 +3,8 @@ package juego;
 import java.util.Random;
 
 import Premios.Cuarentena;
+import Premios.MovimientoPremio;
+import Premios.MovimientoPremioResbaloso;
 import Premios.Pocion_vida;
 import Premios.Premio;
 import Premios.Super_arma;
@@ -34,7 +36,12 @@ public class Generador_de_premios {
 	 */
 	public Premio getPremio() {
 		Random r=new Random();
-		return premios[r.nextInt(premios.length)].clone();
+		Premio res = premios[r.nextInt(premios.length)].clone();
+		
+		if(r.nextInt(4) == 0)
+			res.setMovimiento(new MovimientoPremioResbaloso());
+		
+		return res;
 	}
 	
 	/**
