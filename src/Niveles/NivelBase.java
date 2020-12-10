@@ -7,6 +7,7 @@ import java.util.Random;
 import entidades.Infectado;
 import infectado.InfectadoAlfa;
 import infectado.InfectadoBeta;
+import infectado.InfectadoFactory;
 import juego.Vector;
 
 /**
@@ -19,6 +20,7 @@ public abstract class NivelBase implements Nivel{
 		protected int cantInfectados;
 		protected Infectado[] oleadaActual;
 		protected int numOleadaActual;
+		protected InfectadoFactory fabricaInfectados;
 
 
 	//Methods
@@ -37,43 +39,36 @@ public abstract class NivelBase implements Nivel{
 			return oleadas.isEmpty();
 		}
 		
+
 		/**
 		 * Retorna un arreglo de infectados.
 		 * @param alfas cantidad de infectados alfa en el arreglo.
 		 * @param betas cantidad de infectados beta en arreglo.
 		 * @return arreglo de infectados-
 		 */
-		protected Infectado[] armarOleada(int alfas,int betas) {
+		protected Infectado[] armarOleada(int cant) {
 			int pos=0;
 			Vector vectorPosicion;
-			Infectado[] inf=new Infectado[alfas+betas];
+			Infectado[] inf=new Infectado[cant];
 			
-			while(alfas!=0) {
+			while(cant!=0) {
 				
-				vectorPosicion=generarPosicionaleatoria();
+				vectorPosicion=generarPosicion();
 			
-				inf[pos]=new InfectadoAlfa(vectorPosicion);
+				inf[pos]=fabricaInfectados.crearInfectado(vectorPosicion);
 				pos++;
-				alfas--;
-			}
-			
-			while(betas!=0) {
-				
-				vectorPosicion=generarPosicionaleatoria();
-			
-				inf[pos]=new InfectadoBeta(vectorPosicion);
-				pos++;
-				betas--;
+				cant--;
 			}
 			
 			return inf;
 		}
 		
+		
 		/**
 		 * Genera un vector representando una posicion aleatoria, dentro de los limites del juego.
 		 * @return
 		 */
-		private Vector generarPosicionaleatoria() {
+		protected Vector generarPosicion() {
 			Random r = new Random();
 			int x,y;
 			

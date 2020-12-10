@@ -1,10 +1,13 @@
 package Niveles;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 import entidades.Infectado;
 import infectado.InfectadoAlfa;
+import infectado.InfectadoAlfaFactory;
 import infectado.InfectadoBeta;
+import infectado.InfectadoBetaFactory50;
 import juego.Vector;
 
 /**
@@ -13,76 +16,34 @@ import juego.Vector;
  */
 public class Nivel3 extends NivelBase{
 
+	protected int posX,posY;
 	
 	public Nivel3() {
+		posX=5;
+		posY=-30;
 		oleadas=new LinkedList<Infectado[]>();
-		oleadas.add(armarOleada(200,0));
-		oleadas.add(armarOleada(58,75));
+		
+		fabricaInfectados=new InfectadoAlfaFactory();
+		oleadas.add(armarOleada(200));
+		fabricaInfectados=new InfectadoBetaFactory50();
+		oleadas.add(armarOleada(200));
 	}
 	
-	/**
-	 * Arma una oleada asignando a los infectados posiciones especificas.
-	 */
-	protected Infectado[] armarOleada(int alfas,int betas) {
-		int betasTotales=betas;
-		int pos=0;
-		int x=5,y=-100;
-		Vector vectorPosicion;
-		Infectado[] inf=new Infectado[alfas+betas];
+	protected Vector generarPosicion() {
 		
-		while(alfas!=0) {
-			
-			vectorPosicion=new Vector(x, y);
+		Vector pos=new Vector(posX,posY);
 		
-			if(x+60<500) {
-				x+=50;	
-			}else{
-				x=5;
-				y-=20;
-			}
-			
-			inf[pos]=new InfectadoAlfa(vectorPosicion);
-			pos++;
-			alfas--;
-		}
-		x=5;
-		y=20;
-		while(betas!=betasTotales/3) {
-			
-			vectorPosicion=new Vector(x, y);
-		
-
-			if(x+60<500) {
-				x+=50;	
-			}else{
-				x=0;
-				y-=20;
-			}
-			
-			inf[pos]=new InfectadoBeta(vectorPosicion);
-			pos++;
-			betas--;
-		}
-		x=0;
-		y=-40;
-		while(betas!=0) {
-			
-			vectorPosicion=new Vector(x, y);
-		
-			if(x<460) {
-				x+=20;	
-			}else{
-				x=0;
-				y-=20;
-			}
-			
-			inf[pos]=new InfectadoBeta(vectorPosicion);
-			pos++;
-			betas--;
+		if(posX+50<500) {
+			posX+=50;
+		}else {
+			posX=5;
+			posY-=20;
 		}
 		
-		return inf;
+		return pos;
 	}
+	
+	
 	
 	@Override
 	public String getNombre() {

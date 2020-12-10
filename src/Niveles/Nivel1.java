@@ -4,7 +4,10 @@ import java.util.Random;
 
 import entidades.*;
 import infectado.InfectadoAlfa;
+import infectado.InfectadoAlfaFactory;
 import infectado.InfectadoBeta;
+import infectado.InfectadoBetaFactory;
+import infectado.InfectadoRandomFactory;
 import juego.Vector;
 
 import java.util.LinkedList;
@@ -18,9 +21,15 @@ public class Nivel1 extends NivelBase{
 
 //Builder
 	public Nivel1() {
+		
 		oleadas=new LinkedList<Infectado[]>();
-		oleadas.add(armarOleada(10,5));
-		oleadas.add(armarOleada(12,15));
+		
+		fabricaInfectados=new InfectadoRandomFactory(4);
+		oleadas.add(armarOleada(10));
+		
+		fabricaInfectados=new InfectadoRandomFactory(3);
+		oleadas.add(armarOleada(20));
+		
 		numOleadaActual=0;
 	}
 
