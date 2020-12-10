@@ -20,7 +20,6 @@ public class Proyectil_sanitario_power extends Proyectil_sanitario{
 		super(posicion);
 		this.setIcon(ImageProvider.getInstancia().getSpriteProyectilSanitarioPower());
 		daño=100;
-		velocidad.y=-10;
 	}
 }
 

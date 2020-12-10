@@ -12,21 +12,19 @@ import juego.Vector;
 
 /**
  * 
- * Clase base proyectil, factoriza las cualidades comunes a los distintos tipos de proyectiles.
+ * Clase base proyectil, factoriza las cualidades comunes a los distintos tipos
+ * de proyectiles.
  *
  */
 public abstract class Proyectil extends Entidad implements Colisionador {
-	private static final int radioColision = 1;
 
 	protected int daño;
-	protected Vector velocidad;
 
 	public Proyectil(Vector posicion) {
 		xReal = posicion.x;
 		yReal = posicion.y;
 
 		this.daño = 50;
-		this.velocidad=new Vector(0,10);
 
 		this.setVisible(true);
 		this.setLocation(posicion.x, posicion.y);
@@ -34,13 +32,12 @@ public abstract class Proyectil extends Entidad implements Colisionador {
 	}
 
 	public void update(float deltaTime) {
-		Point posicion = this.getLocation();
+		Vector desplazamiento = movimiento.calcularMovimiento(xReal, yReal);
 
-		mover(velocidad.x * deltaTime, velocidad.y * deltaTime);
+		mover(desplazamiento.x * deltaTime, desplazamiento.y * deltaTime);
 
-		if (posicion.getY() < 0 || posicion.getY() > 650)
+		if (xReal < 0 || yReal > 650)
 			mediadorJuego.removeEntidad(this);
 	}
-	
 
 }
